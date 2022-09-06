@@ -1,0 +1,81 @@
+    1  passwd
+    2  wget    https://s3.amazonaws.com/amazon-reviews-pds/tsv/amazon_reviews_us_Books_v1_02.tsv.gz
+    3  ls
+    4  git --version
+    5  mkdir ws_1
+    6  ls
+    7  cd ws_1
+    8  git init
+    9  touch newfile.txt
+   10  git status
+   11  git add newfile.txt
+   12  git status
+   13  git commit -m "This is my first commit!"
+   14  cd ..
+   15  ls
+   16  cd ws_1
+   17  ls
+   18  rm newfile.txt
+   19  ls
+   20  history > cmds.log
+   21  ls
+   22  less cmds.log
+   23  git status
+   24  git add cmds.log
+   25  git status
+   26  git rm --cached newfile.txt
+   27  git status
+   28  git commit -m "This is my first commit!"
+   29  git config --global hannele.padre@sjsu.edu
+   30  git config --global hpadre
+   31  git commit -m "This is my first commit!"
+   32  git config --global user.name "hpadre"
+   33  git config --global user.email "hannele.padre@sjsu.edu"
+   34  git commit -m "This is my first commit!"
+   35  git remote add origin https://github.com/hpadre/worksheet1.git
+   36  git branch -M main
+   37  git push -u origin main
+   38  git remote add origin https://github.com/hpadre/worksheet1.git
+   39  git push -u origin main
+   40  git remote add origin https://github.com/hpadre/ws1.git
+   41  git remote add origin https://github.com/hpadre/ws_1.git
+   42  git branch -M main
+   43  git push -u origin main
+   44  git
+   45  history > cmds_2.log
+   46  ls
+   47  git status
+   48  git add cmds_2.log
+   49  git status
+   50  git commit -m "2nd commit, practicing what I've learned."
+   51  git push -u origin main
+   52  ls
+   53  git --version
+   54  mkdir cs131
+   55  cd cs131
+   56  git init
+   57  mkdir ws_1
+   58  cd ws_1
+   59  history > cmds.log
+   60  git status
+   61  git add cmds.log
+   62  git commit -m "This is my first commit!"
+   63  git remote add origin https://github.com/hpadre/cs131.git
+   64  git branch -M main
+   65  git push -u origin main
+   66  git checkout -b ws_1
+   67  git branch
+   68  history >cmds2.log
+   69  ls
+   70  git status
+   71  git add cmds2.log
+   72  git commit -m "This is my second commit!"
+   73  git status
+   74  git push origin ws_1
+   75  ls
+   76  cd ..
+   77  ls
+   78  mkdir test_dir
+   79  cd test_dir
+   80  git branch
+   81  history > cmds3.log
