@@ -1,0 +1,9 @@
+For "verified" reviews, the line count, word count, and byte count is (respectively):
+ 229347 44403448 262431531
+
+To get only lines, use parameter -l.
+To get only words, use paramter -w.
+Use >>[FILE] to append to this file.
+
+For "non-verified" reviews, the line count, word count, and byte count is (respectively):
+3105519 550169437 3238700628

@@ -1,0 +1,232 @@
+    1  passwd
+    2  wget    https://s3.amazonaws.com/amazon-reviews-pds/tsv/amazon_reviews_us_Books_v1_02.tsv.gz
+    3  ls
+    4  git --version
+    5  mkdir ws_1
+    6  ls
+    7  cd ws_1
+    8  git init
+    9  touch newfile.txt
+   10  git status
+   11  git add newfile.txt
+   12  git status
+   13  git commit -m "This is my first commit!"
+   14  cd ..
+   15  ls
+   16  cd ws_1
+   17  ls
+   18  rm newfile.txt
+   19  ls
+   20  history > cmds.log
+   21  ls
+   22  less cmds.log
+   23  git status
+   24  git add cmds.log
+   25  git status
+   26  git rm --cached newfile.txt
+   27  git status
+   28  git commit -m "This is my first commit!"
+   29  git config --global hannele.padre@sjsu.edu
+   30  git config --global hpadre
+   31  git commit -m "This is my first commit!"
+   32  git config --global user.name "hpadre"
+   33  git config --global user.email "hannele.padre@sjsu.edu"
+   34  git commit -m "This is my first commit!"
+   35  git remote add origin https://github.com/hpadre/worksheet1.git
+   36  git branch -M main
+   37  git push -u origin main
+   38  git remote add origin https://github.com/hpadre/worksheet1.git
+   39  git push -u origin main
+   40  git remote add origin https://github.com/hpadre/ws1.git
+   41  git remote add origin https://github.com/hpadre/ws_1.git
+   42  git branch -M main
+   43  git push -u origin main
+   44  git
+   45  history > cmds_2.log
+   46  ls
+   47  git status
+   48  git add cmds_2.log
+   49  git status
+   50  git commit -m "2nd commit, practicing what I've learned."
+   51  git push -u origin main
+   52  ls
+   53  git --version
+   54  mkdir cs131
+   55  cd cs131
+   56  git init
+   57  mkdir ws_1
+   58  cd ws_1
+   59  history > cmds.log
+   60  git status
+   61  git add cmds.log
+   62  git commit -m "This is my first commit!"
+   63  git remote add origin https://github.com/hpadre/cs131.git
+   64  git branch -M main
+   65  git push -u origin main
+   66  git checkout -b ws_1
+   67  git branch
+   68  history >cmds2.log
+   69  ls
+   70  git status
+   71  git add cmds2.log
+   72  git commit -m "This is my second commit!"
+   73  git status
+   74  git push origin ws_1
+   75  ls
+   76  cd ..
+   77  ls
+   78  mkdir test_dir
+   79  cd test_dir
+   80  git branch
+   81  history > cmds3.log
+   82  ls
+   83  git add cmds3.log
+   84  git commit -m "This is my third commit!"
+   85  git status
+   86  git push origin ws_1
+   87  q
+   88  exit
+   89  git branch
+   90  ls
+   91  mkdir ws_2
+   92  cd ws_2
+   93  pwd
+   94  tar zxvf /home/hannele/amazon_reviews_us_Books_v1_02.tsv.gz
+   95  ls
+   96  cd ..
+   97  cd ws_2
+   98  gunzip /home/hannele/amazon_reviews_us_Books_v1_02.tsv.gz
+   99  ls
+  100  cd ..
+  101  ls
+  102  head amazon_reviews_us_Books_v1_02.tsv
+  103  egrep "\tY\t" amazon_reviews_us_Books_v1_02.tsv
+  104  egrep "  Y  " amazon_reviews_us_Books_v1_02.tsv
+  105  egrep "	Y	" amazon_reviews_us_Books_v1_02.tsv
+  106  ls
+  107  grep Y amazon_reviews_us_Books_v1_02.tsv
+  108  grep
+  109  grep --help
+  110  grep -P "	Y	" amazon_reviews_us_Books_v1_02.tsv
+  111  grep -P "     N       " amazon_reviews_us_Books_v1_02.tsv
+  112  grep -P "	N	" amazon_reviews_us_Books_v1_02.tsv
+  113  grep -P "	Y	" amazon_reviews_us_Books_v1_02.tsv | wc -l
+  114  grep -P "	Y	" amazon_reviews_us_Books_v1_02.tsv | wc
+  115  grep -P "	Y	" amazon_reviews_us_Books_v1_02.tsv | wc -w
+  116  eait
+  117  exit
+  118  ls
+  119  cd ws_2
+  120  ls
+  121  ~/
+  122  pwd
+  123  grep -P "	Y	" ~/amazon_reviews_us_Books_v1_02.tsv | wc > counts.txt
+  124  ls
+  125  less counts.txt
+  126  vi counts.txt
+  127  less counts.txt
+  128  grep -P "	N	" ~/amazon_reviews_us_Books_v1_02.tsv | wc >> counts.txt
+  129  ls
+  130  vi counts.txt
+  131  git checkout -b ws_2
+  132  git init
+  133  git checkout -b ws_1
+  134  git branch
+  135  q
+  136  git branch
+  137  git checkout master
+  138  git status
+  139  git branch
+  140  git branch -a
+  141  git branch -d ws_1
+  142  exit
+  143  ls
+  144  git
+  145  git status
+  146  git init
+  147  ls
+  148  cd ws_2
+  149  git checkout -b ws_2
+  150  git branch
+  151  ls
+  152  history > cmds.log
+  153  git status
+  154  git add counts.txt
+  155  git add cmds.log
+  156  git status
+  157  git commit -m "This is my ws2 commit!"
+  158  git push origin ws_2
+  159  git push ws_2
+  160  git push
+  161  git status
+  162  cd ..
+  163  cd ws_2
+  164  ls
+  165  git push origin ws_2
+  166  git branch -M main
+  167  git status
+  168  bit branch
+  169  git branch
+  170  git push -u origin main
+  171  git checkout -b ws_2
+  172  git branch
+  173  git status
+  174  git push origin ws_2
+  175  git push ws_2
+  176  git push --set-upstream ws_2 ws_2
+  177  git push --set-upstream ws_2
+  178  cd ..
+  179  ls
+  180  git push .git
+  181  git push --set-upstream .git master
+  182  exit
+  183  ls
+  184  cd cs131
+  185  ls
+  186  mkdir ws_2
+  187  git init
+  188  git checkout -b ws_2
+  189  git branch
+  190  grep -P "	Y	" ~/amazon_reviews_us_Books_v1_02.tsv | wc > counts.txt
+  191  ls
+  192  vi ws_2
+  193  ls
+  194  cd cs131
+  195  ls
+  196  git init
+  197  git branch
+  198  git status
+  199  git ws_2
+  200  cd ws_2
+  201  ls
+  202  cd ..
+  203  ls
+  204  mv counts.txt ./ws_2
+  205  ls
+  206  cd ws_2
+  207  ls
+  208  vi counts.txt
+  209  cd ..
+  210  ls
+  211  cd ws_2
+  212  less counts.txt
+  213  cd ..
+  214  rm -d ws_2
+  215  rm -r ws_2
+  216  ls
+  217  cd ws_2
+  218  ls
+  219  rm cmds.log
+  220  cd ..
+  221  rm -d ws_2
+  222  rm -r ws_2
+  223  ls
+  224  cd cs131
+  225  ls
+  226  cd ws_2
+  227  ls
+  228  vi counts.txt
+  229  grep -P "	N	" ~/amazon_reviews_us_Books_v1_02.tsv | wc >> counts.txt
+  230  ls
+  231  vi counts.txt
+  232  history > cmds.log
