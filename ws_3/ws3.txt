@@ -1,0 +1,61 @@
+# Worksheet 3 Screen Capture
+# Hannele Padre
+
+# Start Screen Capture
+Script started on 2022-09-16 00:20:17-04:00
+
+# Create hard link from home to new directory ws_3
+]0;hannele@sjsu:~/cs131/ws_3[hannele@sjsu ws_3]$ ln /home/hannele/amazon_reviews_us_Books_v1_02.tsv amazon_reviews_us_Books_v1_02.tsv
+
+# Check Contents of dir ws_3
+]0;hannele@sjsu:~/cs131/ws_3[hannele@sjsu ws_3]$ ls
+amazon_reviews_us_Books_v1_02.tsv  ws3.txt
+]0;hannele@sjsu:~/cs131/ws_3[hannele@sjsu ws_3]$ [K[hannele@sjsu ws_3]$ [K[hannele@sjsu ws_3]$ [K[hannele@sjsu ws_3]$ [K[hannele@sjsu ws_3]$ [K[hannele@sjsu ws_3]$ [K[hannele@sjsu ws_3]$ ls -alth
+total 3.1G
+drwxrwxr-x 2 hannele hannele   62 Sep 16 00:21 [0m[38;5;33m.[0m
+-rw-rw-r-- 1 hannele hannele    0 Sep 16 00:20 ws3.txt
+drwxrwxr-x 8 hannele hannele   80 Sep 16 00:19 [38;5;33m..[0m
+-rw-rw-r-- 2 hannele hannele 3.1G Nov 24  2017 amazon_reviews_us_Books_v1_02.tsv
+
+# Checked Headers to see column number for customer_id and product_id
+# Customer_id is at position 2
+# Product_idc is at position 4
+]0;hannele@sjsu:~/cs131/ws_3[hannele@sjsu ws_3]$ head -n 3 amazon_reviews_us_Books_v1_02.tsv
+marketplace	customer_id	review_id	product_id	product_parent	product_title	product_category	star_rating	helpful_votes	total_votes	vine	verified_purchase	review_headline	review_body	review_date
+US	12076615	RQ58W7SMO911M	0385730586	122662979	Sisterhood of the Traveling Pants (Book 1)	Books	4	2	3	N	N	this book was a great learning novel!	this boook was a great one that you could learn from. it not only teaches the imponrtance of family and their values but it also deals with basic issues that teens and some kids even deal with.  this book is about 4 best friends who are for the first time in their lives spending their summer apart. one day they are all in one of the girls rooms and finds a pair of pants that were tucked away in her closet.  once all four  of them try them on they realize that there is really something special about these pants.  seeming as how all 4 girls are differnt shapes and sizes and somehow the pants fit all of them,  they realize that these pants were the start of something special.  immediatley following they decided to make up certian rules abut the pants such as you must write the best thing u did while wearing the pants over your summer on the right leg and also some silly things such as to \\"never pick yuor nose while wearing the pants.\\"  this book follows the girls throuh their summers in differnt places of the world and through all of the different obstacles that life takes them through. it can really teach you alot not only about what is going on around you but most imporntantly about yuorself.  i would give this book 4 stars and would reccommend it to anyone who seems the slihgtest bit interested.	2005-10-14
+US	12703090	RF6IUKMGL8SF	0811828964	56191234	The Bad Girl's Guide to Getting What You Want	Books	3	5	5	N	N	Fun Fluff	If you are looking for something to stimulate your brain, this isn't it.  However, if you are just looking for a good laugh, you'll enjoy The Bad Girl's Guide.  It's funny and light, and definitely a good way to pass a little bit of time.	2005-10-14
+
+###### QUESTION 1: Sort the customer IDs in order to find the customer who authored the most reviews. Which customers are the top 3 reviewers (with the most reviews)? ######
+
+]0;hannele@sjsu:~/cs131/ws_3[hannele@sjsu ws_3]$ cut -f 2 -d ' ' amazon_reviews_us_Books_v1_02.tsv | sort | uniq -c | sort -nr -k 1 | head -3[1P      ' amazon_reviews_us_Books_v1_02.tsv | sort | uniq -c | sort -nr -k 1 | head -33[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C
+
+
+###### The top 3 reviewers (with the most reviews) are as follows: ######
+  21922 50122160
+   9964 50732546
+   2664 52615377
+
+# sort first before uniq -c, otherwise I get weird results 
+# uniq -c provides counts
+# sort again, -nr sorts in reverse numerical order, and -k 1 indicates to sort with column 1 which are the counts
+
+
+###### QUESTION 2: Sort the products in order to find the product that has the most reviews. What are the top 3 most reviewed products? ######
+
+]0;hannele@sjsu:~/cs131/ws_3[hannele@sjsu ws_3]$ cut -f 2 -d '      ' amazon_reviews_us_Books_v1_02.tsv | sort | uniq -c | sort -nr -k 1 | head -33[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C -d ' 4 -d '
+
+
+###### The top 3 most reviewed products, using the product_id counts, are as follows: ######
+   4625 043935806X
+   3739 0439139597
+   2666 0525947647
+
+# Parameters in command are similar to question 1, except cut -f is 4. The command up there shoes 2 because I clicked the up arrow to go back to the first command, then had to left arrow click all the way until I can change the 2 to 4.
+
+###### Create cmds.log ###### 
+]0;hannele@sjsu:~/cs131/ws_3[hannele@sjsu ws_3]$ history > cmds.log
+]0;hannele@sjsu:~/cs131/ws_3[hannele@sjsu ws_3]$ ls
+amazon_reviews_us_Books_v1_02.tsv  cmds.log  ws3.txt
+]0;hannele@sjsu:~/cs131/ws_3[hannele@sjsu ws_3]$ exit
+
+Script done on 2022-09-16 00:27:04-04:00
