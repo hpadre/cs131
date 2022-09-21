@@ -1,0 +1,234 @@
+***** ASSIGNMENT 1 *****
+***** Hannele Padre *****
+
+**** Initiate Screen Capture****
+Script started on 2022-09-21 15:42:16-04:00
+
+**** Q1: Make directory A1 and cd ****
+]0;hannele@sjsu:~/cs131[hannele@sjsu cs131]$ mkdir A1
+]0;hannele@sjsu:~/cs131[hannele@sjsu cs131]$ cd A1
+
+**** Q2: What is your home directory path?****
+** Home direcotry path is /home/hannele **
+** There are several ways to find the home directory: **
+]0;hannele@sjsu:~/cs131/A1[hannele@sjsu A1]$ echo ~/[K[K[K[K[K[K[K~/
+bash: /home/hannele/: Is a directory
+]0;hannele@sjsu:~/cs131/A1[hannele@sjsu A1]$ echo ~/
+/home/hannele/
+]0;hannele@sjsu:~/cs131/A1[hannele@sjsu A1]$ echo $HOME
+/home/hannele
+
+**** Q3: What is your UID? What group? ****
+** UID: 1025 and group: hannele **
+** Several ways to find this information: **
+]0;hannele@sjsu:~/cs131/A1[hannele@sjsu A1]$ echo $UID
+1025
+]0;hannele@sjsu:~/cs131/A1[hannele@sjsu A1]$ id -u hannele
+1025
+]0;hannele@sjsu:~/cs131/A1[hannele@sjsu A1]$ echo $GROUP
+
+]0;hannele@sjsu:~/cs131/A1[hannele@sjsu A1]$ getent group hannele
+hannele:x:1025:
+
+**** Q4: Create new dir "temp". Remove execute permission. Can you cd into it? Can you ls it? can you  ls -l? Can you create files under it?****
+** You cannot CD or create files in a directory you dont have executing permission for. You can "ls" and "ls -l" it tho. **
+
+
+]0;hannele@sjsu:~/cs131/A1[hannele@sjsu A1]$ mkdir temp
+]0;hannele@sjsu:~/cs131/A1[hannele@sjsu A1]$ ls -l [K
+total 0
+drwxrwxr-x 2 hannele hannele 6 Sep 21 15:43 [0m[38;5;33mtemp[0m
+
+** Changed permissions with this command**
+]0;hannele@sjsu:~/cs131/A1[hannele@sjsu A1]$ chmod 675 temp
+]0;hannele@sjsu:~/cs131/A1[hannele@sjsu A1]$ ls -l
+total 0
+drw-rwxr-x 2 hannele hannele 6 Sep 21 15:43 [0m[38;5;33mtemp[0m
+
+** Forgot to check cd command, did it after and just copied and pasted the output here: **
+[hannele@sjsu A1]$ cd temp
+-bash: cd: temp: Permission denied
+
+]0;hannele@sjsu:~/cs131/A1[hannele@sjsu A1]$ le[Ks -l temp
+total 0
+]0;hannele@sjsu:~/cs131/A1[hannele@sjsu A1]$ le temp[K[K[K[K[K[K[Kvi ./temp/file.txt
+[?2004h[?1049h[22;0;0t[?1h=[?2004h[1;28r[?12h[?12l[27m[23m[29m[m[H[2J[?25l[28;1H"./temp/file.txt" [Permission Denied][2;1H▽[6n[2;1H  [1;1H[>c]10;?]11;?[2;1H[94m~                                                                                                      [3;1H~                                                                                                      [4;1H~                                                                                                      [5;1H~                                                                                                      [6;1H~                                                                                                      [7;1H~                                                                                                      [8;1H~                                                                                                      [9;1H~                                                                                                      [10;1H~                                                                                                      [11;1H~                                                                                                      [12;1H~                                                                                                      [13;1H~                                                                                                      [14;1H~                                                                                                      [15;1H~                                                                                                      [16;1H~                                                                                                      [17;1H~                                                                                                      [18;1H~                                                                                                      [19;1H~                                                                                                      [20;1H~                                                                                                      [21;1H~                                                                                                      [22;1H~                                                                                                      [23;1H~                                                                                                      [24;1H~                                                                                                      [25;1H~                                                                                                      [26;1H~                                                                                                      [27;1H~                                                                                                      [m[28;86H0,0-1[9CAll[1;1H[?25h[?25l[28;76H^[[1;1H[28;76H  [1;1H[28;76H^[[1;1H[28;76H  [1;1H[?25h[?25l[28;76H:[1;1H[28;1H[K[28;1H:[?2004h[?25hq[?25l[?25h[?25l[?2004l[28;1H[K[28;1H[?2004l[?1l>[?25h[?1049l[23;0;0t]0;hannele@sjsu:~/cs131/A1[hannele@sjsu A1]$ ls -l temp
+total 0
+
+**** Q5: create dir "temp2". Can you "mv" this dir to "temp3"? Are you allowed to "cp" a dir? If you want to cp an entire dir, how would you do it? ****
+** You can mv dir to diff directory if the second directory already exists. If it does not, it will rename the directory. You can also cp but ou need to add -r. **
+]0;hannele@sjsu:~/cs131/A1[hannele@sjsu A1]$ mkdir temp2
+]0;hannele@sjsu:~/cs131/A1[hannele@sjsu A1]$ mv temp2/ temp3/
+]0;hannele@sjsu:~/cs131/A1[hannele@sjsu A1]$ ls temp3[K[K[K[K[K
+[0m[38;5;33mtemp[0m  [38;5;33mtemp3[0m
+]0;hannele@sjsu:~/cs131/A1[hannele@sjsu A1]$ ls temp3
+]0;hannele@sjsu:~/cs131/A1[hannele@sjsu A1]$ mkdir temp2
+]0;hannele@sjsu:~/cs131/A1[hannele@sjsu A1]$ mv temp2 temp3
+]0;hannele@sjsu:~/cs131/A1[hannele@sjsu A1]$ ls
+[0m[38;5;33mtemp[0m  [38;5;33mtemp3[0m
+]0;hannele@sjsu:~/cs131/A1[hannele@sjsu A1]$ ls temp3
+[0m[38;5;33mtemp2[0m
+]0;hannele@sjsu:~/cs131/A1[hannele@sjsu A1]$ cp ./temp3/temp2 .
+cp: -r not specified; omitting directory './temp3/temp2'
+]0;hannele@sjsu:~/cs131/A1[hannele@sjsu A1]$ cp ./temp3/temp2 .[1@-[1@r[1@ 
+]0;hannele@sjsu:~/cs131/A1[hannele@sjsu A1]$ ls
+[0m[38;5;33mtemp[0m  [38;5;33mtemp2[0m  [38;5;33mtemp3[0m
+
+**** Q6: Using "ls", maybe "grep", find file under dir /proc to find memory info about server. Which files contains info about the cpu's?****
+** The file "meminfo" contains info about the cpu's on the server**
+]0;hannele@sjsu:~/cs131/A1[hannele@sjsu A1]$ cd /proc
+]0;hannele@sjsu:/proc[hannele@sjsu proc]$ ls | grep "mem"
+io[01;31m[Kmem[m[K
+[01;31m[Kmem[m[Kinfo
+
+**** Q7: Use "head" to check mem info. How much total memory is on your server?****
+** Total memory on our server is MemTotal:       73080640 kB**
+]0;hannele@sjsu:/proc[hannele@sjsu proc]$ head meminfo[K[K[K[K[K[K[K[K[K[K[K[Kless meminfo
+[?1049h[22;0;0t[?1h=MemTotal:       73080640 kB
+MemFree:         1630016 kB
+MemAvailable:   58642240 kB
+Buffers:            4224 kB
+Cached:         58705664 kB
+SwapCached:        24000 kB
+Active:         52676480 kB
+Inactive:        6262272 kB
+Active(anon):     455552 kB
+Inactive(anon):   732992 kB
+Active(file):   52220928 kB
+Inactive(file):  5529280 kB
+Unevictable:      125632 kB
+Mlocked:          125632 kB
+SwapTotal:       9453504 kB
+SwapFree:        9041408 kB
+Dirty:               192 kB
+Writeback:             0 kB
+AnonPages:        327936 kB
+Mapped:           394624 kB
+Shmem:            916800 kB
+KReclaimable:     505856 kB
+Slab:            4767296 kB
+SReclaimable:     505856 kB
+SUnreclaim:      4261440 kB
+KernelStack:       40576 kB
+PageTables:        18816 kB
+[7mmeminfo[27m[K[K [KESCESC[KOO[KBB[KNFS_Unstable:          0 kB
+:[K[K [KESCESC[KOO[KBB[KBounce:                0 kB
+:[K[K [KESCESC[KOO[KAA[K[HMMemFree:         1630016 kB
+[28;1H[K:[K[K [KESCESC[KOO[KAA[K[HMMemTotal:       73080640 kB
+[28;1H[K:[K[KESCESC[KOO[KAA[K[K:[K[K [KESCESC[KOO[KAA[K[K:[K[K [KESCESC[KOO[KAA[K[K:[K[K [KESCESC[KOO[KAA[K[K:[K[K [KESCESC[KOO[KAA[K[K:[K[K [KESCESC[KOO[KAA[K[K:[K[K [KESCESC[KOO[KAA[K[K:[K[K [KESCESC[KOO[KAA[K[K:[K[K [KESCESC[KOO[KAA[K[K:[K[K [KESCESC[KOO[KAA[K[K:[K[K [KESCESC[KOO[KAA[K[K:[K[K [KESCESC[KOO[KAA[K[K:[K[K [KESCESC[KOO[KAA[K[K:[K[K [KESCESC[KOO[KAA[K[K:[K[K [KESCESC[KOO[KAA[K[K:[K[K [KESCESC[KOO[KAA[K[K:[K[K [KESCESC[KOO[KAA[K[K:[K[K [KESCESC[KOO[KAA[K[K:[K[K [KESCESC[KOO[KAA[K[K:[K[K [KESCESC[KOO[KAA[K[K:[K[K [KESCESC[KOO[KAA[K[K:[K[K [KESCESC[KOO[KAA[K[K:[K[K [KESCESC[KOO[KAA[K[K:[K[K [KESCESC[KOO[KAA[K[K:[K[K [KESCESC[KOO[KAA[K[K:[K[K [KESCESC[KOO[KAA[K[K:[K[K [KESCESC[KOO[KAA[K[K:[K[K [KESCESC[KOO[KAA[K[K:[K[K [KESCESC[KOO[KAA[K[K:[K[K [KESCESC[KOO[KAA[K[K:[K[K [KESCESC[KOO[KAA[K[K:[K[K [KESCESC[KOO[KAA[K[K:[K[K [KESCESC[KOO[KAA[K[K:[K[K [KESCESC[KOO[KAA[K[K:[K[K [KESCESC[KOO[KAA[K[K:[K[K [KESCESC[KOO[KAA[K[K:[K[K [KESCESC[KOO[KAA[K[K:[K[K [KESCESC[KOO[KAA[K[K:[K[K [KESCESC[KOO[KAA[K[K:[K[K[?1l>[?1049l[23;0;0t]0;hannele@sjsu:/proc[hannele@sjsu proc]$ head meminfo
+MemTotal:       73080640 kB
+MemFree:         1629056 kB
+MemAvailable:   58641280 kB
+Buffers:            4224 kB
+Cached:         58705728 kB
+SwapCached:        24000 kB
+Active:         52676416 kB
+Inactive:        6261888 kB
+Active(anon):     455488 kB
+Inactive(anon):   732608 kB
+
+
+**** Q8: Use head tail cat to check cpu info file you found. How many processors are on your server? Processor architecture name? Processor speed in GHz? *****
+** Processors found by tail: 255 **
+** Processor Architecture name: POWER8 **
+** Speed: 3525.000000MHz **
+]0;hannele@sjsu:/proc[hannele@sjsu proc]$ head cpuinfo
+processor	: 0
+cpu		: POWER8 (architected), altivec supported
+clock		: 3525.000000MHz
+revision	: 2.1 (pvr 004b 0201)
+
+processor	: 1
+cpu		: POWER8 (architected), altivec supported
+clock		: 3525.000000MHz
+revision	: 2.1 (pvr 004b 0201)
+
+]0;hannele@sjsu:/proc[hannele@sjsu proc]$ tail cou[K[Kpuinfo
+processor	: 255
+cpu		: POWER8 (architected), altivec supported
+clock		: 3525.000000MHz
+revision	: 2.1 (pvr 004b 0201)
+
+timebase	: 512000000
+platform	: pSeries
+model		: IBM,8286-42A
+machine		: CHRP IBM,8286-42A
+MMU		: Hash
+]0;hannele@sjsu:/proc[hannele@sjsu proc]$ ta[K[Kcd ..
+]0;hannele@sjsu:/[hannele@sjsu /]$ cd
+]0;hannele@sjsu:~[hannele@sjsu ~]$ cd cs131/A1
+]0;hannele@sjsu:~/cs131/A1[hannele@sjsu A1]$ /
+bash: /: Is a directory
+
+**** Q9: CP hashtags twitter file to A1 directory. What is the size? How many lines? ****
+** Size is 7.5 Mb. Number of lines is 110350 **
+]0;hannele@sjsu:~/cs131/A1[hannele@sjsu A1]$ cp /home/test/A1/downloaded_hashtags_extend.csv .
+]0;hannele@sjsu:~/cs131/A1[hannele@sjsu A1]$ ls -alth
+total 7.5M
+-rw-r--r-- 1 hannele hannele 7.5M Sep 21 15:48 downloaded_hashtags_extend.csv
+drwxrwxr-x 5 hannele hannele   82 Sep 21 15:48 [0m[38;5;33m.[0m
+drwxrwxr-x 2 hannele hannele    6 Sep 21 15:46 [38;5;33mtemp2[0m
+drwxrwxr-x 3 hannele hannele   19 Sep 21 15:45 [38;5;33mtemp3[0m
+drw-rwxr-x 2 hannele hannele    6 Sep 21 15:43 [38;5;33mtemp[0m
+drwxrwxr-x 8 hannele hannele   94 Sep 21 15:42 [38;5;33m..[0m
+]0;hannele@sjsu:~/cs131/A1[hannele@sjsu A1]$ wc -l downloaded_hashtags_extend.csv
+110350 downloaded_hashtags_extend.csv
+
+**** Q10: Search for case-insensitive word "great". How many hashtages contain this word? ****
+** 57 hashtags (nonunique) contain this word. used -i paramater to ignore case however that is usually the default. **
+** 29 UNIQUE HASHTAGES contain the word "great". NOTE: Need to sort before using uniq command **
+]0;hannele@sjsu:~/cs131/A1[hannele@sjsu A1]$ grep -i great downloaded_hashtags_extend.csv | wc -l
+57
+]0;hannele@sjsu:~/cs131/A1[hannele@sjsu A1]$ 57
+bash: 57: command not found
+]0;hannele@sjsu:~/cs131/A1[hannele@sjsu A1]$ grep -i great downloaded_hashtags_extend.csv | awk -F ',' '{print $2}' | sort -u | wcc -l
+29
+]0;hannele@sjsu:~/cs131/A1[hannele@sjsu A1]$ grep -i great downloaded_hashtags_extend.csv | awk -F ',' '{print $2}' | sort | uniq  | wc -l
+29
+
+**** Q11: Use file to check character encoding. ****
+** Character encoding is UTF-8 Unicode text **
+]0;hannele@sjsu:~/cs131/A1[hannele@sjsu A1]$ file downloaded_hashtags_extend.csv
+downloaded_hashtags_extend.csv: UTF-8 Unicode text
+]0;hannele@sjsu:~/cs131/A1[hannele@sjsu A1]$ ls
+downloaded_hashtags_extend.csv  [0m[38;5;33mtemp[0m  [38;5;33mtemp2[0m  [38;5;33mtemp3[0m
+
+**** Q12: iconv to convert file to ascii character encoding****
+** Checked with file again to be sure. **
+]0;hannele@sjsu:~/cs131/A1[hannele@sjsu A1]$ iconv -f utf-8 -t ascii//TRANSLIT downloaded_hashtags_extend.csv >> hashtags_ascii.c sv
+]0;hannele@sjsu:~/cs131/A1[hannele@sjsu A1]$ ls [K
+downloaded_hashtags_extend.csv  hashtags_ascii.csv  [0m[38;5;33mtemp[0m  [38;5;33mtemp2[0m  [38;5;33mtemp3[0m
+]0;hannele@sjsu:~/cs131/A1[hannele@sjsu A1]$ file downloaded_hashtags_extend.csv
+downloaded_hashtags_extend.csv: UTF-8 Unicode text
+]0;hannele@sjsu:~/cs131/A1[hannele@sjsu A1]$ file hashtags_ascii.csv
+hashtags_ascii.csv: ASCII text
+]0;hannele@sjsu:~/cs131/A1[hannele@sjsu A1]$ head hashtags_ascii.txt
+head: cannot open 'hashtags_ascii.txt' for reading: No such file or directory
+
+**** Q13: Check column names with head. How many unique users (User ID's column 1) tweeted hashtags? How many unique tweets (tweed ID's column 4)? How many unique hashtags (hashtags column 2)? Is this the same as the number of tweets or more or less? ****
+** Unique users: 177 **
+** Unique tweets: 64698 **
+** Unique hashtags 20134 **
+** Then number of tweets is larger than the number of hashtags. **
+]0;hannele@sjsu:~/cs131/A1[hannele@sjsu A1]$ head hashtags_ascii.txt[K[K[Kcsv
+author,hashtags,date,id
+308045021,awesomepeopleontwitter,2022-04-30 23:18:45+00:00,1520543208614334465
+308045021,journalism,2022-04-30 20:40:18+00:00,1520503332246376448
+308045021,npr,2022-04-30 20:40:18+00:00,1520503332246376448
+308045021,lc,2022-04-29 22:28:54+00:00,1520168272896962562
+308045021,exercise,2022-04-29 22:28:54+00:00,1520168272896962562
+308045021,buddhism,2022-04-29 14:52:29+00:00,1520053412968210432
+308045021,buddhism,2022-04-29 14:16:51+00:00,1520044444204032001
+308045021,obgyntwitter,2022-04-29 02:47:33+00:00,1519870977311715328
+308045021,busymom,2022-04-28 21:20:34+00:00,1519788687957049344
+]0;hannele@sjsu:~/cs131/A1[hannele@sjsu A1]$ awk -F ',' '{print $1}' hashtags_ascii.csv | sort -u | wc -l
+177
+]0;hannele@sjsu:~/cs131/A1[hannele@sjsu A1]$ awk -F ',' '{print $4}' hashtags_ascii.csv | sort -u | wc -l
+64698
+]0;hannele@sjsu:~/cs131/A1[hannele@sjsu A1]$ awk -F ',' '{print $2}' hashtags_ascii.csv | sort -u | wc -l
+20134
+]0;hannele@sjsu:~/cs131/A1[hannele@sjsu A1]$ awk -F ',' '{print $2}' downloaded_hashtags_extend.csv | sort -u | wc -l
+20258
+]0;hannele@sjsu:~/cs131/A1[hannele@sjsu A1]$ exit
+
+Script done on 2022-09-21 15:56:44-04:00
