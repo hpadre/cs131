@@ -1,0 +1,24 @@
+Do you think the mean helpfulness value may differ significantly between different  customers or products? You may edit a file named README in vi or nano or emacs to answer this question, as well as any other explanations you like to add.
+
+I think the helpfulness value differs significantly between different customers than products.
+Here are the results:
+[hannele@sjsu ws_4]$ sh compute_mean.sh 'CUSTOMERS'
+Accessing directory: CUSTOMERS
+Mean helpfulness score of CUSTOMERS ID ./CUSTOMERS/50122160.txt
+6.12754310738071343855
+Mean helpfulness score of CUSTOMERS ID ./CUSTOMERS/50732546.txt
+5.85086310718586912886
+Mean helpfulness score of CUSTOMERS ID ./CUSTOMERS/52615377.txt
+28.08633633633633633633
+[hannele@sjsu ws_4]$ sh compute_mean.sh 'PRODUCTS'
+Accessing directory: PRODUCTS
+Mean helpfulness score of PRODUCTS ID ./PRODUCTS/0439139597.txt
+1.51644824819470446643
+Mean helpfulness score of PRODUCTS ID ./PRODUCTS/043935806X.txt
+1.58616216216216216216
+Mean helpfulness score of PRODUCTS ID ./PRODUCTS/0525947647.txt
+11.55997001499250374812
+
+As we can see, there is a larger variance between helpfulness scores in customer ID's. Also, the scores are higher than in product ID.This makes sense to me because I would expect a good reviewer to consistently make helpful reviews per product. Also, as more reviews are written, I would expect this customer to improve upon their writing and quality of reviews.
+
+Looking at helpfulness value based on product ID is interesting, because this means, for example, the product 0439139597 has an average helpfulness rating of 1.52, so a lot of reviews of this product are not helpful. Perhaps, this is a difficult product to create a review for.  
