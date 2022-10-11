@@ -1,0 +1,62 @@
+Worksheet 5
+Hannele Padre
+
+#I tmux into session before starting script
+^[]0;hannele@sjsu:~/cs131/ws_5^G[hannele@sjsu ws_5]$ tmux attach -t homework^M
+
+#### Started script ####
+Script started on 2022-10-11 18:07:52-04:00
+
+#### Made directory ws_5, mv script to directory, and cd into directory ####
+khannele@sjsu:~/cs131\[hannele@sjsu cs131]$ mkdir ws_5
+khannele@sjsu:~/cs131\[hannele@sjsu cs131]$ mv ws5.txt ./ws_5
+khannele@sjsu:~/cs131\[hannele@sjsu cs131]$ cd ws_5
+khannele@sjsu:~/cs131/ws_5\[hannele@sjsu ws_5]$ ls
+ws5.txt
+
+#### Create link to reviews tsv file ####
+khannele@sjsu:~/cs131/ws_5\[hannele@sjsu ws_5]$ ln -s ~/amazon_reviews_us_Books_v1_02.tsv amazon_reviews.tsv
+
+#### Create a text file, customers_top1000.txt t contain the top 1000 customers (with the most reviews) ####
+[hannele@sjsu ws_5]$ awk -F '\t' '{print $2}' amazon_reviews.tsv | sort -r | uniq -c | sort -nr -k 1 | head -100^[[26;1H0 > customers_top1000.txt 
+khannele@sjsu:~/cs131/ws_5\[hannele@sjsu ws_5]$ ls
+[0m[01;36mamazon_reviews.tsv[0m  customers_top1000.txt  ws5.txt
+
+## Checked contents of customers_top1000.txt ##
+khannele@sjsu:~/cs131/ws_5\[hannele@sjsu ws_5]$ less customers_top1000.txt
+[?1049h[?1h=  21922 50122160
+   9964 50732546
+   2664 52615377
+   2215 45041039
+   1797 50776149
+   1786 50913245
+   1643 20595117
+   1622 45273033
+   1416 39569598
+   1384 49693975
+   1336 38491967
+   1300 36642996
+   1263 50881246
+   1159 52254603
+   1039 51987970
+   1036 49750558
+   1023 49115690
+   1006 50608834
+    997 50068216
+    996 51147790
+    995 43546353
+    966 50199793
+    939 52476938
+[3mcustomers_top1000.txt[23m[K[K[?1l>[?1049lkhannele@sjsu:~/cs131/ws_5\[hannele@sjsu ws_5]$ vim [K[K[K[Kmkdir CUSTOMERS
+
+####
+#### Created bash file to iterate through textfile to do task: Write a for loop on the bash shell that will write (redirect) the reviews of the top 1000 customers (with the most reviews) to separate files named as CUSTOMERS/custid.txt. ####
+####
+khannele@sjsu:~/cs131/ws_5\[hannele@sjsu ws_5]$ vim customer.sh[K[K[Ks.sh
+[hannele@sjsu ws_5]$ sh customers.sh customers_top1000.txt CUSTOMERS  
+
+
+^[[39;1H^[[36m^[[1mamazon_reviews.tsv^[(B^[[m  ^[[34m^[[1mCUSTOMERS^[(B^[[m  customers.sh  customers_top1000.txt  ws5_2.txt  ws5.txt^[[1;41r^[[40;1H[hannele@sjsu ws_5]$ ^[[1;41r^[(B^[[m^[[?1l^[>^[[H^[[2J^[]112^G^[[?12l^[[?25h^[[?1000l^[[?1002l^[[?1006l^[[?1005l^[[?1049l^[[23;0;0t[detached (from session homework)]^M
+^[]0;hannele@sjsu:~/cs131/ws_5/CUSTOMERS^G[hannele@sjsu CUSTOMERS]$ exit^M
+
+Script done on 2022-10-11 18:29:21-04:00
