@@ -1,0 +1,207 @@
+Assignment 2
+Hannele Padre
+
+#### Initiate screen capture ####
+Script started on 2022-10-11 14:50:23-04:00
+
+#### Make new directory and move a2.txt to new directory, cd into new directory ####
+]0;hannele@sjsu:~/cs131[hannele@sjsu cs131]$ mkdir A2
+]0;hannele@sjsu:~/cs131[hannele@sjsu cs131]$ cd A2
+]0;hannele@sjsu:~/cs131/A2[hannele@sjsu A2]$ cd ..
+]0;hannele@sjsu:~/cs131[hannele@sjsu cs131]$ pwd
+/home/hannele/cs131
+]0;hannele@sjsu:~/cs131[hannele@sjsu cs131]$ cd A2
+]0;hannele@sjsu:~/cs131/A2[hannele@sjsu A2]$ mv /home/hannele/cs131/a2.txt .
+]0;hannele@sjsu:~/cs131/A2[hannele@sjsu A2]$ ls
+a2.txt
+
+#### Copy files into directory ####
+]0;hannele@sjsu:~/cs131/A2[hannele@sjsu A2]$ cp /home/test/A1/downloaded_tweets_extend_original_nolf2.tsv .
+]0;hannele@sjsu:~/cs131/A2[hannele@sjsu A2]$ cp /home/test/A1/downloaded_tweets_extend_nolf2.tsv .
+
+#### Check Headeres ####
+]0;hannele@sjsu:~/cs131/A2[hannele@sjsu A2]$ head -1 downloaded_tweets_extend_original_nolf2.tsv
+id	author	date	hashtags	referenced	in_reply_to_user_id	public_metrics	text_nolf
+
+#### 1. Find the top 10 Users who replied to most other users. ####
+## grep'd for tweets that have been replied to and counted/sorted the first 10 users (column 2, author), and made sure to NOT include bots ##
+]0;hannele@sjsu:~/cs131/A2[hannele@sjsu A2]$ grep "replied_to" downloaded_tweets_extend_original_nolf2.tsv | awk -F '\t' '($2 != $6) {print $2}'| sort -r | uniq -c | sort -nr -k 1 | head -10
+     28 1387010761994682371
+     19 1573800344
+     17 1921951394
+     16 1240682348120866816
+     14 94350709
+     14 940778288871542786
+     11 29447428
+     10 90107770
+     10 1401861298233647106
+      9 4830874006
+
+#### 2. Find the top 10 users tho got the most replies from OTHER users ####
+## Sorted and counted and sorted column 6, in_reply_to_user_id; to get users who GOT replies from other users ##
+]0;hannele@sjsu:~/cs131/A2[hannele@sjsu A2]$ grep "replied_to" downloaded_tweets_extend_original_nolf2.tsv | awk -F '\t' '($2 != $6) {print $6}'| sort -r | uniq -c | sort -nr -k 1 | head -10
+     45 3453306553
+     27 29447428
+     14 1238370241169616897
+     13 1108565574
+     12 19739126
+     11 21525682
+     10 95091601
+     10 48624704
+     10 1462548977367359490
+      9 26217297
+
+#### 3. Find top 10 users who retweeted the most tweets ####
+#### First I checked the different types under 'referenced', column 5 ####
+## Then I first grepped for "type=retweeted", and counted/sorted for user authors, column 2 ##
+]0;hannele@sjsu:~/cs131/A2[hannele@sjsu A2]$ awk -F'\t' '{print $5}' downloaded_tweets_extend_nolf2.tsv | awk -F ' ' '($3 != "") {print $3}'| tr -d "]" | grep -v "referenced" | sort | uniq -c | sort -nrr -k 1 | head -20
+  48953 type=retweeted
+   5967 type=replied_to
+   3221 type=quoted
+]0;hannele@sjsu:~/cs131/A2[hannele@sjsu A2]$ grep "type=retweeted" downloaded_tweets_extend_nolf2.tsv | awk -F'\t' '($2 != $6) {print $2}' | sort -r | uniq -c | sort -nr -k 1 | head -10
+   2065 45379403
+   1678 77726331
+   1641 870244616003403781
+   1582 1028022611324747776
+   1312 711608180535640064
+   1281 139109800
+   1234 177400353
+   1216 832019161454817280
+   1159 29447428
+   1139 1060440219097423872
+
+#### 5. Find the 30 hashtags used most frequently overall for anything ####
+## Got into column 4 hashtags, ignored rows with empty column 4's, deleted commas, deleted ", sorted, counted, sorted ##
+]0;hannele@sjsu:~/cs131/A2[hannele@sjsu A2]$ awk -F '\t' '($4 != "") {print $4}' downloaded_tweets_extend_nolf2.tsv | tr ',' '\n' | tr -d '"' |  sort -r | uniq -c | sort -nr -k 1 | head -30
+   2823 Ukraine
+   1609 COVID19
+   1115 Russia
+   1110 LongCovid
+    895 FBPE
+    894 FollowBackFriday
+    782 StandWithUkraine
+    536 PutinHitler
+    476 Russian
+    406 Putin
+    405 Omicron
+    366 BREAKING
+    363 auspol
+    357 Mariupol
+    343 bcpoli
+    337 Kyiv
+    319 ableg
+    305 StopPutinNOW
+    292 COVIDisAirborne
+    282 PMQs
+    280 เจ้าแก้มก้อน
+    274 PutinWarCriminal
+    269 Ottawa
+    263 RussiaSanctions
+    263 Genocide
+    260 BoycottRussia
+    258 Ukrainian
+    252 VoteFordOut
+    239 onpoli
+    239 cdnpoli
+
+#### 6. Find the 30 hashtags that got retweeted the most ####
+]0;hannele@sjsu:~/cs131/A2[hannele@sjsu A2]$ grep "type=retweeted" downloaded_tweets_extend_nolf2.tsv | awk -F '\t' '($4 != "") {print $4}' | tr ',' '\n' | tr -d '"' |  sort -r | uniq -c | sort -nr -k 11 | head -30
+   2510 Ukraine
+   1096 COVID19
+   1029 Russia
+    956 LongCovid
+    397 Russian
+    362 BREAKING
+    348 auspol
+    317 Kyiv
+    316 Omicron
+    287 Mariupol
+    274 เจ้าแก้มก้อน
+    240 StandWithUkraine
+    228 Putin
+    222 BA2
+    218 Ukrainian
+    199 fluke_natouch
+    178 PMQs
+    169 COVID
+    146 Covid19
+    138 ableg
+    128 Kharkiv
+    121 โอห์มไง
+    116 Anonymous
+    114 UkraineRussiaWar
+    114 NATO
+    113 UK
+    111 China
+    105 Partygate
+    104 OhmThitiwat
+    104 longcovid
+
+#### 7. Find the 30 hashtags that got replied the most ####
+]0;hannele@sjsu:~/cs131/A2[hannele@sjsu A2]$ grep "type=replied_to" downloaded_tweets_extend_nolf2.tsv | awk -F '\t' '($4 != "") {print $4}' | tr ',' '\n' | tr -d '"' |  sort -r | uniq -c | sort -nr -k  1 | head -30
+    883 FBPE
+    875 FollowBackFriday
+    429 PutinHitler
+    319 StandWithUkraine
+    263 COVID19
+    216 StopPutinNOW
+    211 RussiaSanctions
+    207 BoycottRussia
+    191 PutinWarCriminal
+    181 bcpoli
+    149 Ottawa
+    130 bced
+    122 COVID19BC
+    115 Genocide
+    108 NeverVoteConservative
+    106 BoycottATP
+    100 onpoli
+     98 LongCovid
+     92 VoteFordOut
+     92 COVIDisAirborne
+     91 Ukraine
+     84 ClimateCrisis
+     77 Putin
+     72 Canada
+     65 cdnpoli
+     65 Apartheid
+     64 UkraineInvasion
+     62 N95
+     60 Ontario
+     58 MaskUp
+
+#### Find the 30 hashtags that got quoted the most ####
+]0;hannele@sjsu:~/cs131/A2[hannele@sjsu A2]$ grep "type=quoted" downloaded_tweets_extend_nolf2.tsv | awk -F '\t' '($4 != "") {print $4}' | tr ',' '\n' | tr -d '"' |  sort -r | uniq -c | sort -nr -k 1 |  head -30
+    186 COVID19
+    151 StandWithUkraine
+    140 VoteFordOut
+    113 Genocide
+    111 ableg
+    104 onpoli
+    100 NeverVoteConservative
+     93 bcpoli
+     76 Ukraine
+     76 MaskMandate
+     76 COVIDisAirborne
+     72 Ontario
+     64 Putin
+     64 COVID19AB
+     64 BDS
+     61 MaskUp
+     60 PutinHitler
+     59 COVID19BC
+     59 cdnpoli
+     57 Ottawa
+     56 Canada
+     54 bced
+     53 CovidIsNotOver
+     49 LongCovid
+     49 covid19
+     47 PutinWarCriminal
+     46 VoteThemAllOut2022
+     46 FreePalestine
+     44 StopPutinNOW
+     43 VoteLiberal
+]0;hannele@sjsu:~/cs131/A2[hannele@sjsu A2]$ exit
+
+Script done on 2022-10-11 14:56:51-04:00
