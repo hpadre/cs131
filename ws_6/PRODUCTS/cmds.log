@@ -1,0 +1,1001 @@
+  254  exit
+  255  ls
+  256  l
+  257  vi ~/.bashrc
+  258  l
+  259  vi ~/.bashrc
+  260  l
+  261  exit
+  262  l
+  263  vi ~/.bashrc
+  264  l
+  265  exit
+  266  l
+  267  vi ~/.bashrc
+  268  exit
+  269  l
+  270  w
+  271  ls
+  272  cd cs131
+  273  ls
+  274  mkdir ws_4
+  275  cd ws_4
+  276  mkdir CUSTOMERS
+  277  mkdir PRODUCTS
+  278  ~/
+  279  ln -s ~/amazon_reviews_us_Books_v1_02.tsv amazon_rev.tsv
+  280  ls
+  281  l
+  282  exit
+  283  ls
+  284  cd cs131
+  285  ls
+  286  cd ws_4
+  287  ls
+  288  less amazon_rev.tsv
+  289  head amazon_rev.tsv
+  290  head -n 1 amazon_rev.tsv 
+  291  awk -F '{print $2} amazon_rev.tsv
+  292  q
+  293  awk -F '{print $2}' amazon_rev.tsv
+  294  q
+  295  awk -F '{print $2}' amazon_rev.tsv
+  296  awk -F '	' '{print $2}' amazon_rev.tsv
+  297  awk -F '	' '{print $2}' amazon_rev.tsv | head -n 20
+  298  head -n 2 amazon_rev.tsv
+  299  fgrep '12703090' amazon_rev.tsv
+  300  egrep '12703090' amazon_rev.tsv
+  301  ls
+  302  egrep '12703090' amazon_rev.tsv | awk -F ‘	’ ‘{print $9}' > /CUSTOMERS/12703090.txt
+  303  ls
+  304  l CUSTOMERS
+  305  cd CUSTOMERS
+  306  LS
+  307  ls
+  308  cd ..
+  309  egrep '12703090' amazon_rev.tsv
+  310  egrep '12703090' amazon_rev.tsv | awk '{print $9}'
+  311  egrep '12703090' amazon_rev.tsv | awk '	' '{print $9}'
+  312  egrep '12703090' amazon_rev.tsv | awk ' ' '{print $9}'
+  313  egrep '12703090' amazon_rev.tsv | awk '' '{print $9}'
+  314  egrep '12703090' amazon_rev.tsv | awk '{print $9}'
+  315  egrep '12703090' amazon_rev.tsv | awk -F '	' '{print $9}'
+  316  egrep '12703090' amazon_rev.tsv | awk -F '	' '{print $9}' > ./CUSTOMERS/12703090.txt
+  317  ls
+  318  l CUSTOMERS
+  319  cd CUSTOMERS
+  320  less 12703090.txt
+  321  egrep '48541186' amazon_rev.tsv | awk -F '	' '{print $9}' > ./CUSTOMERS/48541186.txt
+  322  cd ..
+  323  egrep '48541186' amazon_rev.tsv | awk -F '	' '{print $9}' > ./CUSTOMERS/48541186.txt
+  324  egrep '15280864' amazon_rev.tsv | awk -F '	' '{print $9}' > ./CUSTOMERS/15280864.txt
+  325  l CUSTOMERS
+  326  awk -F '	' '{print $4}' amazon_rev.tsv | head -n 20
+  327  ls
+  328  egrep '1844161560' amazon_rev.tsv | awk -F '	' '{print $9}' > ./PRODUCTS/1844161560.txt
+  329  egrep '0300108834' amazon_rev.tsv | awk -F '	' '{print $9}' > ./PRODUCTS/0300108834.txt
+  330  egrep '013146308X' amazon_rev.tsv | awk -F '	' '{print $9}' > ./PRODUCTS/013146308X.txt
+  331  l PRODUCTS
+  332  grep "12076615" amazon_rev.tsv 
+  333  cd PRODUCTS
+  334  ls
+  335  less 013146308X.txt
+  336  less 0300108834.txt
+  337  less 1844161560.txt
+  338  grep 1844161560 amazon_rev.tsv
+  339  cd ..
+  340  grep 1844161560 amazon_rev.tsv
+  341  ls
+  342  cd CUSTOMERS
+  343  ls
+  344  less 15280864.txt
+  345  less 48541186.txt
+  346  ls
+  347  cd cs131/ws_4
+  348  ls
+  349  awk -F '	' '{print $9} amazon_rev.tsv | head -10
+  350  awk -F '	' '{print $9}' amazon_rev.tsv | head -10
+  351  awk -F '	' '{print $9}' amazon_rev.tsv | sort | head -20
+  352  awk -F '	' '{print $9}' amazon_rev.tsv | sort -r| head -20
+  353  awk -F '	' '{print $2}' amazon_rev.tsv | sort -r | uniq -c | head -20
+  354  awk -F '	' '{print $2}' amazon_rev.tsv | sort -r | uniq -c | sort -nr -k 1 |head -20
+  355  egrep '50122160' amazon_rev.tsv | head -20
+  356  ls
+  357  cd Customers
+  358  cd CUSTOMERS
+  359  ls
+  360  rm *.txt
+  361  ls
+  362  cd ..
+  363  egrep '50122160' amazon_rev.tsv | awk -F '	' '{print $9}' > ./CUSTOMERS/50122160.txt
+  364  cd CUSTOMERS
+  365  ls
+  366  less 50122160.txt
+  367  wc -l 50122160.txt
+  368  fgrep '50122160' amazon_rev.tsv | awk -F '	' '{print $9}' > ./CUSTOMERS/50122160_2.txt
+  369  cd ..
+  370  fgrep '50122160' amazon_rev.tsv | awk -F '	' '{print $9}' > ./CUSTOMERS/50122160_2.txt
+  371  cd CUSTOMERS
+  372  wc -l 50122160_2.txt
+  373  rm 50122160_2.txt
+  374  cd ..
+  375  ls
+  376  egrep '50732546' amazon_rev.tsv | awk -F '	' '{print $9}' > ./CUSTOMERS/50732546.txt
+  377  egrep '52615377' amazon_rev.tsv | awk -F '	' '{print $9}' > ./CUSTOMERS/52615377.txt
+  378  awk -F '	' '{print $4}' amazon_rev.tsv | sort -r | uniq -c | sort -nr -k 1 |head -20
+  379  ls
+  380  cd CUSTOMERS
+  381  ls
+  382  less 50122160.txt
+  383  awk '{ sum += $1} END {print sum}' 50122160.txt
+  384  paste -sd+ 50122160.txt | bc
+  385  sum=$(awk '{print $2}' file.txt | paste -sd+ | bc); echo "$sum / $(cat file.txt | wc -l)" | bc -l
+  386  sum=$(awk '{print $1}' 50122160.txt | paste -sd+ | bc); echo "$sum / $(cat 50122160.txt | wc -l)" | bc -l
+  387  awk '{ total += $2; count++ } END { print total/count }' 50122160.txt
+  388  awk '{ total += $1; count++ } END { print total/count }' 50122160.txt
+  389  vi ~/.bashrc
+  390  ls
+  391  mkdir ws_4
+  392  cd ws_4
+  393  mkdir CUSTOMERS
+  394  mkdir PRODUCTS
+  395  ln -s ~/amaon_reviews_us_Books_v1_02.tsv amazon_rev.tsv
+  396  ls
+  397  l
+  398  ls -alth
+  399  rm amazon_rev.tsv
+  400  ls
+  401  ln -s ~/amazon_reviews_us_Books_v1_02.tsv amazon_reviews.tsv
+  402  ls
+  403  head -n 1 amazon_reviews.tsv
+  404  awk -F '	' '{print $2}' amazon_reviews.tsv | sort -r | uniq -c | sort -nr -k 1 |head -3 > customers_top3.txt
+  405  ls
+  406  vim helpfullness_scores.sh
+  407  sh helpfulness_scores.sh customers_top3.txt 'CUSTOMERS'
+  408  sh helpfullness_scores.sh customers_top3.txt 'CUSTOMERS'
+  409  cd CUSTOMERS
+  410  ls
+  411  cd ..
+  412  awk -F '	' '{print $4}' amazon_rev.tsv | sort -r | uniq -c | sort -nr -k 1 |head -3 > products_top3.txt
+  413  awk -F '	' '{print $4}' amazon_reviews.tsv | sort -r | uniq -c | sort -nr -k 1 |head -3 > products_top3.txt
+  414  ls
+  415  sh helpfullness_scores.sh products_top3.txt 'PRODUCTS'
+  416  ls PRODUCTS
+  417  vim compute_mean.sh
+  418  sh compute_mean.sh 'CUSTOMERS'
+  419  vim compute_mean.sh
+  420  sh compute_mean.sh 'CUSTOMERS'
+  421  sh compute_mean.sh 'PRODUCTS'
+  422  history > cmds.log
+  423  vim README
+  424  ls
+  425  cd cs131/ws_4
+  426  ls
+  427  cd CUSTOMERS
+  428  ls
+  429  less 52615377.txt
+  430  cd ..
+  431  awk -F '	' '{print $4}' amazon_rev.tsv | sort -r | uniq -c | sort -nr -k 1 |head -3 > top_3_prod_ids.txt
+  432  ls
+  433  less top_3_prod_ids.txt
+  434  vim helpfulness_scores.sh
+  435  ls
+  436  sbatch helpfulness_scores.sh ['hi','hey','hello']
+  437  ./helpfulness_scores.sh ['hi','hey','hello']
+  438  sh helpfulness_scores.sh ['hi','hey','hello']
+  439  vim helpfulness_scores.sh
+  440  sh helpfulness_scores.sh ['hi','hey','hello']
+  441  vim helpfulness_scores.sh
+  442  sh helpfulness_scores.sh ['hi','hey','hello']
+  443  vim helpfulness_scores.sh
+  444  sh helpfulness_scores.sh ['hi','hey','hello']
+  445  vim helpfulness_scores.sh
+  446  sh helpfulness_scores.sh ['hi','hey','hello']
+  447  vim helpfulness_scores.sh
+  448  sh helpfulness_scores.sh ['hi','hey','hello']
+  449  vim helpfulness_scores.sh
+  450  sh helpfulness_scores.sh ['hi','hey','hello']
+  451  vim helpfulness_scores.sh
+  452  sh helpfulness_scores.sh ['hi','hey','hello']
+  453  vim helpfulness_scores.sh
+  454  sh helpfulness_scores.sh ['hi','hey','hello']
+  455  vim helpfulness_scores.sh
+  456  vim helpfulness_scores.sh
+  457  sh helpfulness_scores.sh 043935806X
+  458  ls
+  459  cd PRODUCTS
+  460  ls
+  461  rm *.txt
+  462  ls
+  463  cd ..
+  464  sh helpfulness_scores.sh 043935806X
+  465  cd PRODUCTS
+  466  ls
+  467  less 043935806X.txt
+  468  cd ..
+  469  ls
+  470  vim helpfulness_scores.sh
+  471  sh helpfulness_scores.sh top_3_prod_ids.txt
+  472  vim helpfullness_scores.sh
+  473  ls
+  474  vim helpfulness_scores.sh
+  475  sh helpfulness_scores.sh top_3_prod_ids.txt 'PRODUCTS'
+  476  cd PRODUCTS
+  477  ls
+  478  cd ..
+  479  cd CUSTOMERS
+  480  ls
+  481  cd ..
+  482  cd PRODUCTS
+  483  less 043935806X.txt
+  484  cd ..
+  485  egrep '043935806X' amazon_rev.tsv | awk -F '	' '{print $9}' > ./PRODUCTS/043935806X_2.txt
+  486  cd PRODUCTS
+  487  ls
+  488  head -10 0439139597.txt
+  489  head -10 043935806X_2.txt
+  490  head -10 043935806X.txt
+  491  cd ..
+  492  ls
+  493  vim helpfulness_scores.sh
+  494  ls
+  495  vim compute_mean.sh
+  496  ls
+  497  sh compute_mean.sh CUSTOMERS
+  498  vim compute_mean.sh
+  499  sh compute_mean.sh CUSTOMERS
+  500  vim compute_mean.sh
+  501  sh compute_mean.sh CUSTOMERS
+  502  vim compute_mean.sh
+  503  sh compute_mean.sh CUSTOMERS
+  504  vim compute_mean.sh
+  505  sh compute_mean.sh CUSTOMERS
+  506  vim compute_mean.sh
+  507  vim helpfulness_scores.sh
+  508  vim compute_mean.sh
+  509  sh compute_mean.sh 'CUSTOMERS'
+  510  vim compute_mean.sh
+  511  sh compute_mean.sh 'CUSTOMERS'
+  512  vim compute_mean.sh
+  513  sh compute_mean.sh 'CUSTOMERS'
+  514  vim compute_mean.sh
+  515  sh compute_mean.sh 'CUSTOMERS'
+  516  vim compute_mean.sh
+  517  sh compute_mean.sh 'CUSTOMERS'
+  518  vim compute_mean.sh
+  519  sh compute_mean.sh 'CUSTOMERS'
+  520  vim compute_mean.sh
+  521  sh compute_mean.sh 'CUSTOMERS'
+  522  vim compute_mean.sh
+  523  sh compute_mean.sh 'CUSTOMERS'
+  524  vim compute_mean.sh
+  525  sh compute_mean.sh 'CUSTOMERS'
+  526  sh compute_mean.sh 'PRODUCTS'
+  527  ls
+  528  vim compute_mean.sh
+  529  less top_3_prod_ids.txt
+  530  vi ~/.bashrc
+  531  ls
+  532  cd ..
+  533  ls
+  534  mv ./ws_4 ./ws_4_COPY
+  535  ls
+  536  script ws4.txt
+  537  ls
+  538  mv ./ws4.txt ./ws_4/
+  539  ls
+  540  cd ws_4
+  541  ls
+  542  vim ws4.txt
+  543  ls
+  544  git init
+  545  git status
+  546  git checkout -b ws_4
+  547  git add ws4.txt
+  548  git add README
+  549  git add cmds.log
+  550  git add helpfullness_scores.sh
+  551  git add compute_mean.sh
+  552  git add customers_top3.txt
+  553  git add products_top3.txt
+  554  git status
+  555  git commit -m "This is my ws4 commit!"
+  556  git push origin ws_4
+  557  git push origin cs131
+  558  git push 
+  559  git push cs131
+  560  git push -u origin main
+  561  git push origin ws_4
+  562  git status
+  563  git 
+  564  ls
+  565  cd cs131
+  566  git init
+  567  cd ws_4
+  568  ls
+  569  git status
+  570  git push ws_4
+  571  git branch
+  572  cd ..
+  573  git branch
+  574  git -b ws_4
+  575  git checkout -b ws_4
+  576  git status
+  577  cd ws_4
+  578  git status
+  579  git push origin ws_4
+  580  git remove -v
+  581  git remote -v
+  582  cd ..
+  583  git remote -v
+  584  cd root
+  585  rm ws_4.git
+  586  git
+  587  git pull ws_4
+  588  git status
+  589  cd ws_4
+  590  git status
+  591  git branch
+  592  cd ..
+  593  ls
+  594  cp ./ws_4 ./ws_4_COPY2/
+  595  cp -r ./ws_4 ./ws_4_COPY2/
+  596  ls ws_4
+  597  ls ws_4_COPY2
+  598  mv ./ws_4 ./ws_4_FNLCOPY
+  599  ls
+  600  mv ./ws_4_COPY2 ./ws_4
+  601  git status
+  602  git branch
+  603  cd ws_4
+  604  git status
+  605  ls
+  606  git push origin ws_4
+  607  git push origin cs131
+  608  cd .git
+  609  ls
+  610  cd branches
+  611  ls
+  612  cd ..
+  613  cd objects
+  614  ls
+  615  cd ..
+  616  cd regs
+  617  cd refs
+  618  ls
+  619  cd ..
+  620  git push -u origin ws_4
+  621  git push -origin cs131
+  622  git push --set-upstream cs131 ws_4
+  623  git push --set-upstream ws_4
+  624   git push --set-upstream ws_4 ws_4
+  625   git push --set-upstream ws_4 cs131
+  626  cd ..
+  627  cd ws_3
+  628  git status
+  629  cd ..
+  630  git status
+  631  git brnach
+  632  cd ws_3
+  633  git branch
+  634  cd ..
+  635  ls
+  636  cd ws_4_FNLCOPY
+  637  git branch
+  638  cd ..
+  639  ls
+  640  cd ws_4
+  641  cd git
+  642  cd .git
+  643  ls
+  644  less COMMIT_EDITMSG
+  645  cd ..
+  646  rm .git
+  647  rm -r .git
+  648  y
+  649  git branch
+  650  git status
+  651  ls
+  652  git add compute_mean.sh
+  653  git add customers_top3.txt
+  654  git add README
+  655  git add cmds.log
+  656  git add helpfullness_scores.sh
+  657  git add products_top3.txt
+  658  git add ws4.txt
+  659  git status
+  660  git commit -m "This is my ws4 commit!"
+  661  git push origin ws_4
+  662  ls
+  663  less helpfullness_scores.sh
+  664  ls
+  665  cd cs131
+  666  ls
+  667  mkdir A2
+  668  cd A2
+  669  wget downloaded_tweets_extend.csv
+  670  ls
+  671  cd
+  672  ls
+  673  cd ..
+  674  ls
+  675  cd 
+  676  ls
+  677  cd cs131
+  678  ls
+  679  cd A2
+  680  cp /home/test/A1/downloaded_tweets_extend_nolf.txt ~/A2/
+  681  cd ..
+  682  cd
+  683  cd ..
+  684  cd test
+  685  ls
+  686  cd ..
+  687  cd test2
+  688  ls
+  689  cd ..
+  690  ls
+  691  ls test
+  692  cd 
+  693  ls
+  694  cd cs131
+  695  ls
+  696  mkdir ws_5
+  697  cd ws_5
+  698  tmux
+  699  tmux ls
+  700  tmux new-session -s homework
+  701  tmux ls
+  702  tmux attatch -t homework
+  703  tmux attach -t homework
+  704  exit
+  705  ls
+  706  cd cs131
+  707  ls
+  708  cd ws_5
+  709  ls
+  710  less customers_top1000.txt
+  711  cd CUSTOMERS
+  712  ls
+  713  cd ..
+  714  tmux attach -t homework
+  715  cd ..
+  716  ls
+  717  cd A2
+  718  ls
+  719  cp /home/test/downloaded_tweets_extended_original_nolf2.csv .
+  720  cp /home/test/downloaded_tweets_extend_original_nolf2.csv .
+  721  cp /home/test/A1/downloaded_tweets_extend_nolf.txt .
+  722  pwd
+  723  cd
+  724  cd ..
+  725  cp /home/test/A1/downloaded_tweets_extend_nolf.txt /home/hannele/cs131/A2/
+  726  cp /home/test/A1/downloaded_tweets_extend_nolf2.txt /home/hannele/cs131/A2/
+  727  cd
+  728  exit
+  729  mkdir A2
+  730  cd A2
+  731  cd ..
+  732  pwd
+  733  cd A2
+  734  mv /home/hannele/cs131/a2.txt .
+  735  ls
+  736  cp /home/test/A1/downloaded_tweets_extend_original_nolf2.tsv .
+  737  cp /home/test/A1/downloaded_tweets_extend_nolf2.tsv .
+  738  head -1 downloaded_tweets_extend_original_nolf2.tsv
+  739  grep "replied_to" downloaded_tweets_extend_original_nolf2.tsv | awk -F '\t' '($2 != $6) {print $2}'| sort -r | uniq -c | sort -nr -k 1 | head -10
+  740  grep "replied_to" downloaded_tweets_extend_original_nolf2.tsv | awk -F '\t' '($2 != $6) {print $6}'| sort -r | uniq -c | sort -nr -k 1 | head -10
+  741  awk -F'\t' '{print $5}' downloaded_tweets_extend_nolf2.tsv | awk -F ' ' '($3 != "") {print $3}'| tr -d "]" | grep -v "referenced" | sort | uniq -c | sort -nr -k 1 | head -20
+  742  grep "type=retweeted" downloaded_tweets_extend_nolf2.tsv | awk -F'\t' '($2 != $6) {print $2}' | sort -r | uniq -c | sort -nr -k 1 | head -10
+  743  awk -F '\t' '($4 != "") {print $4}' downloaded_tweets_extend_nolf2.tsv | tr ',' '\n' | tr -d '"' |  sort -r | uniq -c | sort -nr -k 1 | head -30
+  744  grep "type=retweeted" downloaded_tweets_extend_nolf2.tsv | awk -F '\t' '($4 != "") {print $4}' | tr ',' '\n' | tr -d '"' |  sort -r | uniq -c | sort -nr -k 1 | head -30
+  745  grep "type=replied_to" downloaded_tweets_extend_nolf2.tsv | awk -F '\t' '($4 != "") {print $4}' | tr ',' '\n' | tr -d '"' |  sort -r | uniq -c | sort -nr -k 1 | head -30
+  746  grep "type=quoted" downloaded_tweets_extend_nolf2.tsv | awk -F '\t' '($4 != "") {print $4}' | tr ',' '\n' | tr -d '"' |  sort -r | uniq -c | sort -nr -k 1 | head -30
+  747  ls
+  748  cd ..
+  749  ls
+  750  cd ..
+  751  pwd
+  752  ls
+  753  cd cs131
+  754  ls
+  755  cd ws_5
+  756  ls
+  757  ln -s ~/amazon_reviews_us_Books_v1_02.tsv amazon_reviews.tsv
+  758  mkdir CUSTOMERS
+  759  vim customers.sh
+  760  for i in {1..5} do echo $i done
+  761  for i in 1 2 3 4 5 do echo $i done
+  762  vim customers.sh
+  763  sh customers.sh
+  764  vim customers.sh
+  765  awk -F '   ' '{print $2}' amazon_reviews.tsv | sort -r | uniq -c | sort -nr -k 1 |head -1000 > customers_top1000.txt
+  766  ls
+  767  less customers_top1000.txt
+  768  rm customers_top1000.txt
+  769  awk -F '   ' '{print $2}' amazon_reviews.tsv | sort -r | un
+  770  awk -F '	' '{print $2}' amazon_reviews.tsv | sort -r | uniq -c | sort -nr -k 1 | head -1000 > customers_top1000.txt
+  771  ls
+  772  less customers_top1000.txt
+  773  vim customers.sh
+  774  less customers_top1000.txt
+  775  grep 50122160 amazon_rev.tsv | head -n 10
+  776  grep 50122160 amazon_reviews.tsv | head -n 10
+  777  awk 50122160 amazon_reviews.tsv
+  778  awk '$2 ~/^50122160$/' amazon_reviews.tsv | head -n 2
+  779  ls
+  780  vim customers.sh
+  781  sh customers.sh
+  782  vim customers.sh
+  783  ls
+  784  sh customers.sh customers_top1000.txt CUSTOMERS
+  785  cd CUSTOMERS
+  786  ls
+  787  rm *.txt
+  788  ls
+  789  cd ..
+  790  sh customers.sh customers_top1000.txt CUSTOMERS
+  791  cd ..
+  792  ls
+  793  cd ws_5
+  794  ls
+  795  ln -s ~/amazon_reviews_us_Books_v1_02.tsv amazon_reviews.tsv
+  796  ls
+  797  awk -F '   ' '{print $2}' amazon_reviews.tsv | sort -r | uniq -c | sort -nr -k 1 | head -1000 > customers_top1000.txt
+  798  mkdir ws_5
+  799  mv ./ws5.txt ./ws_5
+  800  cd ws_5
+  801  tmux new-session -s homework
+  802  tmux attach -t homework
+  803  ls
+  804  cd cs131
+  805  ls
+  806  cd A2
+  807  ls
+  808  cp /home/test/A1/downloaded_tweets_extend_nolf2.tsv .
+  809  ls
+  810  cp /home/test/A1/downloaded_tweets_extend_original_nolf2.tsv .
+  811  ls
+  812  cp /home/test/A1/downloaded_tweets_extend.csv .
+  813  ls
+  814  cp /home/test/A1/downloaded_tweets_extend_nolf.csv .
+  815  vim downloaded_tweets_extend.csv
+  816  vim downloaded_tweets_extend_nolf2.tsv
+  817  less downloaded_tweets_extend.csv
+  818  ls
+  819  less downloaded_tweets_extend_original_nolf2.tsv
+  820  awk -F '	' '{print $1}' downloaded_tweets_extend_original_nolf2.tsv | sort -r | uniq -c | sort -nr -k 1 | head -10
+  821  less downloaded_tweets_extend_original_nolf2.tsv
+  822  cut -d "	" -f 1 downloaded_tweets_extend_original_nolf2.tsv | head -5
+  823  awk -F '	' '{print$1} downloaded_tweets_extend_original_nolf2.tsv | head -5
+  824  awk -F '	' '{print$1}' downloaded_tweets_extend_original_nolf2.tsv | head -5
+  825  awk -F '     ' '{print $1}' downloaded_tweets_extend_original_nolf2.tsv | sort -r | uniq -c | head -5
+  826  cut -d "     " -f 1 downloaded_tweets_extend_original_nolf2.tsv | sort -r | uniq -c | head -5
+  827  cut -d "	" -f 1 downloaded_tweets_extend_original_nolf2.tsv | sort -r | uniq -c | head -5
+  828  cp /home/test/A1/downloaded_tweets_extend_nolf.txt
+  829  cp /home/test/A1/downloaded_tweets_extend_nolf.tsv
+  830  cp /home/test/A1/downloaded_tweets_extend_nolf.txt .
+  831  cp /home/test/A1/downloaded_tweets_extend_nolf.tsv .
+  832  awk -F '\t' '{print $1}' downloaded_tweets_extend_original_nolf2.tsv | sort -r | uniq -c | head -5
+  833  head -1 downloaded_tweets_extend_original_nolf2.tsv
+  834  awk -F '\tab' downloaded_tweets_extend_original_nolf2.tsv | head -5
+  835  awk -F '\tab' {print $0} downloaded_tweets_extend_original_nolf2.tsv | head -5
+  836  awk -F '\tab' '{print $0}' downloaded_tweets_extend_original_nolf2.tsv | head -5
+  837  awk -F '\tab' '{print $0}' downloaded_tweets_extend_original_nolf2.tsv | cut -f 1 | head -5
+  838  grep "replied_to" downloaded_tweets_extend_original_nolf2.tsv | head -5
+  839  grep "replied_to" downloaded_tweets_extend_original_nolf2.tsv | awk -F '\tab' '{print $0}'| sort -r | uniq -c | sort -nr -k 1 | head -10
+  840  grep "replied_to" downloaded_tweets_extend_original_nolf2.tsv | awk -F '\tab' '{print $1}'| sort -r | uniq -c | sort -nr -k 1 | head -10
+  841  grep "replied_to" downloaded_tweets_extend_original_nolf2.tsv | awk -F '	' '{print $1}'| sort -r | uniq -c | sort -nr -k 1 | head -10
+  842  grep "replied_to" downloaded_tweets_extend_original_nolf2.tsv | awk -F '\t' '{print $1}'| sort -r | uniq -c | sort -nr -k 1 | head -10
+  843  grep "replied_to" downloaded_tweets_extend_original_nolf2.tsv | awk -F '\t' '{print $2}'| sort -r | uniq -c | sort -nr -k 1 | head -10
+  844  grep "replied_to" downloaded_tweets_extend_original_nolf2.tsv | awk -F'\t' '($2 != $6)' '{print $2}'| sort -r | uniq -c | sort -nr -k 1 | head -10
+  845  grep "replied_to" downloaded_tweets_extend_original_nolf2.tsv | awk -F '\t' '($2 != $6)' '{print $2}'| sort -r | uniq -c | sort -nr -k 1 | head -10
+  846  grep "replied_to" downloaded_tweets_extend_original_nolf2.tsv | awk -F '\t' '($2 != $6) {print $2}'| sort -r | uniq -c | sort -nr -k 1 | head -10
+  847  head -1 downloaded_tweets_extend_original_nolf2.csv
+  848  grep "94350709" downloaded_tweets_extend_original_nolf2.tsawk -F '   ' '{print $2}' amazon_reviews.tsv | sort -r | uniq -c | sort -nr -k 1 | head -1000 > customers_top1000.txt
+  849  ls
+  850  less customers_top1000.txt
+  851  rm customers_top1000.txt
+  852  ls
+  853  sh customers.sh customers_top1000.txt CUSTOMERS
+  854  ls
+  855  rm -d CUSTOMERS
+  856  rm *.txt
+  857  rm *.sh
+  858  ls
+  859  rm *.tsv
+  860  ls
+  861  cd ..
+  862  rm -d ws_5
+  863  ln -s ~/amazon_reviews_us_Books_v1_02.tsv amazon_reviews.tsv
+  864  more a1.txt
+  865  more ws5.txt
+  866  ls
+  867  ls
+  868  mkdir ws_5
+  869  mv ./ws5.txt ./ws_5
+  870  cd ws_5
+  871  ls
+  872  tmux new-session -s homework
+  873  tmux attach -t homework
+  874  mv ws5.txt ./ws_5
+  875  awk -F '\t' '{print $2}' amazon_reviews.tsv | sort -r | uniq -c | sort -nr -k 1 | head -1000 > customers_top1000.txt
+  876  l
+  877  ls
+  878  less customers_top1000.txt
+  879  mkdir CUSTOMERS
+  880  vim customers.sh
+  881  tmux attach -t homework
+  882  tmux new-session -s homework
+  883  ls
+  884  cd CUSTOMERS
+  885  ls
+  886  less 41012519.txt
+  887  rm *.txt
+  888  vim ws5.txt
+  889  ls
+  890  rm *.txt
+  891  cd ..
+  892  vim ws5.txt
+  893  rm ws5.txt
+  894  tmux attach -t homework
+  895  ls
+  896  cd ..
+  897  ls
+  898  script ws5.txt
+  899  vim ws5.txt
+  900  tmux new-session -s homework
+  901  cd ws_5
+  902  ls
+  903  tail ws5.txt
+  904  lsqwq
+  905  ls
+  906  more ws5.txt
+  907  ls
+  908  cd CUSTOMERS
+  909  ls | wc
+  910  ls | wc -l
+  911  cd ..
+  912  tmux attach -t homework
+  913  ls
+  914  cd CUSTOMERS
+  915  ls | wc -l
+  916  tmux attach -t homework
+  917  ls
+  918  cd cs131
+  919  ls
+  920  cd ws_5
+  921  ls
+  922  less ws5.txt
+  923  script ws5_2.txt
+  924  ls
+  925  cd ..
+  926  ls
+  927  cd ws_5
+  928  ls
+  929  cd ..
+  930  ls
+  931  cd ws_5
+  932  ls
+  933  vim ws5.txt
+  934  script ws5_2.txt
+  935  vim ws5_2.txt
+  936  vim ws5.txt
+  937  vim ws5_3.txt
+  938  vim ws5_2.txt
+  939  vim ws5.txt
+  940  ls
+  941  rm ws5_3.txt
+  942  rm ws5_2.txt
+  943  ls
+  944  history > cmds.log
+  945  ls
+  946  cd ..
+  947  git init
+  948  cd ws_5
+  949  git checkout -b ws_5
+  950  git status
+  951  ls
+  952  git add cmds.log
+  953  git add ws5.txt
+  954  git add customers.sh
+  955  git commit -m "This is my ws5 commit!"
+  956  git push origin ws_5
+  957  ls
+  958  cd CUSTOMERS
+  959  ls
+  960  less  48486228.txt
+  961  exit
+  962  ls
+  963  less ws5.txt
+  964  rm ws5.txt
+  965  script ws5.txt
+  966  cd ws_5
+  967  ls
+  968  vim ws5.txt
+  969  cd ..
+  970  ls
+  971  cd ws_5
+  972  rm ws5.txt
+  973  rm amazon_reviews.tsv
+  974  ls
+  975  cd ..
+  976  rm -d ws_5
+  977  ls
+  978  script ws5.txt
+  979  mkdir ws_5
+  980  mv ws5.txt ./ws_5
+  981  cd ws_5
+  982  ls
+  983  ln -s ~/amazon_reviews_us_Books_v1_02.tsv amazon_reviews.tsv
+  984  ls
+  985  awk -F ' \t ' '{print $2}' amazon_reviews.tsv | sort -r | uniq -c | sort -nr -k 1 | head -1000 > customers_top1000.txt
+  986  ls
+  987  less customers_top1000.txt
+  988  awk -F '\t' '{print $2}' amazon_reviews.tsv | sort -r | uniq -c | sort -nr -k 1 | head -1000 > customers_top1000.txt
+  989  ls
+  990  less customers_top1000.txt
+  991  mkdir CUSTOMERS
+  992  vim customers.sh
+  993  sh customers.sh customers_top1000.txt CUSTOMERS
+  994  vim customers.sh
+  995  ls
+  996  exit
+  997  exit
+  998  exit
+  999  ls
+ 1000  cd ..
+ 1001  ls
+ 1002  cd cs131
+ 1003  cd ~/A2
+ 1004  cd A2
+ 1005  ls
+ 1006  less a2.txt
+ 1007  cd ..
+ 1008  ls
+ 1009  cd ws_4
+ 1010  ls
+ 1011  cd PRODUCTS
+ 1012  ls
+ 1013  less 0525947647.txt
+ 1014  cd ..
+ 1015  cd ws_5
+ 1016  ls
+ 1017  cd ..
+ 1018  cd ws_3
+ 1019  ls
+ 1020  cd ..
+ 1021  ls
+ 1022  cd ws_4
+ 1023  ls
+ 1024  head -1 amazon_reviews.tsv
+ 1025  cd PRODUCTS
+ 1026  ls
+ 1027  l
+ 1028  cd ..
+ 1029  ls
+ 1030  cd A1
+ 1031  ls
+ 1032  cd ..
+ 1033  ls
+ 1034  cd ..
+ 1035  cd
+ 1036  cd cs131
+ 1037  ls
+ 1038  mkdir ws_6
+ 1039  mkdir ws_6/PRODUCTS
+ 1040  fgrep "0525947647" ~/amazon_reviews_us_Books_v1_02.tsv > ./ws_6/PRODUCTS/0525947647.txt
+ 1041  DATETIME = $(date +%Y%m%d_%H%M%S )
+ 1042  cd ws_5
+ 1043  ls
+ 1044  cd ..
+ 1045  cd ws_6
+ 1046  ls
+ 1047  cd PRODUCTS
+ 1048  ls
+ 1049  less 0525947647.txt
+ 1050  cd ..
+ 1051  DATETIME=$(date +%Y%m%d_%H%M%S )
+ 1052  cp ./PRODUCTS/0525947647.txt ./PRODUCTS/0525947647.$DATETIME.txt
+ 1053  cd PRODUCTS
+ 1054  ls
+ 1055  cd ..
+ 1056  echo "a'\n'b"
+ 1057  echo 'a"\n"c'
+ 1058  echo "a	b"
+ 1059  echo a \n b
+ 1060  a "\n" b
+ 1061  echo a "\n" b
+ 1062  echo \n
+ 1063  echo \t
+ 1064  echo a \t b
+ 1065  echo "a \t b \t c"
+ 1066  ls
+ 1067  cd PRODUCTS
+ 1068  ls
+ 1069  echo $DATETIME
+ 1070  cd
+ 1071  ls
+ 1072  less amazon_reviews_us_Books_v1_02.tsv
+ 1073  egrep "RQ58W7SMO911M" amazon_reviews_us_Books_v1_02.tsv
+ 1074  cd cs131/ws_6
+ 1075  ls
+ 1076  cd PRODUCTS
+ 1077  ls
+ 1078  tail -2 0525947647.20221018_195927.txt
+ 1079  egrep "RQ58W7SMO911M" ~/amazon_reviews_us_Books_v1_02.tsv >> 0525947647.20221018_195927.txt
+ 1080  tail -2 0525947647.20221018_195927.txt
+ 1081  ln --help
+ 1082  ls
+ 1083  cd ..
+ 1084  ls
+ 1085  ln -s PRODUCTS/0525947647.20221018_195927.txt PRODUCTS/0525947647.LATEST.txt
+ 1086  ls
+ 1087  cd PRODUCTS
+ 1088  ls
+ 1089  crontab -e
+ 1090  ls
+ 1091  crontab -e
+ 1092  crontab -l
+ 1093  crontab -r
+ 1094  crontab file
+ 1095  vim crontab.sh
+ 1096  ls
+ 1097  vim crontab.sh
+ 1098  awk -F '\t' '{print 7} 0525947647.txt | head -3
+ 1099  awk -F '\t' '{print 7}' 0525947647.txt | head -3
+ 1100  awk -F '\t' '{print $7}' 0525947647.txt | head -3
+ 1101  awk -F '\t' '{print $8}' 0525947647.txt | head -3
+ 1102  head -3 0525947647.txt
+ 1103  awk '{ total += $8; count++ } END { print total/count }' 0525947647.txt
+ 1104  awk -F '\t' '{print $8}' 0525947647.txt | head -3
+ 1105  awk '{total += $8; count++ } END {print total/count}' 0525947647.txt
+ 1106  sum=$(awk '{print $8}' 0525947647.txt | paste -sd+ | bc); echo "$sum / $(cat 0525947647.txt
+ | wc -l)" | bc -l
+ 1107  sum=$(awk '{print $8}' 0525947647.txt | paste -sd+ | bc); echo "$sum / $(cat 0525947647.txt | wc -l)" | bc -l
+ 1108  awk -F '\t' '{total += $8; count++ } END {print total/count}' 0525947647.txt
+ 1109  ls
+ 1110  vim crontab.sh
+ 1111  crontab -l
+ 1112  crontab file
+ 1113  ls
+ 1114  * * * * * ./crontab.sh > ./db.log 2>&1
+ 1115  ls
+ 1116  crontab -l
+ 1117  less db.log
+ 1118  history > cmds.log
+ 1119  less cmds.log
+ 1120  crontab -e
+ 1121  crontab -l
+ 1122  ls
+ 1123  less db.log
+ 1124  vim crontab.sh
+ 1125  crontab -l
+ 1126  ls
+ 1127  less db.log
+ 1128  crontab -e
+ 1129  ls
+ 1130  less db.log
+ 1131  l
+ 1132  crontab -r
+ 1133  crontab -e
+ 1134  crontab -l
+ 1135  ls
+ 1136  less db.log
+ 1137  rm db.log
+ 1138  ls
+ 1139  crontab -e
+ 1140  ls
+ 1141  crotab -l
+ 1142  crontab -l
+ 1143  ls
+ 1144  crontab -l
+ 1145  ls
+ 1146  contab -e
+ 1147  crontab -e
+ 1148  crontab -r
+ 1149  crontab -l
+ 1150  crontab -e
+ 1151  ls
+ 1152  crontab file
+ 1153  crontab crontab.sh
+ 1154  crontab
+ 1155  crontab -l
+ 1156  ls
+ 1157  crontab -e
+ 1158  crontab -l
+ 1159  ls
+ 1160  vim crontab.sh
+ 1161  ls
+ 1162  crontab --elp
+ 1163  ls
+ 1164  pwd
+ 1165  crontab -e
+ 1166  crontab -l
+ 1167  ls
+ 1168  less db.log
+ 1169  chmod 777 crontab.sh
+ 1170  ls
+ 1171  less db.log
+ 1172  rm db.log
+ 1173  ls
+ 1174  crontab -l
+ 1175  ls
+ 1176  less db.log
+ 1177  crontab -r
+ 1178  ls
+ 1179  vim crontab.sh
+ 1180  crontab -e
+ 1181  ls
+ 1182  rm db.log
+ 1183  crontab -l
+ 1184  ls
+ 1185  less db.log
+ 1186  vim crontab.sh
+ 1187  rm db.log
+ 1188  ls
+ 1189  vim crontab.sh
+ 1190  ls
+ 1191  less db.log
+ 1192  less 0525947647.LATEST.txt
+ 1193  rm 0525947647.LATEST.txt
+ 1194  ls
+ 1195  ln -s ./0525947647.20221018_195927.txt ./0525947647.LATEST.txt
+ 1196  ls
+ 1197  rm db.log
+ 1198  ls
+ 1199  less db.log
+ 1200  less 0525947647.LATEST.txt
+ 1201  less db.log
+ 1202  vim crontab.sh
+ 1203  crontab -l
+ 1204  rm db.log
+ 1205  ls
+ 1206  db.log
+ 1207  less db.log
+ 1208  less 0525947647.txt
+ 1209  less 0525947647.AVGRATING.txt
+ 1210  ls
+ 1211  less 0525947647.LATEST.txt
+ 1212  rm 0525947647.LATEST.txt
+ 1213  ls
+ 1214  ln -s ./0525947647.20221018_195927.txt ./0525947647.LATEST.txt
+ 1215  ls
+ 1216  vim crontab.sh
+ 1217  ls
+ 1218  vim crontab.sh
+ 1219  ls
+ 1220  rm 0525947647.LATEST.txt
+ 1221  ls
+ 1222  ln -s ./0525947647.20221018_195927.txt ./0525947647.LATEST.txt
+ 1223  ls
+ 1224  less db.log
+ 1225  ls
+ 1226  less db.log
+ 1227  less 0525947647.AVGRATING.txt
+ 1228  vim crontab.sh
+ 1229  ls
+ 1230  less 0525947647.AVGRATING.txt
+ 1231  crontab -r
+ 1232  vim crontab.sh
+ 1233  awk -F '\t' '{total += $8; count++} END {print total/count}' /home/hannele/cs131/ws_6/PRODUCTS/0525947647.LATEST.txt
+ 1234  rm -f /home/hannele/cs131/ws_6/PRODUCTS/0525947647.LATEST.txt
+ 1235  ls
+ 1236  ln -s ./0525947647.20221018_195927.txt ./0525947647.LATEST.txt
+ 1237  ls
+ 1238  awk -F '\t' '{total += $8; count++} END {print total/count}' /home/hannele/cs131/ws_6/PRODUCTS/0525947647.LATEST.txt
+ 1239  ls
+ 1240  rm db.log
+ 1241  rm 0525947647.AVGRATING.txt
+ 1242  rm cmds.log
+ 1243  crontab -e
+ 1244  crontab -l
+ 1245  ls
+ 1246  less db.log
+ 1247  less 0525947647.AVGRATING.txt
+ 1248  ls
+ 1249  less db.log
+ 1250  vim crontab.sh
+ 1251  ls
+ 1252  less db.log
+ 1253  history > cmds.log

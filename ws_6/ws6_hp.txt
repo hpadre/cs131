@@ -1,0 +1,72 @@
+WS 6
+Hannele Padre
+
+#### Started Script
+Script started on 2022-10-18 18:32:13-04:00
+
+#### Started tmux session
+]0;hannele@sjsu:~/cs131[hannele@sjsu cs131]$ tmux new-session -s homework
+
+#### Create new window
+[30m[42m[homework]0:bash*                        "sjsu.pub.pic2.ibm.com" 18:32 18-Oct-22(B[m[1;1H[?12l[?25h(B[m[?12;25h[?12l[?25h[?1003l[?1006l[?2004l[1;1H[1;24r[1;1H[?25l[K
+
+#### Rename Window
+[30m[42m[homework]0:bash- 1:bash*                "sjsu.pub.pic2.ibm.com" 18:32 18-Oct-22(B[m[1;1H[?12l[?25h[hannele@sjsu cs131]$ [?25l[24;1H[30m[43m(rename-window) bash[7m (B[m[30m[43m                                                           (B[m[1;23H[24;1H[30m[43m(rename-window) bas[7m (B[m[30m[43m                                                            (B[m[1;23H[24;1H[30m[43m(rename-window) ba[7m (B[m[30m[43m                                                             (B[m[1;23H[24;1H[30m[43m(rename-window) b[7m (B[m[30m[43m                                                              (B[m[1;23H[24;1H[30m[43m(rename-window) [7m (B[m[30m[43m                                                               (B[m[1;23H[24;1H[30m[43m(rename-window) w[7m (B[m[30m[43m                                                              (B[m[1;23H[24;1H[30m[43m(rename-window) ws[7m (B[m[30m[43m                                                             (B[m[1;23H[24;1H[30m[43m(rename-window) ws5[7m (B[m[30m[43m                                                            (B[m[1;23H[24;1H[30m[43m(rename-window) ws[7m (B[m[30m[43m                                                             (B[m[1;23H[24;1H[30m[43m(rename-window) ws6[7m (B[m[30m[43m                                                            (B[m[1;23H[H[hannele@sjsu cs131]$[K
+[30m[42m[homework]0:bash- 1:ws6*                 "sjsu.pub.pic2.ibm.com" 18:32 18-Oct-22(B[m[1;23H[?12l[?25hls
+[34m[1mA1(B[m  [34m[1mA2(B[m  [34m[1mtest_dir(B[m  [34m[1mws_1(B[m  [34m[1mws_2(B[m  [34m[1mws_3(B[m  [34m[1mws_4(B[m  [34m[1mws_5(B[m  ws6.txt
+
+#### Re-attatch to sesison
+Script started on 2022-10-18 18:40:36-04:00
+]0;hannele@sjsu:~/cs131[hannele@sjsu cs131]$ tmux attach -t homework
+
+#### Create directory for ws_6, and directory for products
+[hannele@sjsu cs131]$ mkdir ws_6[K
+[hannele@sjsu cs131]$ mkdir ws_6/PRODUCTS                                       [K
+
+#### Select your favorite product. In assignment #2 (Fall 2021) you put the reviews for a product under a file PRODUCTS/productID.txt.
+[hannele@sjsu cs131]$ fgrep "0525947647" ~/amazon_reviews_us_Books_v1_02.tsv > ./ws_6/PRODUCTS/0525947647.txt[K
+
+#### 1.  get a current datetime stamp in a variable DATETIME (as shown in the slides)
+[1;30r[29;1H[hannele@sjsu ws_6]$ DATETIME=$(date +%Y%m%d_%H%M%S )[1;29r[29;81H
+
+#### 2. cp the file PRODUCTS/productID.txt to a file PRODUCTS/productID.DATETIME.txt (where DATETIME is the current datetimestamp you got)
+[1;30r[29;1H[hannele@sjsu ws_6]$ cp ./PRODUCTS/0525947647.txt ./[K[K./PRODUCTS/0525947647.$DATETIM[1;29r[29;81H
+
+#### 3. append a new row to the end of PRODUCTS/productID.DATETIME.txt as a new product review (the row contents don't matter, just make sure the rating_score you give is a numerical value)
+[hannele@sjsu PRODUCTS]$ egrep "RQ58W7SMO911M" ~/amazon_reviews_us_Books_v1_02.tsv >> 0525947647.20221018_195927.txt[K
+
+Re-Attatch to tmux
+]0;hannele@sjsu:~/cs131[hannele@sjsu cs131]$ tmux attach -t homework
+
+
+#### 4. Create symbolic link 
+[?1049h[22;0;0t[?1h=[H[2J[?12l[?25h[?1000l[?1002l[?1006l[?1005l[c(B[m[?12;25h[?12l[?25h[?1003l[?1006l[?2004l[1;1H[1;24r]112[23;26H[?25l[H[hannele@sjsu ws_6]$ ln -s PRODUCTS/0525947647.20221018_195927.txt PRODUCTS/0525947647.LATEST.txt[K
+
+#### 5. Create bash file for crontab. Bash file will change the symlink in order to get the latest product reviews file) and outputs the mean (average) rating_score for this product to a file PRODUCTS/productID.AVGRATING.txt
+[hannele@sjsu PRODUCTS]$ vim crontab.sh[K
+
+#### Creating new crontab
+[hannele@sjsu PRODUCTS]$ crontab -e[K
+no crontab for hannele - using an empty one[K
+crontab: installing new crontab[K
+
+#### Checking crontab
+[hannele@sjsu PRODUCTS]$ crontab -l[K
+* * * * * /home/hannele/cs131/ws_6/PRODUCTS/crontab.sh > /home/hannele/cs131/ws_6/PRODUCTS/db.log 2>&1[K
+
+#### Checking to see if db.log is created and checking its contents. Also checking contents of 0525947647.AVGRATING.txt
+[hannele@sjsu PRODUCTS]$ ls[K
+0525947647.1019_014302.txt      [36m[1m0525947647.LATEST.txt(B[m  db.log                  [K
+0525947647.20221018_195927.txt  0525947647.txt                                 [K
+0525947647.AVGRATING.txt        [32m[1mcrontab.sh(B[m                                     [K
+[hannele@sjsu PRODUCTS]$ less db.log[K
+[hannele@sjsu PRODUCTS]$ less 0525947647.AVGRATING.txt                         [K
+
+#### Same history cmds.log
+[hannele@sjsu PRODUCTS]$ history > cmds.log                                    [K
+
+#### Detach from session and end script
+[30m[42m[homework]0:bash- 1:ws6*                 "sjsu.pub.pic2.ibm.com" 01:45 19-Oct-22(B[m[48;1H[?12l[?25h[hannele@sjsu PRODUCTS]$ [1;49r(B[m[?1l>[H[2J]112[?12l[?25h[?1000l[?1002l[?1006l[?1005l[?1049l[23;0;0t[detached (from session homework)]
+]0;hannele@sjsu:~/cs131[hannele@sjsu cs131]$ AD[K[Kexit
+
+Script done on 2022-10-19 01:46:09-04:00
