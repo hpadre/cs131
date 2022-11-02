@@ -1,0 +1,68 @@
+Worksheet 8
+Hannele Padre
+
+##### Start Script #####
+Script started on 2022-11-01 19:35:49-04:00
+khannele@sjsu:~/cs131\[hannele@sjsu cs131]$ mkdir ws_8
+khannele@sjsu:~/cs131\[hannele@sjsu cs131]$ cd ws_8
+khannele@sjsu:~/cs131/ws_8\[hannele@sjsu ws_8]$ ln -s ~/amazon_reviews_us_Books_v1_02.tsv amazon_reviews.tsvv
+
+##### Q: Repeat worksheet #2 using awk to get the entire reviews that are verified or not. #####
+##### Check header to find column for verified_purchase (column 12), and review_body (column 14) ####
+khannele@sjsu:~/cs131/ws_8\[hannele@sjsu ws_8]$ head -1 amazon_reviews.tsv
+marketplace	customer_id	review_id	product_id	product_parent	product_title	product_category	star_rating	helpful_votes	total_votes	vine	verified_purchase	review_headline	review_body	review_date
+verified_purchase
+
+## To get verified purches and ONLY review body, I ran: awk -F '\t' '$12 == "Y" {print $14}' amazon_reviews.tsv ##
+## To get unverified purchases and ONLY review body, I ran: awk -F '\t' '$12 == "N" {print $14}' amazon_reviews.tsv ##
+## To get verified purchases and entire text, I ran: awk -F '\t' '$12 == "Y" {print $0}' amazon_reviews.tsv ##
+## To get unverified purhchases and entire text, I ran: awk -F '\t' '$12 == "N" {print $0}' amazon_reviews.tsv ##
+## Below is how they came up on the commmand line: ##
+khannele@sjsu:~/cs131/ws_8\[hannele@sjsu ws_8]$ awk -F '\t' '$12 == "Y" {print $14}' amazon_reviews.tsv | head -2[C[C[1P[1@N
+this boook was a great one that you could learn from. it not only teaches the imponrtance of family and their values but it also deals with basic issues that teens and some kids even deal with.  this book is about 4 best friends who are for the first time in their lives spending their summer apart. one day they are all in one of the girls rooms and finds a pair of pants that were tucked away in her closet.  once all four  of them try them on they realize that there is really something special about these pants.  seeming as how all 4 girls are differnt shapes and sizes and somehow the pants fit all of them,  they realize that these pants were the start of something special.  immediatley following they decided to make up certian rules abut the pants such as you must write the best thing u did while wearing the pants over your summer on the right leg and also some silly things such as to \\"never pick yuor nose while wearing the pants.\\"  this book follows the girls throuh their summers in differnt places of the world and through all of the different obstacles that life takes them through. it can really teach you alot not only about what is going on around you but most imporntantly about yuorself.  i would give this book 4 stars and would reccommend it to anyone who seems the slihgtest bit interested.
+If you are looking for something to stimulate your brain, this isn't it.  However, if you are just looking for a good laugh, you'll enjoy The Bad Girl's Guide.  It's funny and light, and definitely a good way to pass a little bit of time.
+khannele@sjsu:~/cs131/ws_8\[hannele@sjsu ws_8]$ awk -F '\t' '$12 == "N" {print $14}' amazon_reviews.tsv | head -2[1P[1P[1@0[1P[1@Y
+US	48541186	R1VE0FQQ0QTQJN	0300108834	915891133	A Little History of the World (Little Histories)	Books	5	16	20	N	Y	Simple, entertaining!	Never been much for enjoying history, but the style, brevity, and choice of subject matter come together very nicely in this book.	2005-10-14
+US	52253037	R21SYDQ70ILUC0	1580085695	586052746	Furry Logic: A Guide to Life's Little Challenges	Books	5	1	1	N	Y	The Perfect Gift	If you are stumped for the perfect gift to bring to your dinner host, to give to your dinner guests, or for any other small gift occasion, Furry Logic is the answer.  Everyone loves this book.	2005-10-14
+khannele@sjsu:~/cs131/ws_8\[hannele@sjsu ws_8]$ awk -F '\t' '$12 == "Y" {print $0}' amazon_reviews.tsv | head -2[1P[1@N
+US	12076615	RQ58W7SMO911M	0385730586	122662979	Sisterhood of the Traveling Pants (Book 1)	Books	4	2	3	N	N	this book was a great learning novel!	this boook was a great one that you could learn from. it not only teaches the imponrtance of family and their values but it also deals with basic issues that teens and some kids even deal with.  this book is about 4 best friends who are for the first time in their lives spending their summer apart. one day they are all in one of the girls rooms and finds a pair of pants that were tucked away in her closet.  once all four  of them try them on they realize that there is really something special about these pants.  seeming as how all 4 girls are differnt shapes and sizes and somehow the pants fit all of them,  they realize that these pants were the start of something special.  immediatley following they decided to make up certian rules abut the pants such as you must write the best thing u did while wearing the pants over your summer on the right leg and also some silly things such as to \\"never pick yuor nose while wearing the pants.\\"  this book follows the girls throuh their summers in differnt places of the world and through all of the different obstacles that life takes them through. it can really teach you alot not only about what is going on around you but most imporntantly about yuorself.  i would give this book 4 stars and would reccommend it to anyone who seems the slihgtest bit interested.	2005-10-14
+US	12703090	RF6IUKMGL8SF	0811828964	56191234	The Bad Girl's Guide to Getting What You Want	Books	3	5	5	N	N	Fun Fluff	If you are looking for something to stimulate your brain, this isn't it.  However, if you are just looking for a good laugh, you'll enjoy The Bad Girl's Guide.  It's funny and light, and definitely a good way to pass a little bit of time.	2005-10-14
+
+##### Q: Redirect the "verified" true reviews to a file "verified.txt". #####
+khannele@sjsu:~/cs131/ws_8\[hannele@sjsu ws_8]$ awk -F '\t' '$12 == "N" {print $0}' amazon_reviews.tsv | head -2Y[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1@N" {print $14[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CY[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1PN" {print $0}' amazon_reviews.tsv | head -1Y[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C5[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[10P{print $12[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[10@$12 == "Y" {print $0[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C1[K[hannele@sjsu ws_8]$ awk -F '\t' '$12 == "Y" {print $0}' amazon_reviews.tsv | head -1[K[hannele@sjsu ws_8]$ awk -F '\t' '$12 == "Y" {print $0}' amazon_reviews.tsv | head -1N[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CY" {print $14}' amazon_reviews.tsv | head -2[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CN[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1PY" {print $0[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CN[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Kawk -F '\t' '$12 == "Y" {print $14}' amazon_reviews.tsv > verified.txt
+
+##### Q: Then put the unverified reviews in another file "unverified.txt" using redirection. #####
+khannele@sjsu:~/cs131/ws_8\[hannele@sjsu ws_8]$ awk -F '\t' '$12 == "N" {print $14}' amazon_reviews.tsv > unverified.txt M[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Kt
+
+##### Q: Find the 10 most frequent words in the review_body of the verified reviews, then find the 10 most frequent words in the review_body of the unverified reviews. Note: If this is taking too long for the entire dataset, it is sufficient to do it just for 100 reviews so you get an idea. ####
+[hannele@sjsu ws_8]$ cat verified.txt | tr "[:upper:]" "[:lower:]" | tr -d "<" | tr -d "." | tr -d "/"| tr -d ">"|tr -d "-"| tr -d ","| tr -d "\t" | tr [:space:] "\n" | sort -r | uniq -c | fgrep -v -f /usr/share/groff/current/eign | sort -nr -k 1 | head -10
+1329504 
+ 477973 book
+ 192513 br
+  70560 books
+  42739 through
+  38641 found
+  36006 love
+  35963 own
+  30888 never
+  28516 few
+
+[hannele@sjsu ws_8]$ head -100 unverified.txt | tr "[:upper:]" "[:lower:]" | tr -d "<" | tr -d "." | tr -d "/"| tr -d ">"|tr -d "-"| tr -d ","| tr -d "\t" | tr [:space:] "\n" | sort -r | uniq -c | fgrep -v -f /usr/share/groff/current/eign | sort -nr -k 1 | head -10
+    568 
+    215 br
+    200 book
+     29 books
+     23 love
+     20 own
+     20 never
+     20 found
+     17 ever
+     15 truth
+
+##### Create comands log #####
+[KM[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[K[hannele@sjsu ws_8]$ [K[hannele@sjsu ws_8]$ [K[hannele@sjsu ws_8]$ [K[hannele@sjsu ws_8]$ [K[hannele@sjsu ws_8]$ [K[hannele@sjsu ws_8]$ history > cmds.log
+khannele@sjsu:~/cs131/ws_8\[hannele@sjsu ws_8]$ ls
+[0m[01;36mamazon_reviews.tsv[0m  cmds.log  test.txt  unverified.txt  verified.txt
+khannele@sjsu:~/cs131/ws_8\[hannele@sjsu ws_8]$ exit
+
+Script done on 2022-11-01 22:36:18-04:00
