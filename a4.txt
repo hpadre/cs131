@@ -1,0 +1,200 @@
+ASSIGNMENT #4
+Hannele Padre
+
+#### Start Script ####
+## Folder for A4 already created in scratch directory
+Script started on 2022-11-17 16:49:53-05:00
+khannele@sjsu:/mnt/scratch/hannele/cs131/A4\[hannele@sjsu A4]$ ls
+a4.txt
+## Copy tsv files to folder
+khannele@sjsu:/mnt/scratch/hannele/cs131/A4\[hannele@sjsu A4]$ cp /home/test/A1/downloaded_tweets_extend_original_nolf2.tsv ..
+khannele@sjsu:/mnt/scratch/hannele/cs131/A4\[hannele@sjsu A4]$ cp /home/test/A1/downloaded_tweets_extend_nolf2.tsv .
+
+#### Q0: Find tpo 10 users who got retweeted from other users ####
+## First I grepped for "retweeted", which is in column 6, which also contains the ID of who is retweeted ## 
+## View header. In column 6 is where we need to grep for "retweeted" ##
+khannele@sjsu:/mnt/scratch/hannele/cs131/A4\[hannele@sjsu A4]$ head -1 downloaded_tweets_extend_nolf2.tsv
+id	author	date	hashtags	referenced	in_reply_to_user_id	public_metrics	text_nolf
+
+## get ref ID's of those retweeted ##
+khannele@sjsu:/mnt/scratch/hannele/cs131/A4\[hannele@sjsu A4]$ grep retweeted downloaded_tweets_extend_nolf2.tsv | awk -F '\tt' '{if ($2!=$6){print $5}}' | awk -F ' ' '{print $2}' | awk -F '=' '{print $2}'  > ref_ids.txt
+
+## Top 10 users who got retweeted: ##
+^[khannele@sjsu:/mnt/scratch/hannele/cs131/A4^[\[hannele@sjsu A4]$ sort ref_ids.txt | uniq -c | sort -nr | head -10
+     13 1497678663046905863
+     12 1506392749330907142
+     11 1496327528960737283
+     11 1492304803824762881
+     11 1491862877405429763
+     10 1511282321789538313
+     10 1505801685423300610
+     10 1500983875207680006
+     10 1500465032966062082
+      9 1516513505696010243
+
+#### Next, repeat assignment #3 (questions 1-4), except use retweets instead of replies. ####
+#### Q1: Represent influence between users as a directional graph of users, save as a list of lines, as described next:####
+
+## Get Author ID's: ##
+khannele@sjsu:/mnt/scratch/hannele/cs131/A4\[hannele@sjsu A4]$ grep retweeted downloaded_tweets_extend_nolf2.tsv | awk -F '\tt' '{if ($2!=$6){print $2}}' > auth_ids.txt
+
+## Combine Ref and Auth IDs: ##
+khannele@sjsu:/mnt/scratch/hannele/cs131/A4\[hannele@sjsu A4]$ paste ref_ids.txt auth_ids.txt | sort > ref_auth_id.txt
+
+## Put tweet id’s from original file that match tweet id’s from not original file into a file: ##
+khannele@sjsu:/mnt/scratch/hannele/cs131/A4\[hannele@sjsu A4]$ awk 'NR==FNR{a[$1];next} $1 in a{print $1"\t"$2}' ref_ids.txt  downloaded_tweets_extend_original_nolf2.tsv | sort > original_ref_auth_id.txt
+
+## Join Original author and retweet author by tweet ID's (Ref IDs) ##
+khannele@sjsu:/mnt/scratch/hannele/cs131/A4\[hannele@sjsu A4]$ join original_ref_auth_id.txt ref_auth_id.txt | awk '{print $22"\t"$3}' | sort > graph1.txt
+
+## Get people with 3 or more retweets ##
+khannele@sjsu:/mnt/scratch/hannele/cs131/A4\[hannele@sjsu A4]$ awk '{print $1}' graph1.txt | uniq -c | sort -nr | awk '{if ($$1>2){print $2}}' > 3_or_more.txt
+
+## Get connetions of people with 3 or more retweets
+khannele@sjsu:/mnt/scratch/hannele/cs131/A4\[hannele@sjsu A4]$ awk 'NR==FNR {a[$1]; next} $1 in a' 3_or_more.txt graph1.txt >> graph2.txt
+
+## Get counts of the retweets per user ##
+khannele@sjsu:/mnt/scratch/hannele/cs131/A4\[hannele@sjsu A4]$ awk '{print $1}' graph2.txt | uniq -c > graph3.txt
+
+## Create Histogram ##
+khannele@sjsu:/mnt/scratch/hannele/cs131/A4\[hannele@sjsu A4]$ ../../../../../etc/gnuplot-5.4.4/src/gnuplot
+
+	G N U P L O T
+	Version 5.4 patchlevel 4    last modified 2022-07-10 
+
+	Copyright (C) 1986-1993, 1998, 2004, 2007-2022
+	Thomas Williams, Colin Kelley and many others
+
+	gnuplot home:     http://www.gnuplot.info
+	faq, bugs, etc:   type "help FAQ"
+	immediate help:   type "help"  (plot window: hit 'h')
+
+Terminal type is now 'unknown'
+gnuplot> set output "xyz.png"
+gnuplot> set terminal svg size 400,300
+
+Terminal type is now 'svg'
+Options are 'size 400,300 fixed enhanced font 'Arial,12' butt dashlength 1.0 '
+gnuplot> binwidth=5
+gnuplot> bin(x,width)=width*floor(x/width)
+gnuplot> plot 'graph3.txt' using (bin($1,binwidth)):(1.0) smooth freq with boxes
+gnuplot> exit
+
+## Histogram was viewed through XQUARTZ. Screen shot is on canvas, otherwise you can also view xzy.png on your local computer ##
+
+#### Q4: Find 30 most frequent hashtags in the largest clusters of replies (users/tweets that got replied to):####
+## top 30 hashtags among top retweeted:
+khannele@sjsu:/mnt/scratch/hannele/cs131/A4\[hannele@sjsu A4]$ awk 'NR==FNR {map[$2] = $0; next} $2 in map {print $0, map[$2]]}' downloaded_tweets_extend_original_nolf2.tsv graph2.txt | awk -F '\t' '{print  $5}' | tr -d '"' | tr ',' '\n' | sort | uniq -c | sort -nr | head -30
+   1777 SspeakOutAgainstWorldWar3
+   1777 NATO
+   1590 Ukraine
+   1186 IStandWithUkraine
+    909 partygate
+    720 Brexit
+    720 BorisJohnson
+    691 RESPECT
+    644 WasteWater
+    644 FordShitShow
+    644 covid
+    644 6thWave
+    636 StandWithUkraine
+    636 NBAAllStar
+    636 HumanRights
+    636 EndIsraeliApartheid
+    538 CloseTheSky
+    469 SustainableLife
+    469 permaculture
+    469 foodforest
+    431 COVID19Ab
+    431 ableg
+    391 PlannedParenthood
+    391 Infrastructure
+    391 CovidRelief
+    391 BuildBackBetter
+    362 NOWAYHOSAI
+    353 PerjuryTaylorGreene
+    302 WillSmith
+    302 NFLDraft2022
+
+## Top 30 hashtags in dataset:
+khannele@sjsu:/mnt/scratch/hannele/cs131/A4\[hannele@sjsu A4]$ awk 'NR==FNR {map[$2] = $0; next} $2 in map {print $0, map[$2]]}' downloaded_tweets_extend_original_nolf2.tsv graph2.txt | awk -F '\t' '{print  $5}' | tr -d '"' | tr ',' '\n' | sort | uniq -c | sort -nr | head -30MM[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C | tr -d '"' | tr ',' '\n' | sort | uniq -c | sort -nr | head -30[K
+   2823 Ukraine
+   1609 COVID19
+   1115 Russia
+   1110 LongCovid
+    895 FBPE
+    894 FollowBackFriday
+    782 StandWithUkraine
+    536 PutinHitler
+    476 Russian
+    406 Putin
+    405 Omicron
+    366 BREAKING
+    363 auspol
+    357 Mariupol
+    343 bcpoli
+    337 Kyiv
+    319 ableg
+    305 StopPutinNOW
+    292 COVIDisAirborne
+    282 PMQs
+    280 เจ้าแก้มก้อน
+    274 PutinWarCriminal
+    269 Ottawa
+    263 RussiaSanctions
+    263 Genocide
+    260 BoycottRussia
+    258 Ukrainian
+    252 VoteFordOut
+    239 onpoli
+
+## Put top 30 into text file ##
+khannele@sjsu:/mnt/scratch/hannele/cs131/A4\[hannele@sjsu A4]$ awk 'NR==FNR {map[$2] = $0; next} $2 in map {print $0, map[$2]]}' downloaded_tweets_extend_original_nolf2.tsv graph2.txt | awk -F '\t' '{print  $5}' | tr -d '"' | tr ',' '\n' | sort | uniq -c | sort -nr | head -30 > top_30.ttxt
+
+## Put top 30 from A2 into text file ##
+khannele@sjsu:/mnt/scratch/hannele/cs131/A4\[hannele@sjsu A4]$ awk -F '\t' '{print $4}' downloaded_tweets_extend_nolf2.tsv |  tr -d '"' | tr ',' '\n' | sort | uniq -c | sort -nr | head -30 > top_30_A2.txt
+
+## Compare hashtags of both files: ##
+khannele@sjsu:/mnt/scratch/hannele/cs131/A4\[hannele@sjsu A4]$ vimdiff <(awk '{print $2}' top_30_A2.txt | sort) <(awk '{printt $2}' top_30.txt | sort)
+2 files to edit
+
+Sve
+  ableg
+  BorisJohnson
+  Brexit
+  BuildBackBetter
+  CloseTheSky
+  covid
+  COVID19Ab
+  CovidRelief
+  EndIsraeliApartheid
+  foodforest
+  FordShitShow
+  HumanRights
+  Infrastructure
+  IStandWithUkraine
+  NATO
+  NBAAllStar
+  NFLDraft2022
+  NOWAYHOSAI
+  partygate
+  PerjuryTaylorGreene
+  permaculture
+  PlannedParenthood
+  RESPECT
+  SspeakOutAgainstWorldWar3
+  StandWithUkraine
+  SustainableLife
+  Ukraine
+  WasteWater
+  WillSmith
+
+#### Q5: A major part of data science is visualizing the results in order to present them to your peers. Without visualizing your results, your results won't get the attention they deserve from other people. Plot a network cluster you got for retweets and a cluster for replies (from this and the previous assignment) in a network visualization tool, such as Gephi ####
+## Cluster created on gephi with graph3 from A3 (replies) and A4 (retweets)
+
+#### Q6: 6) Describe in a few sentences (2-3 sentences) what the networks you plotted show at the bottom of a4.txt. ####
+The networks shows who retweeted who. We can see that some users are retweeted a more significant amount compared to other users from the cluster of paths coming out from 1 user. This is a good visualization to see how retweets are connected and how many times.
+
+
+
+Script done on 2022-11-17 17:12:47-05:00
