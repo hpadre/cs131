@@ -1,0 +1,1000 @@
+   49  cd ..
+   50  ls
+   51  cd ws_4
+   52  cd git
+   53  cd .git
+   54  ls
+   55  less COMMIT_EDITMSG
+   56  cd ..
+   57  rm .git
+   58  rm -r .git
+   59  y
+   60  git branch
+   61  git status
+   62  ls
+   63  git add compute_mean.sh
+   64  git add customers_top3.txt
+   65  git add README
+   66  git add cmds.log
+   67  git add helpfullness_scores.sh
+   68  git add products_top3.txt
+   69  git add ws4.txt
+   70  git status
+   71  git commit -m "This is my ws4 commit!"
+   72  git push origin ws_4
+   73  ls
+   74  less helpfullness_scores.sh
+   75  ls
+   76  cd cs131
+   77  ls
+   78  mkdir A2
+   79  cd A2
+   80  wget downloaded_tweets_extend.csv
+   81  ls
+   82  cd
+   83  ls
+   84  cd ..
+   85  ls
+   86  cd 
+   87  ls
+   88  cd cs131
+   89  ls
+   90  cd A2
+   91  cp /home/test/A1/downloaded_tweets_extend_nolf.txt ~/A2/
+   92  cd ..
+   93  cd
+   94  cd ..
+   95  cd test
+   96  ls
+   97  cd ..
+   98  cd test2
+   99  ls
+  100  cd ..
+  101  ls
+  102  ls test
+  103  cd 
+  104  ls
+  105  cd cs131
+  106  ls
+  107  mkdir ws_5
+  108  cd ws_5
+  109  tmux
+  110  tmux ls
+  111  tmux new-session -s homework
+  112  tmux ls
+  113  tmux attatch -t homework
+  114  tmux attach -t homework
+  115  exit
+  116  ls
+  117  cd cs131
+  118  ls
+  119  cd ws_5
+  120  ls
+  121  less customers_top1000.txt
+  122  cd CUSTOMERS
+  123  ls
+  124  cd ..
+  125  tmux attach -t homework
+  126  cd ..
+  127  ls
+  128  cd A2
+  129  ls
+  130  cp /home/test/downloaded_tweets_extended_original_nolf2.csv .
+  131  cp /home/test/downloaded_tweets_extend_original_nolf2.csv .
+  132  cp /home/test/A1/downloaded_tweets_extend_nolf.txt .
+  133  pwd
+  134  cd
+  135  cd ..
+  136  cp /home/test/A1/downloaded_tweets_extend_nolf.txt /home/hannele/cs131/A2/
+  137  cp /home/test/A1/downloaded_tweets_extend_nolf2.txt /home/hannele/cs131/A2/
+  138  cd
+  139  exit
+  140  mkdir A2
+  141  cd A2
+  142  cd ..
+  143  pwd
+  144  cd A2
+  145  mv /home/hannele/cs131/a2.txt .
+  146  ls
+  147  cp /home/test/A1/downloaded_tweets_extend_original_nolf2.tsv .
+  148  cp /home/test/A1/downloaded_tweets_extend_nolf2.tsv .
+  149  head -1 downloaded_tweets_extend_original_nolf2.tsv
+  150  grep "replied_to" downloaded_tweets_extend_original_nolf2.tsv | awk -F '\t' '($2 != $6) {print $2}'| sort -r | uniq -c | sort -nr -k 1 | head -10
+  151  grep "replied_to" downloaded_tweets_extend_original_nolf2.tsv | awk -F '\t' '($2 != $6) {print $6}'| sort -r | uniq -c | sort -nr -k 1 | head -10
+  152  awk -F'\t' '{print $5}' downloaded_tweets_extend_nolf2.tsv | awk -F ' ' '($3 != "") {print $3}'| tr -d "]" | grep -v "referenced" | sort | uniq -c | sort -nr -k 1 | head -20
+  153  grep "type=retweeted" downloaded_tweets_extend_nolf2.tsv | awk -F'\t' '($2 != $6) {print $2}' | sort -r | uniq -c | sort -nr -k 1 | head -10
+  154  awk -F '\t' '($4 != "") {print $4}' downloaded_tweets_extend_nolf2.tsv | tr ',' '\n' | tr -d '"' |  sort -r | uniq -c | sort -nr -k 1 | head -30
+  155  grep "type=retweeted" downloaded_tweets_extend_nolf2.tsv | awk -F '\t' '($4 != "") {print $4}' | tr ',' '\n' | tr -d '"' |  sort -r | uniq -c | sort -nr -k 1 | head -30
+  156  grep "type=replied_to" downloaded_tweets_extend_nolf2.tsv | awk -F '\t' '($4 != "") {print $4}' | tr ',' '\n' | tr -d '"' |  sort -r | uniq -c | sort -nr -k 1 | head -30
+  157  grep "type=quoted" downloaded_tweets_extend_nolf2.tsv | awk -F '\t' '($4 != "") {print $4}' | tr ',' '\n' | tr -d '"' |  sort -r | uniq -c | sort -nr -k 1 | head -30
+  158  ls
+  159  cd ..
+  160  ls
+  161  cd ..
+  162  pwd
+  163  ls
+  164  cd cs131
+  165  ls
+  166  cd ws_5
+  167  ls
+  168  ln -s ~/amazon_reviews_us_Books_v1_02.tsv amazon_reviews.tsv
+  169  mkdir CUSTOMERS
+  170  vim customers.sh
+  171  for i in {1..5} do echo $i done
+  172  for i in 1 2 3 4 5 do echo $i done
+  173  vim customers.sh
+  174  sh customers.sh
+  175  vim customers.sh
+  176  awk -F '   ' '{print $2}' amazon_reviews.tsv | sort -r | uniq -c | sort -nr -k 1 |head -1000 > customers_top1000.txt
+  177  ls
+  178  less customers_top1000.txt
+  179  rm customers_top1000.txt
+  180  awk -F '   ' '{print $2}' amazon_reviews.tsv | sort -r | un
+  181  awk -F '	' '{print $2}' amazon_reviews.tsv | sort -r | uniq -c | sort -nr -k 1 | head -1000 > customers_top1000.txt
+  182  ls
+  183  less customers_top1000.txt
+  184  vim customers.sh
+  185  less customers_top1000.txt
+  186  grep 50122160 amazon_rev.tsv | head -n 10
+  187  grep 50122160 amazon_reviews.tsv | head -n 10
+  188  awk 50122160 amazon_reviews.tsv
+  189  awk '$2 ~/^50122160$/' amazon_reviews.tsv | head -n 2
+  190  ls
+  191  vim customers.sh
+  192  sh customers.sh
+  193  vim customers.sh
+  194  ls
+  195  sh customers.sh customers_top1000.txt CUSTOMERS
+  196  cd CUSTOMERS
+  197  ls
+  198  rm *.txt
+  199  ls
+  200  cd ..
+  201  sh customers.sh customers_top1000.txt CUSTOMERS
+  202  cd ..
+  203  ls
+  204  cd ws_5
+  205  ls
+  206  ln -s ~/amazon_reviews_us_Books_v1_02.tsv amazon_reviews.tsv
+  207  ls
+  208  awk -F '   ' '{print $2}' amazon_reviews.tsv | sort -r | uniq -c | sort -nr -k 1 | head -1000 > customers_top1000.txt
+  209  mkdir ws_5
+  210  mv ./ws5.txt ./ws_5
+  211  cd ws_5
+  212  tmux new-session -s homework
+  213  tmux attach -t homework
+  214  ls
+  215  cd cs131
+  216  ls
+  217  cd A2
+  218  ls
+  219  cp /home/test/A1/downloaded_tweets_extend_nolf2.tsv .
+  220  ls
+  221  cp /home/test/A1/downloaded_tweets_extend_original_nolf2.tsv .
+  222  ls
+  223  cp /home/test/A1/downloaded_tweets_extend.csv .
+  224  ls
+  225  cp /home/test/A1/downloaded_tweets_extend_nolf.csv .
+  226  vim downloaded_tweets_extend.csv
+  227  vim downloaded_tweets_extend_nolf2.tsv
+  228  less downloaded_tweets_extend.csv
+  229  ls
+  230  less downloaded_tweets_extend_original_nolf2.tsv
+  231  awk -F '	' '{print $1}' downloaded_tweets_extend_original_nolf2.tsv | sort -r | uniq -c | sort -nr -k 1 | head -10
+  232  less downloaded_tweets_extend_original_nolf2.tsv
+  233  cut -d "	" -f 1 downloaded_tweets_extend_original_nolf2.tsv | head -5
+  234  awk -F '	' '{print$1} downloaded_tweets_extend_original_nolf2.tsv | head -5
+  235  awk -F '	' '{print$1}' downloaded_tweets_extend_original_nolf2.tsv | head -5
+  236  awk -F '     ' '{print $1}' downloaded_tweets_extend_original_nolf2.tsv | sort -r | uniq -c | head -5
+  237  cut -d "     " -f 1 downloaded_tweets_extend_original_nolf2.tsv | sort -r | uniq -c | head -5
+  238  cut -d "	" -f 1 downloaded_tweets_extend_original_nolf2.tsv | sort -r | uniq -c | head -5
+  239  cp /home/test/A1/downloaded_tweets_extend_nolf.txt
+  240  cp /home/test/A1/downloaded_tweets_extend_nolf.tsv
+  241  cp /home/test/A1/downloaded_tweets_extend_nolf.txt .
+  242  cp /home/test/A1/downloaded_tweets_extend_nolf.tsv .
+  243  awk -F '\t' '{print $1}' downloaded_tweets_extend_original_nolf2.tsv | sort -r | uniq -c | head -5
+  244  head -1 downloaded_tweets_extend_original_nolf2.tsv
+  245  awk -F '\tab' downloaded_tweets_extend_original_nolf2.tsv | head -5
+  246  awk -F '\tab' {print $0} downloaded_tweets_extend_original_nolf2.tsv | head -5
+  247  awk -F '\tab' '{print $0}' downloaded_tweets_extend_original_nolf2.tsv | head -5
+  248  awk -F '\tab' '{print $0}' downloaded_tweets_extend_original_nolf2.tsv | cut -f 1 | head -5
+  249  grep "replied_to" downloaded_tweets_extend_original_nolf2.tsv | head -5
+  250  grep "replied_to" downloaded_tweets_extend_original_nolf2.tsv | awk -F '\tab' '{print $0}'| sort -r | uniq -c | sort -nr -k 1 | head -10
+  251  grep "replied_to" downloaded_tweets_extend_original_nolf2.tsv | awk -F '\tab' '{print $1}'| sort -r | uniq -c | sort -nr -k 1 | head -10
+  252  grep "replied_to" downloaded_tweets_extend_original_nolf2.tsv | awk -F '	' '{print $1}'| sort -r | uniq -c | sort -nr -k 1 | head -10
+  253  grep "replied_to" downloaded_tweets_extend_original_nolf2.tsv | awk -F '\t' '{print $1}'| sort -r | uniq -c | sort -nr -k 1 | head -10
+  254  grep "replied_to" downloaded_tweets_extend_original_nolf2.tsv | awk -F '\t' '{print $2}'| sort -r | uniq -c | sort -nr -k 1 | head -10
+  255  grep "replied_to" downloaded_tweets_extend_original_nolf2.tsv | awk -F'\t' '($2 != $6)' '{print $2}'| sort -r | uniq -c | sort -nr -k 1 | head -10
+  256  grep "replied_to" downloaded_tweets_extend_original_nolf2.tsv | awk -F '\t' '($2 != $6)' '{print $2}'| sort -r | uniq -c | sort -nr -k 1 | head -10
+  257  grep "replied_to" downloaded_tweets_extend_original_nolf2.tsv | awk -F '\t' '($2 != $6) {print $2}'| sort -r | uniq -c | sort -nr -k 1 | head -10
+  258  head -1 downloaded_tweets_extend_original_nolf2.csv
+  259  grep "94350709" downloaded_tweets_extend_original_nolf2.tsawk -F '   ' '{print $2}' amazon_reviews.tsv | sort -r | uniq -c | sort -nr -k 1 | head -1000 > customers_top1000.txt
+  260  ls
+  261  less customers_top1000.txt
+  262  rm customers_top1000.txt
+  263  ls
+  264  sh customers.sh customers_top1000.txt CUSTOMERS
+  265  ls
+  266  rm -d CUSTOMERS
+  267  rm *.txt
+  268  rm *.sh
+  269  ls
+  270  rm *.tsv
+  271  ls
+  272  cd ..
+  273  rm -d ws_5
+  274  ln -s ~/amazon_reviews_us_Books_v1_02.tsv amazon_reviews.tsv
+  275  more a1.txt
+  276  more ws5.txt
+  277  ls
+  278  ls
+  279  mkdir ws_5
+  280  mv ./ws5.txt ./ws_5
+  281  cd ws_5
+  282  ls
+  283  tmux new-session -s homework
+  284  tmux attach -t homework
+  285  mv ws5.txt ./ws_5
+  286  awk -F '\t' '{print $2}' amazon_reviews.tsv | sort -r | uniq -c | sort -nr -k 1 | head -1000 > customers_top1000.txt
+  287  l
+  288  ls
+  289  less customers_top1000.txt
+  290  mkdir CUSTOMERS
+  291  vim customers.sh
+  292  tmux attach -t homework
+  293  tmux new-session -s homework
+  294  ls
+  295  cd CUSTOMERS
+  296  ls
+  297  less 41012519.txt
+  298  rm *.txt
+  299  vim ws5.txt
+  300  ls
+  301  rm *.txt
+  302  cd ..
+  303  vim ws5.txt
+  304  rm ws5.txt
+  305  tmux attach -t homework
+  306  ls
+  307  cd ..
+  308  ls
+  309  script ws5.txt
+  310  vim ws5.txt
+  311  tmux new-session -s homework
+  312  cd ws_5
+  313  ls
+  314  tail ws5.txt
+  315  lsqwq
+  316  ls
+  317  more ws5.txt
+  318  ls
+  319  cd CUSTOMERS
+  320  ls | wc
+  321  ls | wc -l
+  322  cd ..
+  323  tmux attach -t homework
+  324  ls
+  325  cd CUSTOMERS
+  326  ls | wc -l
+  327  tmux attach -t homework
+  328  ls
+  329  cd cs131
+  330  ls
+  331  cd ws_5
+  332  ls
+  333  less ws5.txt
+  334  script ws5_2.txt
+  335  ls
+  336  cd ..
+  337  ls
+  338  cd ws_5
+  339  ls
+  340  cd ..
+  341  ls
+  342  cd ws_5
+  343  ls
+  344  vim ws5.txt
+  345  script ws5_2.txt
+  346  vim ws5_2.txt
+  347  vim ws5.txt
+  348  vim ws5_3.txt
+  349  vim ws5_2.txt
+  350  vim ws5.txt
+  351  ls
+  352  rm ws5_3.txt
+  353  rm ws5_2.txt
+  354  ls
+  355  history > cmds.log
+  356  ls
+  357  cd ..
+  358  git init
+  359  cd ws_5
+  360  git checkout -b ws_5
+  361  git status
+  362  ls
+  363  git add cmds.log
+  364  git add ws5.txt
+  365  git add customers.sh
+  366  git commit -m "This is my ws5 commit!"
+  367  git push origin ws_5
+  368  ls
+  369  cd CUSTOMERS
+  370  ls
+  371  less  48486228.txt
+  372  exit
+  373  ls
+  374  less ws5.txt
+  375  rm ws5.txt
+  376  script ws5.txt
+  377  cd ws_5
+  378  ls
+  379  vim ws5.txt
+  380  cd ..
+  381  ls
+  382  cd ws_5
+  383  rm ws5.txt
+  384  rm amazon_reviews.tsv
+  385  ls
+  386  cd ..
+  387  rm -d ws_5
+  388  ls
+  389  script ws5.txt
+  390  mkdir ws_5
+  391  mv ws5.txt ./ws_5
+  392  cd ws_5
+  393  ls
+  394  ln -s ~/amazon_reviews_us_Books_v1_02.tsv amazon_reviews.tsv
+  395  ls
+  396  awk -F ' \t ' '{print $2}' amazon_reviews.tsv | sort -r | uniq -c | sort -nr -k 1 | head -1000 > customers_top1000.txt
+  397  ls
+  398  less customers_top1000.txt
+  399  awk -F '\t' '{print $2}' amazon_reviews.tsv | sort -r | uniq -c | sort -nr -k 1 | head -1000 > customers_top1000.txt
+  400  ls
+  401  less customers_top1000.txt
+  402  mkdir CUSTOMERS
+  403  vim customers.sh
+  404  sh customers.sh customers_top1000.txt CUSTOMERS
+  405  vim customers.sh
+  406  ls
+  407  exit
+  408  exit
+  409  exit
+  410  tmux new-session -s homework
+  411  tmux attach -t homework
+  412  cd cs131
+  413  ls
+  414  tmux new-session -s homework
+  415  tmux attach -t homework
+  416  tmux new-session -s homework
+  417  script ws6.txt
+  418  script ws6_2.txt
+  419  ls
+  420  cd ..
+  421  ls
+  422  cd cs131
+  423  cd ~/A2
+  424  cd A2
+  425  ls
+  426  less a2.txt
+  427  cd ..
+  428  ls
+  429  cd ws_4
+  430  ls
+  431  cd PRODUCTS
+  432  ls
+  433  less 0525947647.txt
+  434  cd ..
+  435  cd ws_5
+  436  ls
+  437  cd ..
+  438  cd ws_3
+  439  ls
+  440  cd ..
+  441  ls
+  442  cd ws_4
+  443  ls
+  444  head -1 amazon_reviews.tsv
+  445  cd PRODUCTS
+  446  ls
+  447  l
+  448  cd ..
+  449  ls
+  450  cd A1
+  451  ls
+  452  cd ..
+  453  ls
+  454  cd ..
+  455  cd
+  456  cd cs131
+  457  ls
+  458  mkdir ws_6
+  459  mkdir ws_6/PRODUCTS
+  460  fgrep "0525947647" ~/amazon_reviews_us_Books_v1_02.tsv > ./ws_6/PRODUCTS/0525947647.txt
+  461  DATETIME = $(date +%Y%m%d_%H%M%S )
+  462  cd ws_5
+  463  ls
+  464  cd ..
+  465  cd ws_6
+  466  ls
+  467  cd PRODUCTS
+  468  ls
+  469  less 0525947647.txt
+  470  cd ..
+  471  DATETIME=$(date +%Y%m%d_%H%M%S )
+  472  cp ./PRODUCTS/0525947647.txt ./PRODUCTS/0525947647.$DATETIME.txt
+  473  cd PRODUCTS
+  474  ls
+  475  cd ..
+  476  echo "a'\n'b"
+  477  echo 'a"\n"c'
+  478  echo "a	b"
+  479  echo a \n b
+  480  a "\n" b
+  481  echo a "\n" b
+  482  echo \n
+  483  echo \t
+  484  echo a \t b
+  485  echo "a \t b \t c"
+  486  ls
+  487  cd PRODUCTS
+  488  ls
+  489  echo $DATETIME
+  490  cd
+  491  ls
+  492  less amazon_reviews_us_Books_v1_02.tsv
+  493  egrep "RQ58W7SMO911M" amazon_reviews_us_Books_v1_02.tsv
+  494  cd cs131/ws_6
+  495  ls
+  496  cd PRODUCTS
+  497  ls
+  498  tail -2 0525947647.20221018_195927.txt
+  499  egrep "RQ58W7SMO911M" ~/amazon_reviews_us_Books_v1_02.tsv >> 0525947647.20221018_195927.txt
+  500  tail -2 0525947647.20221018_195927.txt
+  501  ln --help
+  502  ls
+  503  cd ..
+  504  ls
+  505  ln -s PRODUCTS/0525947647.20221018_195927.txt PRODUCTS/0525947647.LATEST.txt
+  506  ls
+  507  cd PRODUCTS
+  508  ls
+  509  crontab -e
+  510  ls
+  511  crontab -e
+  512  crontab -l
+  513  crontab -r
+  514  crontab file
+  515  vim crontab.sh
+  516  ls
+  517  vim crontab.sh
+  518  awk -F '\t' '{print 7} 0525947647.txt | head -3
+  519  awk -F '\t' '{print 7}' 0525947647.txt | head -3
+  520  awk -F '\t' '{print $7}' 0525947647.txt | head -3
+  521  awk -F '\t' '{print $8}' 0525947647.txt | head -3
+  522  head -3 0525947647.txt
+  523  awk '{ total += $8; count++ } END { print total/count }' 0525947647.txt
+  524  awk -F '\t' '{print $8}' 0525947647.txt | head -3
+  525  awk '{total += $8; count++ } END {print total/count}' 0525947647.txt
+  526  sum=$(awk '{print $8}' 0525947647.txt | paste -sd+ | bc); echo "$sum / $(cat 0525947647.txt
+  527   | wc -l)" | bc -l
+  528  tmux attach -t homework
+  529  ls
+  530  cd cs131
+  531  ls
+  532  script ws6_3.txt
+  533  ls
+  534  mv *.txt ws_6
+  535  ls
+  536  cd ws_6
+  537  ls
+  538  less ws6.txt
+  539  vim ws6.txt
+  540  ls
+  541  vim w6_2.txt
+  542  vim ws6_3.txt
+  543  ls
+  544  less ws6_2.txt
+  545  vim ws6_2.txt
+  546  rm w6_2.txt
+  547  ls
+  548  cat ws6.txt ws6_2.txt ws6_3.txt > ws6_hp.txt
+  549  ls
+  550  less ws6_hp.txt
+  551  ls
+  552  cd cs131
+  553  ls
+  554  cd ws_6
+  555  crontab -l
+  556  crontab -r
+  557  ls
+  558  vim ws6_hp.txt
+  559  rm ws6_hp.txt
+  560  vim ws6_2.txt
+  561  vim ws6_3.txt
+  562  vim ws6.txt
+  563  cat ws6.txt ws6_2.txt ws6_3.txt > ws6_hp.txt
+  564  ls
+  565  vim w6_hp.txt
+  566  ls
+  567  vim ws6_hp.txt
+  568  cd ..
+  569  git init
+  570  git status
+  571  git checkout -b ws_6
+  572  git status
+  573  cd ws_6
+  574  git status
+  575  ls
+  576  git add ws6_hp.txt
+  577  cd PRODUCTS
+  578  ls
+  579  git add crontab.sh
+  580  git add db.log
+  581  git add 0525947647.AVGRATING.txt
+  582  less 0525947647.1019_020102.txt
+  583  git add cmds.log
+  584  git status
+  585  cd ..
+  586  git commit -m "This is my ws_6 commit!"
+  587  git push origin ws_6
+  588  ls
+  589  exit
+  590  ls
+  591  mkdir ws_8
+  592  cd ws_8
+  593  ln -s ~/amazon_reviews_us_Books_v1_02.tsv amazon_reviews.tsv
+  594  ls
+  595  head -1 amazon_reviews.tsv
+  596  awk -F '\t' '{print $12}' amazon_reviews.tsv | head -5
+  597  awk -F '\t' '$12 == "Y" {print $0}' amazon_reviews.tsv | head -5
+  598  awk -F '\t' '$12 == "Y" {print $0}' amazon_reviews.tsv | head -1
+  599  awk -F '\t' '$12 == "N" {print $0}' amazon_reviews.tsv | head -1
+  600  awk -F '\t' '$12 == "Y" {print $14}' amazon_reviews.tsv | head -2
+  601  awk -F '\t' '$12 == "N" {print $14}' amazon_reviews.tsv | head -2
+  602  awk -F '\t' '$12 == "Y" {print $0}' amazon_reviews.tsv | head -2
+  603  awk -F '\t' '$12 == "N" {print $0}' amazon_reviews.tsv | head -2
+  604  awk -F '\t' '$12 == "Y" {print $14}' amazon_reviews.tsv > verified.txt
+  605  awk -F '\t' '$12 == "N" {print $14}' amazon_reviews.tsv > unverified.txt
+  606  ls
+  607  less unverified.txt
+  608  less verified.txt
+  609  wc verified.txt
+  610  tr "\t" [:space:] verified.txt | head -30
+  611  cat verified.txt tr "\t" [:space:] | head -30
+  612  cat verified.txt | tr -d "\t" | head -30
+  613  cat verified.txt | tr -d "\t" | head -1
+  614  cat verified.txt | tr -d "\t" | head -2
+  615  cat verified.txt | tr -d "\t" | tr -d "\t" | head -2
+  616  sort verified.txt | head -2
+  617  cat verified.txt | tr -d "\t" | tr -d "\n" |head -2
+  618  cat verified.txt | tr -d "\t" | tr [:space:] "\n" |head -2
+  619  cat verified.txt | tr -d "\t" | tr [:space:] "\n" | sort -r | uniq -c | sort -nr -k 1 |head -20
+  620  ls
+  621  tmux attatch -t homework
+  622  tmux attach -t homework
+  623  exit
+  624  ls
+  625  cd cs131
+  626  ls
+  627  cd ws_8
+  628  cat verified.txt | tr -d "\t" | tr [:space:] "\n" | sort -r | uniq -c | sort -nr -k 1 |head -40 > test.txt
+  629  ls
+  630  less test.txt
+  631  cat verified.txt | tr "[:upper:]" "[:lower:]" | tr -d "\t" | tr [:space:] "\n" | sort -r | uniq -c | sort -nr -k 1 |head -60 > test.txt
+  632  ls
+  633  less test.txt
+  634  cat verified.txt | tr "[:upper:]" "[:lower:]" | sed 's/the//g; s/of//g' | tr -d "\t" | tr [:space:] "\n" | sort -r | uniq -c | sort -nr -k 1 |head -60 > test.txt
+  635  ls
+  636  less test.txt
+  637  cd ..
+  638  tmux attach -t homework
+  639  cd ws_8
+  640  ls
+  641  less test.txt
+  642  cat verified.txt | tr "[:upper:]" "[:lower:]" | sed 's/the//g; s/is//g; s/and//g; s/to//g; s/a//g; s/is//g; s/in//g; s/i//g; s/this//g; s/that//g; s/it//g; s/as//g; s/with//g; s/you//g; s/are//g; s/ //g' | tr -d "\t" | tr [:space:] "\n" | sort -r | uniq -c | sort -nr -k 1 |head -60 > test.txt
+  643  ls
+  644  less test.txt
+  645  cat verified.txt | tr "[:upper:]" "[:lower:]" | sed 's/the//g; s/is//g; s/and//g; s/to//g; s/a//g; s/is//g; s/in//g; s/i//g; s/this//g; s/that//g; s/it//g; s/as//g; s/with//g; s/you//g; s/are//g’' | tr -d "\t" | tr [:space:] "\n" | sort -r | uniq -c | sort -nr -k 1 |head -60 > test.txt
+  646  cat verified.txt | tr "[:upper:]" "[:lower:]" | sed 's/the//g; s/is//g; s/and//g; s/to//g; s/a//g; s/is//g; s/in//g; s/i//g; s/this//g; s/that//g; s/it//g; s/as//g; s/with//g; s/you//g; s/are//g' | tr -d "\t" | tr [:space:] "\n" | sort -r | uniq -c | sort -nr -k 1 |head -60 > test.txt
+  647  ls
+  648  less test.txt
+  649  cat verified.txt | tr "[:upper:]" "[:lower:]" |sed 's/the//g; s/is//g; s/and//g; s/to//g; s/a//g; s/is//g; s/in//g; s/i//g; s/this//g; s/that//g; s/it//g; s/as//g; s/with//g; s/you//g; s/are//g'| tr -d "\t" | tr [:space:] "\n" | sort -r | uniq -c | sort -nr -k 1 |head -60 > test.txt
+  650  less test.txt
+  651  cat verified.txt | tr "[:upper:]" "[:lower:]" | tr -d "\t" | tr [:space:] "\n" |sed 's/the//g; s/is//g; s/and//g; s/to//g; s/a//g; s/is//g; s/in//g; s/i//g; s/this//g; s/that//g; s/it//g; s/as//g; s/with//g; s/you//g; s/are//g'| sort -r | uniq -c | sort -nr -k 1 |head -60 > test.txt
+  652  ls
+  653  less test.txt
+  654  cat verified.txt | tr -d "\t" | t [:space:] "\n" | sort -r | uniq -c | sort -nr -k 1 | head -50
+  655  cat verified.txt | tr "[:upper:]" "[:lower:]" | tr -d "\t" | tr [:space:] "\n" | sort -r | uniq -c | sort -nr -k 1 | head -50
+  656  history > cmds.log
+  657  ls
+  658  ls
+  659  script ws8_1.txt
+  660  script ws8_2.txt
+  661  cd ..
+  662  ls
+  663  cd cs131
+  664  ls
+  665  vim ws8_2.txt
+  666  script ws8_3.txt
+  667  ls
+  668  cat ws8_1.txt ws8_2.txt ws8_3.txt > ws8.txt
+  669  cd ws_8
+  670  mv ../ws8.txt .
+  671  ls
+  672  vim ws8.txt
+  673  cd /usr/share/groff/current/eign
+  674  cd
+  675  cd 
+  676  cd ..
+  677  ls
+  678  cd share
+  679  cd usr
+  680  cd ..
+  681  ls
+  682  cd usr/share/groff
+  683  /current/eign
+  684  /current
+  685  ls
+  686  cd current
+  687  ls
+  688  less eign
+  689  pwd
+  690  cd
+  691  cd cs131
+  692  ls
+  693  cd ws_8
+  694  ls
+  695  cat verified.txt | fgrep -v -w -f /usr/share/groff/current/eign | tr "[:upper:]" "[:lower:]" | tr -d "\t" | tr [:space:] "\n" | sort -r | uniq -c | sort -nr -k 1 | head -50
+  696  cat verified.txt | fgrep -v -w -f /usr/share/groff/current/eign | tr "[:upper:]" "[:lower:]" | tr -d "\t" | tr [:space:] "\n" | sort -r | uniq -c | sort -nr -k 1 | head -10
+  697  fgrep -v -w -f /usr/share/groff/current/eign verified.txt | tr "[:upper:]" "[:lower:]" | tr -d "\t" | tr [:space:] "\n" | sort -r | uniq -c | sort -nr -k 1 | head -10
+  698  cat verified.txt | fgrep -v -f /usr/share/groff/current/eign | tr "[:upper:]" "[:lower:]" | tr -d "\t" | tr [:space:] "\n" | sort -r | uniq -c | sort -nr -k 1 | head -10
+  699  less verified.txt
+  700  fgrep -v -f /usr/share/groff/current/eign
+  701  cat verified.txt | tr "[:upper:]" "[:lower:]" | tr -d "\t" | tr [:space:] "\n" | sort -r | uniq -c | fgrep -v -f /usr/share/groff/current/eign | sort -nr -k 1 | head -10
+  702  cat verified.txt | tr "[:upper:]" "[:lower:]" | tr -d "<" | tr -d "." | tr -d "/"| tr -d ">"| tr [:space:] "\n" | sort -r | uniq -c | fgrep -v -f /usr/share/groff/current/eign | sort -nr -k 1 | head -10
+  703  cat verified.txt | tr "[:upper:]" "[:lower:]" | tr -d "<" | tr -d "." | tr -d "/"| tr -d ">"|tr -d "-"| tr -d ","| tr [:space:] "\n" | sort -r | uniq -c | fgrep -v -f /usr/share/groff/current/eign | sort -nr -k 1 | head -10
+  704  cat verified.txt | tr "[:upper:]" "[:lower:]" | tr -d "<" | tr -d "." | tr -d "/"| tr -d ">"|tr -d "-"| tr -d ","| tr -d "\t" | tr [:space:] "\n" | sort -r | uniq -c | fgrep -v -f /usr/share/groff/current/eign | sort -nr -k 1 | head -10
+  705  script lastq.txt
+  706  cat unverified.txt | tr "[:upper:]" "[:lower:]" | tr -d "<" | tr -d "." | tr -d "/"| tr -d ">"|tr -d "-"| tr -d ","| tr -d "\t" | tr [:space:] "\n" | sort -r | uniq -c | fgrep -v -f /usr/share/groff/current/eign | sort -nr -k 1 | head -10
+  707  ls
+  708  cd cs131
+  709  ls
+  710  cd ws_8
+  711  ls
+  712  wc unverified.txt
+  713  wc verified.txt
+  714  less unverified.txt
+  715  wc unverified.txt
+  716  head -100 unverified.txt | tr "[:upper:]" "[:lower:]" | tr -d "<" | tr -d "." | tr -d "/"| tr -d ">"|tr -d "-"| tr -d ","| tr -d "\t" | tr [:space:] "\n" | sort -r | uniq -c | fgrep -v -f /usr/share/groff/current/eign | sort -nr -k 1 | head -10
+  717  ls
+  718  vim ws8.txt
+  719  cd ..
+  720  git init
+  721  git branch
+  722  git checkout -b ws_8
+  723  cd ws_8
+  724  ls
+  725  git add cmds.log
+  726  git add ws8.txt
+  727  git status
+  728  git commmit -m "This is my ws8 commit!"
+  729  git commit -m "This is my ws8 commit!"
+  730  git push origin ws_8
+  731  exit
+  732  cd cs131
+  733  ls
+  734  tmux attach -t homework
+  735  cp /home/test/A1/downloaded_tweets_extend_original_nolf2.tsv .
+  736  ls
+  737  cp /home/test/A1/downloaded_tweets_extend_nolf2.tsv .
+  738  ls
+  739  head -5 downloaded_tweets_extend_nolf2.tsv
+  740  head -5 downloaded_tweets_extend_original_nolf2.tsv
+  741  awk -F '\t' '{print $1}' downloaded_tweets_extend_nolf2.tsv | head -5
+  742  awk -F '\t' '{print $1}' downloaded_tweets_extend_nolf2.tsv | sort | uniq | head -5
+  743  awk -F '\t' '{print $1}' downloaded_tweets_extend_nolf2.tsv | sort | uniq > retweet_ids.txt
+  744  ls
+  745  less retweet_ids.txt
+  746  fgrep -f retweet_ids.txt downloaded_tweets_extend_nolf2.tsv
+  747  fgrep -f retweet_ids.txt downloaded_tweets_extend_nolf2.tsv | head -10
+  748  grep "retweet" downloaded_tweets_extend_nolf2.tsv | head -10
+  749  ls
+  750  cat downloaded_tweets_extend_nolf2.tsv | grep retweeted | awk '{print $6}' | head -5
+  751  cat downloaded_tweets_extend_nolf2.tsv | grep retweeted | awk -f '\t\' '{print $6}' | head -5
+  752  cat downloaded_tweets_extend_nolf2.tsv | grep retweeted | awk -f '\t' '{print $6}' | head -5
+  753  cat downloaded_tweets_extend_nolf2.tsv | grep retweeted | awk -F '\t' '{print $6}' | head -5
+  754  cat downloaded_tweets_extend_nolf2.tsv | grep retweeted | head -5
+  755  cat downloaded_tweets_extend_nolf2.tsv | grep retweeted |awk -F '\t' '{print $6}' |head -5
+  756  cat downloaded_tweets_extend_nolf2.tsv | grep retweeted |awk -F '	' '{print $6}' |head -5
+  757  grep retweeted downloaded_tweets_extend_nolf2.tsv |awk -F '	' '{print $6}' |head -5
+  758  grep retweeted downloaded_tweets_extend_nolf2.tsv |awk -F '\t' '{print $5}' |head -5
+  759  grep retweeted downloaded_tweets_extend_nolf2.tsv |awk -F '\t' '{print $6}' |head -30
+  760  grep retweeted downloaded_tweets_extend_nolf2.tsv |awk -F '\t' '{print $6}' |head -30ls
+  761  ls
+  762  head -5 downloaded_tweets_extend_nolf2.tsv
+  763  grep 1513654494504136709 downloaded_tweets_extend_original_nolf2.tsv | head -5
+  764  ls
+  765  grep retweeted downloaded_tweets_extend_nolf2.tsv | awk -F '\t' '{print $5}' | head -5
+  766  grep retweeted downloaded_tweets_extend_nolf2.tsv | awk -F '\t' '{print $5}' | awk -F '\t' '{print $2} | head -5
+  767  grep retweeted downloaded_tweets_extend_nolf2.tsv | awk -F '\t' '{print $5}' | awk -F '\t' '{print $2}' | head -5
+  768  grep retweeted downloaded_tweets_extend_nolf2.tsv | awk -F '\t' '{print $5}' | awk -F ' ' '{print $2}' | head -5
+  769  grep retweeted downloaded_tweets_extend_nolf2.tsv | awk -F '\t' '{print $5}' | awk -F ' ' '{print $2}' | awk -F '=' '{print $3} | head -5
+  770  grep retweeted downloaded_tweets_extend_nolf2.tsv | awk -F '\t' '{print $5}' | awk -F ' ' '{print $2}' | awk -F '=' '{print $3}' | head -5
+  771  grep retweeted downloaded_tweets_extend_nolf2.tsv | awk -F '\t' '{print $5}' | awk -F ' ' '{print $2}' | awk -F '=' '{print $2}' | head -5
+  772  grep retweeted downloaded_tweets_extend_nolf2.tsv | awk -F '\t' '{print $5}' | awk -F ' ' '{print $2}' | awk -F '=' '{print $2}' > ref_ids.txt
+  773  ls
+  774  rm retweet_ids.txt
+  775  ls
+  776  grep retweeted downloaded_tweets_extend_nolf2.tsv | awk -F '\t' '{if ($2!=$6){print $5}}' | awk -F ' ' '{print $2}' | awk -F '=' '{print $2}' > ref_ids.txt
+  777  less ref_ids.txt
+  778  grep retweeted downloaded_tweets_extend_nolf2.tsv | awk -F '\t' '{if ($2!=$6){print $2}}' | head -5
+  779  grep retweeted downloaded_tweets_extend_nolf2.tsv | awk -F '\t' '{if ($2!=$6){print $2}}' | head -20
+  780  grep retweeted downloaded_tweets_extend_nolf2.tsv | awk -F '\t' '{if ($2!=$6){print $2}}' | head -50
+  781  grep retweeted downloaded_tweets_extend_nolf2.tsv | awk -F '\t' '{if ($2!=$6){print $5}' | head -5
+  782  grep retweeted downloaded_tweets_extend_nolf2.tsv | awk -F '\t' '{if ($2!=$6){print $5}}' | head -5
+  783  grep retweeted downloaded_tweets_extend_nolf2.tsv | awk -F '\t' '{if ($2!=$6){print $2}}' | head -5
+  784  grep retweeted downloaded_tweets_extend_nolf2.tsv | awk -F '\t' '{if ($2!=$6){print $0}}' | head -5
+  785  grep retweeted downloaded_tweets_extend_nolf2.tsv | awk -F '\t' '{if ($2!=$6){print $2}}' > auth_ids.txt
+  786  ls
+  787  less auth_ids.txt
+  788  paste ref_ids.txt auth_ids.txt | head -5
+  789  paste ref_ids.txt auth_ids.txt | sort > ref_auth_id.txt
+  790  ls
+  791  awk 'NR==FNR{a[$1];next} $1 in a{print $1"\t"$2}' ref_ids.txt downloaded_tweets_extend_original_nolf2.tsv| head -5
+  792  awk 'NR==FNR{a[$1];next} $1 in a{print $1"\t"$2}' ref_ids.txt downloaded_tweets_extend_original_nolf2.tsv | sort > original_ref_auth_id.txt
+  793  less original_ref_auth_id.txt
+  794  join original_ref_auth_id.txt ref_auth_id.txt | awk '{print $2"\t"$3}' | sort > graph1.txt
+  795  rm graph1.txt
+  796  ls
+  797  join original_ref_auth_id.txt ref_auth_id.txt | awk '{print $2"\t"$3}' | sort > g1.txt
+  798  awk '{print $1}' g1.txt | uniq -c | sort -nr | awk '{if ($1>2){print $2}}' > 3_or_more.txt
+  799  awk 'NR==FNR {a[$1]; next} $1 in a' 3_or_more.txt g1.txt > g2.txt
+  800  awk '{print $1}' g2.txt | uniq -c > g3.txt
+  801  ../../../../../etc/gnuplot-5.4.4/src/gnuplot
+  802  display ../../../../../etc/gnuplot-5.4.4/src/gnuplot xyz.png
+  803  ../../../../../etc/gnuplot-5.4.4/src/gnuplot
+  804  display
+  805  display ../../../../../etc/gnuplot-5.4.4/src/gnuplot xyz.png
+  806  ssh -X
+  807  ssh -Y
+  808  script a4_1.txt
+  809  cd
+  810  cd ..
+  811  ls
+  812  cd /mnt/scratch
+  813  ls
+  814  cd hannele
+  815  ls
+  816  mkdir cs131
+  817  cd cs131
+  818  ls
+  819  mkdir A4
+  820  cd A4
+  821  script a4.txt
+  822  ls
+  823  script a4_2.txt
+  824  exit
+  825  ls
+  826  cd cs131
+  827  ls
+  828  cd ..
+  829  head -5 amazon_reviews_us_Books_v1_02.tsv
+  830  ls
+  831  sed '/The/ d' amazon_reviews_us_Books_v1_02.tsv | head -5
+  832  sed '/good/ d' amazon_reviews_us_Books_v1_02.tsv | head -5
+  833  ls
+  834  head -3 amazon_reviews_us_Books_v1_02.tsv
+  835  sed '/12076615/ d' amazon_reviews_us_Books_v1_02.tsv | head -3
+  836  sed '2 d' amazon_reviews_us_Books_v1_02.tsv | head -3
+  837  sed '3 d' amazon_reviews_us_Books_v1_02.tsv | head -3
+  838  sed '$ d' amazon_reviews_us_Books_v1_02.tsv | head -3
+  839  sed '/12076615/! d' amazon_reviews_us_Books_v1_02.tsv | head -3
+  840  ls
+  841  cd cs131
+  842  tmux attach -t homework
+  843  exit
+  844  ssh -X
+  845  ssh -Y
+  846  ls
+  847  cd cs131
+  848  ls
+  849  cd ..
+  850  ls
+  851  cd ..
+  852  ls
+  853  cd ..
+  854  ls
+  855  tmux attach -t homework
+  856  ls
+  857  ssh -X
+  858  ssh -Y
+  859  exit
+  860  cd cd /mnt/scratch/hannele/cs131/A4
+  861  cd /mnt/scratch/hannele/cs131/A4cd /mnt/scratch/hannele/cs131/A4
+  862  cd /mnt/scratch/hannele/cs131/A4
+  863  ls
+  864  grep retweeted downloaded_tweets_extend_nolf2.tsv | awk -F '\t' '{if ($2!=$6){print $6}}' | head -5
+  865  grep retweeted downloaded_tweets_extend_nolf2.tsv | awk -F '\t' '{print $6}' | head -5
+  866  grep retweeted downloaded_tweets_extend_nolf2.tsv | awk -F '\t' '{print $1}' | head -5
+  867  grep retweeted downloaded_tweets_extend_nolf2.tsv | awk -F '\t' '{print $2}' | head -5
+  868  grep retweeted downloaded_tweets_extend_nolf2.tsv | awk -F '\t' '{print $3}' | head -5
+  869  grep retweeted downloaded_tweets_extend_nolf2.tsv | awk -F '\t' '{print $4}' | head -5
+  870  grep retweeted downloaded_tweets_extend_nolf2.tsv | awk -F '\t' '{print $5}' | head -5
+  871  grep retweeted downloaded_tweets_extend_nolf2.tsv | awk -F '\t' '{print $6}' | head -5
+  872  grep retweeted downloaded_tweets_extend_nolf2.tsv | awk -F '\t' '{print $7}' | head -5
+  873  grep retweeted downloaded_tweets_extend_nolf2.tsv | awk -F '\t' '{print $8}' | head -5
+  874  grep retweeted downloaded_tweets_extend_nolf2.tsv | awk -F '\t' '{print $0}' | head -5
+  875  head -2 downloaded_tweets_extend_nolf2.tsv
+  876  cd
+  877  ls
+  878  cd cs131
+  879  ls
+  880  cd A2
+  881  ls
+  882  cd ..
+  883  cd ws_4
+  884  ls
+  885  less compute_mean.sh
+  886  cd ..
+  887  cd ws_5
+  888  ls
+  889  cd CUSTOMERS
+  890  ls
+  891  cd ..
+  892  ls
+  893  cd ..
+  894  cd ws_6
+  895  ls
+  896  cd PRODUCTS
+  897  ls
+  898  less crontab.sh
+  899  less cmds.log
+  900  cd /mnt/scratch/hannele/cs131/A3
+  901  display ../../../../../etc/gnuplot-5.4.4/src/gnuplot xyz.png
+  902  xclock
+  903  exit
+  904  ls
+  905  cd 
+  906  cd /mnt/scratch/hannele/cs131/A3
+  907  ls
+  908  display ../../../../../etc/gnuplot-5.4.4/src/gnuplot xyz.png
+  909  ssh -X
+  910  display xyz.png
+  911  quartz() set output "xyz.png"
+  912  --version
+  913  quartz --version
+  914  ssh -Y
+  915  ssh -Y hannele@172.31.197.164
+  916  xclock
+  917  display ../../../../../etc/gnuplot-5.4.4/src/gnuplot xyz.png
+  918  ls
+  919  exit
+  920  cd /mnt/scratch/hannele/cs131/A3
+  921  ls
+  922  view xyz.png
+  923  display xyz.png
+  924  export DISPLAY=:0.0
+  925  display xyz.png
+  926  cd /mnt/scratch/hannele/cs131/A3
+  927  display xyz.png
+  928  cp /home/test/A1/downloaded_tweets_extend_original_nolf2.tsv .
+  929  cp /home/test/A1/downloaded_tweets_extend_nolf2.tsv
+  930  cp /home/test/A1/downloaded_tweets_extend_nolf2.tsv .
+  931  ls
+  932  head -2 downloaded_tweets_extend_nolf2.tsv
+  933  grep "replied" downloaded_tweets_extend_nolf2.tsv | head -5
+  934  ls
+  935  grep type=replied_to downloaded_tweets_extend_nolf2.tsv | awk -F '\t' '{if ($2!=$6){print $5}}' | head -5
+  936  grep type=replied_to downloaded_tweets_extend_nolf2.tsv | awk -F '\t' '{if ($2!=$6){print $5}}' | awk -F ' ' '{print $2}' | head -5
+  937  grep type=replied_to downloaded_tweets_extend_nolf2.tsv | awk -F '\t' '{if ($2!=$6){print $2}}' > extend_auth_ids.txt
+  938  ls
+  939  less extend_auth_ids.txt
+  940  head -5 downloaded_tweets_extend_nolf2.tsv
+  941  less extend_auth_ids.txt
+  942  grep 1353306974939738113 downloaded_tweets_extend_nolf2.tsv | head -5
+  943  paste extend_ref_ids.txt extend_auth_ids.txt | sort > extend_ref_auth_id.txt
+  944  ls
+  945  rm extend_ref_auth_id.txt
+  946  ls
+  947  grep type=replied_to downloaded_tweets_extend_nolf2.tsv | awk -F '\t' '{if ($2!=$6){print $5}}' | awk -F ' ' '{print $2}' | awk -F '=' '{print $2}' > extend_ref_ids.txt
+  948  ls
+  949  paste extend_ref_ids.txt extend_auth_ids.txt | sort > extend_ref_auth_ids.txt
+  950  ls
+  951  less extend_ref_auth_ids.txt
+  952  less extend_ref_ids.txt
+  953  awk 'NR==FNR{a[$1];next} $1 in a{print $1"\t"$2}' ref_ids.txt downloaded_tweets_extend_original_nolf2.tsv | sort > original_ref_auth_id.txt
+  954  awk 'NR==FNR{a[$1];next} $1 in a{print $1"\t"$2}' extend_ref_ids.txt downloaded_tweets_extend_original_nolf2.tsv | sort > original_ref_auth_id.txt
+  955  join original_ref_auth_id.txt extend_ref_auth_ids.txt | awk '{print $2"\t"$3}' | sort > graph1.txt
+  956  ls
+  957  less graph1.txt
+  958  awk 'NR==FNR {a[$1]; next} $1 in a' 3_or_more.txt graph1.txt > graph2.txt
+  959  awk '{print $1}' graph1.txt | uniq -c | sort -nr | awk '{if ($1>2){print $2}}' > 3_or_more.txt
+  960  awk 'NR==FNR {a[$1]; next} $1 in a' 3_or_more.txt graph1.txt > graph2.txt
+  961  less graph2.txt
+  962  awk '{print $1}' graph2.txt | uniq -c > graph3.txt
+  963  ../../../../../etc/gnuplot-5.4.4/src/gnuplot
+  964  display ../../../../../etc/gnuplot-5.4.4/src/gnuplot xyz.png
+  965  ssh -X
+  966  ssh -Y
+  967  quartz()
+  968  xclock
+  969  ls
+  970  pwd
+  971  ssh -X hannele@172.31.197.164
+  972  ls
+  973  rm xyz.png
+  974  ls
+  975  ../../../../../etc/gnuplot-5.4.4/src/gnuplot
+  976  ls
+  977  ls
+  978  cd /mnt/scratch
+  979  ls
+  980  cd hannele
+  981  ls
+  982  cd cs131
+  983  ls
+  984  mkdir A3
+  985  cd A3
+  986  pwd
+  987  tmux new-session -s homework
+  988  tmux attach -t homework
+  989  cd /mnt/scratch/hannele/cs131/A3
+  990  ls
+  991  less graph3.txt
+  992  less graph2.txt
+  993  less 3_or_more.txt
+  994  infot graph1.txt
+  995  info graph.txt
+  996  wc graph1.txt
+  997  wc graph2.txt
+  998  less graph2.txt
+  999  cd /mnt/scratch/hannele/cs131/A3
+ 1000  display xyz.png
+ 1001  cd /mnt/scratch/hannele/cs131/A3
+ 1002  ls
+ 1003  ../../../../../etc/gnuplot-5.4.4/src/gnuplot
+ 1004  ls
+ 1005  rm xyz_2.png
+ 1006  ls
+ 1007  wc extend_ref_ids.txt
+ 1008  wc downloaded_tweets_extend_nolf2.tsv
+ 1009  wc extend_auth_ids.txt
+ 1010  wc extend_ref_auth_ids.txt
+ 1011  wc original_ref_auth_id.txt
+ 1012  awk 'NR==FNR{a[$1];next} $1 in a{print $1"\t"$2}' downloaded_tweets_extend_original_nolf2.tsv extend_ref_ids.txt | sort > 2_original_ref_auth_id.txt
+ 1013  ls
+ 1014  wc 2_original_ref_auth_id.txt
+ 1015  awk 'NR==FNR{a[$1];next} $1 in a{print $1"\t"$2}' extend_ref_ids.txt downloaded_tweets_extend_original_nolf2.tsv | head -5
+ 1016  wc extend_ref_auth_ids.txt
+ 1017  awk 'NR==FNR{a[$1];next} $1 in a{print $1"\t"$2}' extend_ref_ids.txt downloaded_tweets_extend_original_nolf2.tsv | wc
+ 1018  awk 'NR==FNR{a[$1];next} $1 in a{print $1"\t"$3}' extend_ref_ids.txt downloaded_tweets_extend_original_nolf2.tsv | wc
+ 1019  awk 'NR==FNR{a[$1];next} $1 in a{print $1"\t"$4}' extend_ref_ids.txt downloaded_tweets_extend_original_nolf2.tsv | wc
+ 1020  awk 'NR==FNR{a[$1];next} $1 in a{print $1"\t"$4}' extend_ref_ids.txt downloaded_tweets_extend_original_nolf2.tsv | head -5
+ 1021  ls
+ 1022  rm 2_original_ref_auth_id.txt
+ 1023  wc graph1.txt
+ 1024  awk '{print $1}' graph1.txt | uniq -c | sort -nr | head -20
+ 1025  awk 'NR==FNR {map[$2] = $0; next} $2 in map {print $0, map[$2]}' downloaded_tweets_extend_original_nolf2.tsv graph2.txt | awk -F '\t' '{print $5}' | head -5
+ 1026  awk 'NR==FNR {map[$2] = $0; next} $2 in map {print $0, map[$2]}' downloaded_tweets_extend_original_nolf2.tsv graph2.txt | awk -F '\t' '{print $5}' | tr -d "" | tr ',' '\n' | sort | uniq -c | sort -nr | head -30
+ 1027  awk 'NR==FNR {map[$2] = $0; next} $2 in map {print $0, map[$2]}' downloaded_tweets_extend_original_nolf2.tsv graph2.txt | cut -f 5 | tr -d '"' | tr ',' '\n' | sort | uniq -c | sort -nr | head -30
+ 1028  awk 'NR==FNR {map[$2] = $0; next} $2 in map {print $0, map[$2]}' downloaded_tweets_extend_original_nolf2.tsv graph2.txt | awk -F '\t' '{print $5}' | tr -d "" | tr ',' '\n' | sort | uniq -c | sort -nr | head -30 > top_30.txt
+ 1029  awk -F '\t' '{print $4}' downloaded_tweets_extend_nolf2.tsv | head -5
+ 1030  vimdiff <(awk '{print $2}' top_30_A2.txt | sort) <(awk '{print $2}' top_30.txt | sort) | head -30
+ 1031  vimdiff <(awk '{print $2}' top_30_A2.txt | sort) <(awk '{print $2}' top_30.txt | sort)
+ 1032  ls
+ 1033  vim a3_1.txt
+ 1034  awk -F '\t' '{print $4}' downloaded_tweets_extend_nolf2.tsv | tr -d '"' | tr ',' '\n' | sort | uniq -c | sort -nr | head -30
+ 1035  vim a3_1.txt
+ 1036  mv a3_1.txt a3.txt
+ 1037  ls
+ 1038  git init
+ 1039  git exit
+ 1040  git --help
+ 1041  cd
+ 1042  ls
+ 1043  cd cs131
+ 1044  git init
+ 1045  ls
+ 1046  mkdir A3
+ 1047  cd A3
+ 1048  history > history.log

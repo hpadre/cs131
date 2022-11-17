@@ -1,0 +1,124 @@
+ASSIGNMENT #3
+Hannele Padre
+
+#### Start script ####
+Script started on 2022-11-16 16:38:01-05:00
+
+#### cp files to directory ####
+khannele@sjsu:/mnt/scratch/hannele/cs131/A3\[hannele@sjsu A3]$ cp /home/test/A1/downloaded_tweets_extend_original_nolf2.tsv  .
+khannele@sjsu:/mnt/scratch/hannele/cs131/A3\[hannele@sjsu A3]$ cp /home/test/A1/downloaded_tweets_extend_nolf2.tsv .
+
+## View Header ##
+khannele@sjsu:/mnt/scratch/hannele/cs131/A3\[hannele@sjsu A3]$ head -2 downloaded_tweets_extend_nolf2.tsv
+id	author	date	hashtags	referenced	in_reply_to_user_id	public_metrics	text_nolf
+1520543208614334465	308045021	2022-04-30 23:18:45+00:00	awesomePeopleOnTwitter				"On top of the chocolate, @benjean2 also included these for my Spanish learning child. I have another child going into Spanish for 2 years and these books, lovingly given, will be out to good use. I hope my kids will be worthy of her kindness. ❤️ #awesomePeopleOnTwitter https://t.co/rGiSjqZXoe"
+
+####Q1: Represent a user A getting a reply from another user B as a line A_ID,B_ID (A_ID and B_ID are the comma separated IDs of user A and B, though you can also tab-separate A_ID and B_ID if it fits you). ####
+
+## grep for "type=replied_to" and get author ID's (push into new file) and get ref ID's (push into new file)
+## Get author id's 
+[KM[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[K[hannele@sjsu A3]$ [K[hannele@sjsu A3]$ [K[hannele@sjsu A3]$ [K[hannele@sjsu A3]$ [K[hannele@sjsu A3]$ [K[hannele@sjsu A3]$ grep type=replied_to downloaded_tweets_extend_nolf2.tsv | aawk -F '\t' '{if ($2!=$6){print $2}}' > extend_auth_ids.txt
+## Get ref id's
+khannele@sjsu:/mnt/scratch/hannele/cs131/A3\[hannele@sjsu A3]$ grep type=replied_to downloaded_tweets_extend_nolf2.tsv | awk -F '\t' '{if ($2!=$6){print $5}}' | awk -F ' ' '{print $2}' | aawk -F '=' '{print $2}' > extend_ref_ids.txt
+
+## Combine files with paste (stitches columns together to create table) 
+khannele@sjsu:/mnt/scratch/hannele/cs131/A3\[hannele@sjsu A3]$ paste extend_ref_ids.txt extend_auth_ids.txt | sort > extend_ref_auth_ids.txt
+
+##Get tweet id’s from original file that match tweet id’s from extended file into a file:
+khannele@sjsu:/mnt/scratch/hannele/cs131/A3\[hannele@sjsu A3]$ awk 'NR==FNR{a[$1];next} $1 in a{print $1"\t"$2}' ref_ids.txt downloaded_tweets_extend_original_nolf2.tsv | sort > original_rref_auth_id.txt
+
+## Join original_ref_auth_id.txt with extend_ref_auth_ids.txt by the tweet (ref) id’s, only printing out the authors:
+khannele@sjsu:/mnt/scratch/hannele/cs131/A3\[hannele@sjsu A3]$ join original_ref_auth_id.txt extend_ref_auth_ids.txt | awk '{print $2"\t"$3}' | sort > graph1.txt
+
+#### Q2: Produce clusters (groups of influence) by ranking the users who got replies by their number of replies. Keep only the largest clusters by "cutting" at a threshold of 3; in order words, keep just the graph for users who got 3 or more replies (@banish suggested on Discord there are 110-120 such users, excluding the bots who replied to themselves).####
+## Get people with 3 or more retweets (gives counts i think)
+khannele@sjsu:/mnt/scratch/hannele/cs131/A3\[hannele@sjsu A3]$ awk '{print $1}' graph1.txt | uniq -c | sort -nr | awk '{if ($1>2){print $2}}' > 3_or_more.txt
+
+## Get subset in graph1.txt with 3_or_more.txt:
+khannele@sjsu:/mnt/scratch/hannele/cs131/A3\[hannele@sjsu A3]$ awk '{print $1}' graph1.txt | uniq -c | sort -nr | awk '{if ($1>2){print $2}}' > 3_or_more.txt[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[21PNR==FNR {a[$1]; next} $1 in a' 3_or_more.txt graph1.txt > graph2.txt
+
+## Plot the sizes of clusters as a histogram to show how many clusters of each size resulted.
+[3mgraph2.txt (END)[23m[K[K[?1l>[?1049lkhannele@sjsu:/mnt/scratch/hannele/cs131/A3\[hannele@sjsu A3]$ awk '{print $1}' graph2.txt | uniq -c > graph3.txt
+khannele@sjsu:/mnt/scratch/hannele/cs131/A3\[hannele@sjsu A3]$ ../../../../../etc/gnuplot-5.4.4/src/gnuplot
+
+	G N U P L O T
+	Version 5.4 patchlevel 4    last modified 2022-07-10 
+
+	Copyright (C) 1986-1993, 1998, 2004, 2007-2022
+	Thomas Williams, Colin Kelley and many others
+
+	gnuplot home:     http://www.gnuplot.info
+	faq, bugs, etc:   type "help FAQ"
+	immediate help:   type "help"  (plot window: hit 'h')
+
+Terminal type is now 'unknown'
+gnuplot> set output "xyz.png"
+gnuplot> set terminal svg size 400,300
+
+Terminal type is now 'svg'
+Options are 'size 400,300 fixed enhanced font 'Arial,12' butt dashlength 1.0 '
+gnuplot> binwidth=5
+gnuplot> bin(x,width)=width*floor(x/width)
+gnuplot> plot 'graph3.txt' using (bin($1,binwidth)):(1.0) smooth freq with boxes
+gnuplot> exit
+
+#### Plot is viewed thorugh xquartz bc I have a macbook ####
+
+#### Q4: Find the 30 most frequent hashtags in these largest clusters of replies you kept (for the users/tweets that got replied to, not the users/tweets doing the replies. For Q4 use the tweets that were replies to others in order to compute the hashtag frequency, because there are a few referenced IDs for replies that are not found in the file, i.e. the referenced IDs for replied_to tweets were not found in the file). Compare to the 30 most frequent hashtags you found in assignment #2 (overall, question 5). Which hashtags appear in these clusters that did not appear in the frequent hashtags from assignment #2 (you can use sort and diff for this)?
+
+[hannele@sjsu A3]$ awk 'NR==FNR {map[$2] = $0; next} $2 in map {print $0, map[$2]}' downloaded_tweets_extend_original_nolf2.tsv graph2.txt | awk -F '\t' '{print $5}' | tr -d "" | tr ',' '\n' | sort | uniq -c | sort -nr | head -30
+      6 ScottyTheWorstPrimeMinisterEver
+      4 PerjuryTaylorGreene
+      3 WillSmith
+      3 "NFLDraft2022
+      3 NFLDraft
+      3 JohnnyDepp"
+      3 COVIDisAirborne
+      1 Ukraine
+
+[hannele@sjsu A3]$ awk -F '\t' '{print $4}' downloaded_tweets_extend_nolf2.tsv | tr -d '"' | tr ',' '\n' | sort | uniq -c | sort -nr | head -30
+  20647 
+   2823 Ukraine
+   1609 COVID19
+   1115 Russia
+   1110 LongCovid
+    895 FBPE
+    894 FollowBackFriday
+    782 StandWithUkraine
+    536 PutinHitler
+    476 Russian
+    406 Putin
+    405 Omicron
+    366 BREAKING
+    363 auspol
+    357 Mariupol
+    343 bcpoli
+    337 Kyiv
+    319 ableg
+    305 StopPutinNOW
+    292 COVIDisAirborne
+    282 PMQs
+    280 เจ้าแก้มก้อน
+    274 PutinWarCriminal
+    269 Ottawa
+    263 RussiaSanctions
+    263 Genocide
+    260 BoycottRussia
+    258 Ukrainian
+    252 VoteFordOut
+    239 onpoli
+
+[hannele@sjsu A3]$ awk 'NR==FNR {map[$2] = $0; next} $2 in map {print $0, map[$2]}' downloaded_tweets_extend_original_nolf2.tsv graph2.txt | awk -F '\t' '{print $5}' | tr -d "" | tr ',' '\n' | sort | uniq -c | sort -nr | head -30 > top_30.txt
+[hannele@sjsu A3]$ awk -F '\t' '{print $4}' downloaded_tweets_extend_nolf2.tsv | tr -d '"' | tr ',' '\n' | sort | uniq -c | sort -nr | head -30 > top_30_A2.txt
+
+[hannele@sjsu A3]$ vimdiff <(awk '{print $2}' top_30_A2.txt | sort) <(awk '{print $2}' top_30.txt | sort)
+COVIDisAirborne                      
+JohnnyDepp"                          
+NFLDraft                             
+"NFLDraft2022                        
+PerjuryTaylorGreene                  
+ScottyTheWorstPrimeMinisterEver      
+Ukraine                              
+WillSmith 
+
+Script done on 2022-11-16 18:05:40-05:00
