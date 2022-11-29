@@ -1,0 +1,163 @@
+ASSIGNMENT #5
+Hannele Padre
+
+Push file a5.txt and the two tables you created to a github repo "a5"
+
+Consider the clusters of size >=3 you extracted previously for both retweets and replies.
+Cluster >=3 for retweets (A4)
+Cluster >=3 for replies (A3)
+
+For each cluster, compute the relative frequencies of all hashtags you found for that cluster.
+
+List all hashtags with their relative frequencies for the clusters of size >=3. List them in a table of columns shown below, tab-separated:
+hashtag_H   cluster_C_leader(userID)   relative_frequency_H_C  frequency_H_in_C  frequency_H_overall   count_H_in_C   count_hashtags_in_C   count_H_entire_dataset    count_hashtags_entire_dataset
+
+
+#### Started Script ####
+#### Copy tsv files to A5 ####
+Script started on 2022-11-19 23:44:18-05:00
+^[khannele@sjsu:/mnt/scratch/hannele/cs131/A5^[\[hannele@sjsu A5]$ cp /home/test/A1/downloaded_tweets_extend_original_nolf2.tsv .
+khannele@sjsu:/mnt/scratch/hannele/cs131/A5\[hannele@sjsu A5]$ cp /home/test/A1/downloaded_tweets_extend_nolf2.tsv .
+
+
+
+
+#### First, working with A4 retweets #####
+## Get reference ID's of retweeted tweets
+khannele@sjsu:/mnt/scratch/hannele/cs131/A5\[hannele@sjsu A5]$ grep retweeted downloaded_tweets_extend_nolf2.tsv | awk -F '\tt' '{if ($2!=$6){print $5}}' | awk -F ' ' '{print $2}' | awk -F '=' '{print $2}'  > ref_ids_A4.txt
+
+## Get hashtags and author ID's, then combine ref ID, auth ID, and hashtags
+[K[hannele@sjsu A5]$ [K[hannele@sjsu A5]$ grep retweeted downloaded_tweets_extend_nolf2.tsv | awk -F '\tt' '{if ($2!=$6){print $2"\t"$4}}'  > auth_hashtags_A4.txt
+khannele@sjsu:/mnt/scratch/hannele/cs131/A5\[hannele@sjsu A5]$ paste ref_ids_A4.txt auth_hashtags_A4.txt | sort > ref_auth_haashtags_A4.txt
+
+## Get original authors
+khannele@sjsu:/mnt/scratch/hannele/cs131/A5\[hannele@sjsu A5]$ awk 'NR==FNR{a[$1];next} $1 in a{print $1"\t"$2}' auth_hashtaggs_A4.txt downloaded_tweets_extend_original_nolf2.tsv | sort > orig_ref_auth_A4.ttxt
+
+## Combing original author and retweet author by ref ID, and cluster those with 3 or more retweets
+khannele@sjsu:/mnt/scratch/hannele/cs131/A5\[hannele@sjsu A5]$ join orig_ref_auth_A4.txt ref_auth_hashtags_A4.txt|tr ' ' \\t‘| tr A-Z a-z| cut -f2- | sorrt > origauth_rtauth_hashtags_A4.txt 
+khannele@sjsu:/mnt/scratch/hannele/cs131/A5\[hannele@sjsu A5]$ awk '{print $1}' origauth_rtauth_hashtags_A4.txt | uniq -c | sort -nr | awk '{if ($1>2){prrint $2}}' > cluster_A4.txt
+
+## Create directory for clusters, and create files for each author in cluster
+khannele@sjsu:/mnt/scratch/hannele/cs131/A5\[hannele@sjsu A5]$ mkdir A4_auth_hashtags
+khannele@sjsu:/mnt/scratch/hannele/cs131/A5\[hannele@sjsu A5]$ awk 'NR==FNR{a[$0]++;next}{if($1 in a){print $3 >> "A4_auth_hashtags/"$1".txt"}}' cluster__A4.txt origauth_rtauth_hashtags_A4.txt
+
+## In each file, print out the hashtags the author tweets
+[3m28978705.txt (END)[23m[K[K[?1l>[?1049lkhannele@sjsu:/mnt/scratch/hannele/cs131/A5/A4_auth_hashtags\[hannele@sjsu A4_auth_hashtags]$ for FILE in `ls`; do sed -i '/^$/d' $FILE ; cat $FILE | tr -d '"' | tr ',' ''\n' >> temp && mv temp $FILE; done
+
+## Delete files who's contents are empty (no hashtags)
+[3m572062434.txt (END)[23m[K[K[?1l>[?1049lkhannele@sjsu:/mnt/scratch/hannele/cs131/A5/A4_auth_hashtags\[hannele@sjsu A4_auth_hashtags]$ find . -type f -empty -print -delete
+
+## Solve for count_H_entire_dataset.txt and for count_hashtags_entire_dataset: 
+khannele@sjsu:/mnt/scratch/hannele/cs131/A5\[hannele@sjsu A5]$ awk -F '\t' '{print $3}' origauth_rtauth_hashtags_A4.txt | tr -d '"' | tr ',' '\n' | sort  | uniq -c | sort -nr > count_H_entire_dataset.txt
+khannele@sjsu:/mnt/scratch/hannele/cs131/A5\[hannele@sjsu A5]$ awk '{total = total + $1}END{print total}' count_H_entire_dataset.txt
+62352
+count_hashtags_entire_dataset = 62352
+
+
+## Iterate each file and solve for values as asked for by the assignment, then print these values seperated by tabs to create a tab seperated file.
+]0;hannele@sjsu:/mnt/scratch/hannele/cs131/A5[hannele@sjsu A5]$ cd A4_auth_hashtags
+^[]0;hannele@sjsu:/mnt/scratch/hannele/cs131/A5^G[hannele@sjsu A5]$ for FILE in `ls` ; do for HASHTAG in `cat $FILE | uniq` ; do count_H_in_C=`grep $HASHTAG $FILE | wc -l` ; count_hashtags_in_C=`cat $FILE | wc -l` ; count_H_entire_dataset=`awk -v h="$HASHTAG" -F ' ' '{if ($2==h) print $1}' ../count_H_entire_dataset.txt` ; count_hashtags_entire_dataset=9764 ; frequency_H_in_C=`echo "$count_H_in_C / $count_hashtags_in_C" | bc -l` ; frequency_H_overall=`echo "$count_H_entire_dataset / $count_hashtags_entire_dataset" | bc -l` ; relative_frequency_H_C=`echo "$frequency_H_in_C / $frequency_H_overall" | bc -l` ; echo -e "$HASHTAG\t${FILE//[!0-9]/}\t$relative_frequency_H_C\t$frequency_H_in_C\t$frequency_H_overall\t$count_H_in_C\t$count_hashtags_in_C\t$count_H_entire_dataset\t$count_hashtags_entire_dataset"; done ; done > ../A4_retweets_hashtags_freqs.tsv
+
+## Create and append header, and rename tsv file to retweets_hashtags_freqs.tsv
+^[]0;hannele@sjsu:/mnt/scratch/hannele/cs131/A5^G[hannele@sjsu A5]$ cd ..
+]0;hannele@sjsu:/mnt/scratch/hannele/cs131/A5[hannele@sjsu A5]$ echo "hashtag_H   cluster_C_leader(userID)   relative_frequency_H_C  frequency_H_in_C  frequency_H_overaall   count_H_in_C   count_hashtags_in_C   count_H_entire_dataset    count_hashtags_entire_dataset" > header.txt
+]0;hannele@sjsu:/mnt/scratch/hannele/cs131/A5[hannele@sjsu A5]$ cat header.txt A4_retweets_hashtags_freqs.tsv > retweets_hashtags_freqs.tsv
+
+#### Repeat for replies (A3)
+## Grep for replies and cluster those who have 2 or more replied tweets
+]0;hannele@sjsu:/mnt/scratch/hannele/cs131/A5[hannele@sjsu A5]$ grep replied downloaded_tweets_extend_nolf2.tsv | awk -F '\t' '{if ($2!=$6){print $0}}' > A3_replies.txt
+]0;hannele@sjsu:/mnt/scratch/hannele/cs131/A5[hannele@sjsu A5]$ awk -F '\t' '{print $6}' A3_replies.txt | uniq -c | sort -nr | awk '{if($1>2){print $2}}' > cluster_A3.txxt
+
+## Similar to retweets, create directory for author id files from the cluster.
+]0;hannele@sjsu:/mnt/scratch/hannele/cs131/A5[hannele@sjsu A5]$ mkdir A3_auth_hashtags
+^[]0;hannele@sjsu:/mnt/scratch/hannele/cs131/A5^G[hannele@sjsu A5]$ awk -F '\t' 'NR==FNR{a[$0]++;next}{if($6 in a){print $4 >> "A3_auth_hashtags/"$6".txt"}}' cluster_A3.txt ^M A3_replies.txt
+
+## For each author file, print hashtags within that file
+]0;hannele@sjsu:/mnt/scratch/hannele/cs131/A5[hannele@sjsu A5]$ cd A3_auth_hashtags
+]0;hannele@sjsu:/mnt/scratch/hannele/cs131/A5/A3_auth_hashtags[hannele@sjsu A3_auth_hashtags]$ for FILE in `ls`; do sed -i '/^$/d' $FILE ; cat $FILE | tr -d '"'| tr A-Z a-z | tr ',' '\n'' >> temp && mv temp $FILE; done
+
+## Get count_H_entire_dataset.txt for replies, and also count Hashtags entire dataset
+]0;hannele@sjsu:/mnt/scratch/hannele/cs131/A5[hannele@sjsu A5]$ awk -F ‘\t’ ‘{print $4}’ A3_replies.txt | tr A-Z a-z | tr -d '"' | tr ',' '\n' | sort | uniq -c | sort -nnr > A3_replies_count_H_entire_dataset.txt
+[7mA3_replies_count_H_entire_dataset.txt[27m[K[K[?1l>[?1049l[23;0;0t]0;hannele@sjsu:/mnt/scratch/hannele/cs131/A5[hannele@sjsu A5]$ awk '{total = total + $1}END{print total}' A3_replies_count_H_entire_dataset.txt
+12712
+count_hashtags_entire_dataset=12712
+
+## Create tsv file
+]0;hannele@sjsu:/mnt/scratch/hannele/cs131/A5[hannele@sjsu A5]$ cd A3_auth_hashtags
+]0;hannele@sjsu:/mnt/scratch/hannele/cs131/A5/A3_auth_hashtags[hannele@sjsu A3_auth_hashtags]$ for FILE in `ls` ; do for HASHTAG in `cat $FILE | uniq` ; do count_H_in_C=`grep $HASHTAG $FFILE | wc -l` ; count_hashtags_in_C=`cat $FILE | wc -l` ; count_H_entire_dataset=`awk -v h="$HASHTAG" -F ' ' '{if ($2==h) prrint $1}' ../A3_replies_count_H_entire_dataset.txt` ; count_hashtags_entire_dataset=12712 ; frequency_H_in_C=`echo "$count_HH_in_C / $count_hashtags_in_C" | bc -l` ; frequency_H_overall=`echo "$count_H_entire_dataset / $count_hashtags_entire_dataseet" | bc -l` ; relative_frequency_H_C=`echo "$frequency_H_in_C / $frequency_H_overall" | bc -l` ; echo -e "$HASHTAG\t${FILE///[!0-9]/}\t$relative_frequency_H_C\t$frequency_H_in_C\t$frequency_H_overall\t$count_H_in_C\t$count_hashtags_in_C\t$count_H__entire_dataset\t$count_hashtags_entire_dataset"; done ; done > ../A3_replies_hashtag_freqs.tsv
+
+## cat header and rename to replies_hashtag_freqs.tsv
+[7mA3_replies_hashtag_freqs.tsv[27m[K[K[?1l>[?1049l[23;0;0t]0;hannele@sjsu:/mnt/scratch/hannele/cs131/A5[hannele@sjsu A5]$ cat header.txt A3_replies_hashtag_freqs.tsv > replies_hashtag_freqs.tsv
+
+#### Answer at the bottom of a5.txt: do you see any hashtags that are "special" to some clusters, i.e. that occur often in a particular cluster of tweets, but less often in the tweets overall? Which hashtags and for which clusters (ID'ed by their leaders)? For this purpose, you can sort the rows based on relative_frequency_H_C (higher at top and lower at bottom).
+####
+
+## Clusters are in the second column. For replies, the cluster 26347394 seems to reply tweets that talk about hockey and the olympics. The cluster 1236324668640047105 talks a lot about covid.
+For retweets, the top hashtags seem to be mostly related to russia or covid. This cluster 1364639441604800513 tweets a lot about kyiv. 
+
+]0;hannele@sjsu:/mnt/scratch/hannele/cs131/A5[hannele@sjsu A5]$ sort -k 3 replies_hashtags_freqs.tsv | head -n 30[1P
+bcpoli	1241938664	10.20224719101123595581	.14285714285714285714	.01400251730648206419	1	7	178	12712
+profits	90732175	10.34757834757834758851	.02197802197802197802	.00212397734424166142	2	91	27	12712
+covidisairborne	381685461	10.43678160919540231153	.07142857142857142857	.00684392699811202013	1	14	87	12712
+rape	2904241896	105.93333333333333369633	.05000000000000000000	.00047199496538703587	1	20	6	12712
+curling	26347394	109.58620689655172911752	.01724137931034482758	.00015733165512901195	1	58	2	12712
+icehockey	26347394	109.58620689655172911752	.01724137931034482758	.00015733165512901195	1	58	2	12712
+beijing	26347394	1095.86206896551736120963	.08620689655172413793	.00007866582756450597	5	58	1	12712
+antivaxxer	1236324668640047105	11.35000000000000008517	.00892857142857142857	.00078665827564505978	1	112	10	12712
+istandwithtrudeau	1236324668640047105	11.35000000000000008517	.00892857142857142857	.00078665827564505978	1	112	10	12712
+australian	1236324668640047105	113.50000000000000277545	.02678571428571428571	.00023599748269351793	3	112	3	12712
+balafalls	1236324668640047105	113.50000000000001239420	.00892857142857142857	.00007866582756450597	1	112	1	12712
+bracebridge	1236324668640047105	113.50000000000001239420	.00892857142857142857	.00007866582756450597	1	112	1	12712
+covid19aus	1236324668640047105	113.50000000000001239420	.00892857142857142857	.00007866582756450597	1	112	1	12712
+djokoviclied	1236324668640047105	113.50000000000001239420	.00892857142857142857	.00007866582756450597	1	112	1	12712
+djokovid	1236324668640047105	113.50000000000001239420	.00892857142857142857	.00007866582756450597	1	112	1	12712
+firedrmoore	1236324668640047105	113.50000000000001239420	.00892857142857142857	.00007866582756450597	1	112	1	12712
+fireelliott	1236324668640047105	113.50000000000001239420	.00892857142857142857	.00007866582756450597	1	112	1	12712
+firelecce	1236324668640047105	113.50000000000001239420	.00892857142857142857	.00007866582756450597	1	112	1	12712
+fordfaileddoctors	1236324668640047105	113.50000000000001239420	.00892857142857142857	.00007866582756450597	1	112	1	12712
+fordfailededucation	1236324668640047105	113.50000000000001239420	.00892857142857142857	.00007866582756450597	1	112	1	12712
+fordfailednurses	1236324668640047105	113.50000000000001239420	.00892857142857142857	.00007866582756450597	1	112	1	12712
+forthewealthy	1236324668640047105	113.50000000000001239420	.00892857142857142857	.00007866582756450597	1	112	1	12712
+fun	1236324668640047105	113.50000000000001239420	.00892857142857142857	.00007866582756450597	1	112	1	12712
+gatineau	1236324668640047105	113.50000000000001239420	.00892857142857142857	.00007866582756450597	1	112	1	12712
+getvaxxed	1236324668640047105	113.50000000000001239420	.00892857142857142857	.00007866582756450597	1	112	1	12712
+gobillsgo	1236324668640047105	113.50000000000001239420	.00892857142857142857	.00007866582756450597	1	112	1	12712
+hydroplant	1236324668640047105	113.50000000000001239420	.00892857142857142857	.00007866582756450597	1	112	1	12712
+kcvsbuf	1236324668640047105	113.50000000000001239420	.00892857142857142857	.00007866582756450597	1	112	1	12712
+muskokalakes	1236324668640047105	113.50000000000001239420	.00892857142857142857	.00007866582756450597	1	112	1	12712
+novaxdjocovid	1236324668640047105	113.50000000000001239420	.00892857142857142857	.00007866582756450597	1	112	1	12712
+
+^[]0;hannele@sjsu:/mnt/scratch/hannele/cs131/A5^G[hannele@sjsu A5]$ sort -k 3 retweets_hashtags_freqs.tsv | head -n 30
+ukraine	1231514832479948802	.00684166013261497302	.00176366843033509700	.25778369520688242523	1	567	2517	9764
+ukraine	18831926	.01747396979816526894	.00450450450450450450	.25778369520688242523	4	888	2517	9764
+russia	1495480590572961792	.02101072700472332498	.00222717149220489977	.10600163867267513314	1	449	1035	9764
+ทําบุญขึ้นห้อง609	1306152383601192961		.03448275862068965517		1	29		9764
+ทําบุญขึ้นห้อง609	1244661559948787713		.03703703703703703703		1	27		9764
+ทําบุญขึ้นห้อง609	1337423634403487744		.04347826086956521739		1	23		9764
+putin	18831926	.04524895265636006353	.00112612612612612612	.02488734125358459647	1	888	243	9764
+longcovid	117810351	.05024960115279707676	.00588235294117647058	.11706267922982384268	1	170	1143	9764
+ukraine	1476701921893257236	.05704737198812778985	.01470588235294117647	.25778369520688242523	1	68	2517	9764
+longcovid	1125443593085358082	.05973728808374477660	.00699300699300699300	.11706267922982384268	1	143	1143	9764
+covid19	138168339	.09958184599694033654	.01351351351351351351	.13570258090946333469	1	74	1325	9764
+kyiv	109749447	10.01435897435897435901	.33333333333333333333	.03328553871364195002	1	3	325	9764
+kyiv	230525285	10.01435897435897435901	.33333333333333333333	.03328553871364195002	1	3	325	9764
+kyiv	1364639441604800513	10.01435897435897435901	.33333333333333333333	.03328553871364195002	15	45	325	9764
+kyiv	1364639441604800513	10.01435897435897435901	.33333333333333333333	.03328553871364195002	15	45	325	9764
+kyiv	1364639441604800513	10.01435897435897435901	.33333333333333333333	.03328553871364195002	15	45	325	9764
+kyiv	1364639441604800513	10.01435897435897435901	.33333333333333333333	.03328553871364195002	15	45	325	9764
+kyiv	1364639441604800513	10.01435897435897435901	.33333333333333333333	.03328553871364195002	15	45	325	9764
+kyiv	1364639441604800513	10.01435897435897435901	.33333333333333333333	.03328553871364195002	15	45	325	9764
+kyiv	1364639441604800513	10.01435897435897435901	.33333333333333333333	.03328553871364195002	15	45	325	9764
+kyiv	1364639441604800513	10.01435897435897435901	.33333333333333333333	.03328553871364195002	15	45	325	9764
+bhm	17477864	100.14358974358974425059	.05128205128205128205	.00051208521097910692	2	39	5	9764
+bhm	17477864	100.14358974358974425059	.05128205128205128205	.00051208521097910692	2	39	5	9764
+bccrss	1476701921893257236	10.01778385772913816915	.04411764705882352941	.00440393281442031954	3	68	43	9764
+bccrss	1476701921893257236	10.01778385772913816915	.04411764705882352941	.00440393281442031954	3	68	43	9764
+bccrss	1476701921893257236	10.01778385772913816915	.04411764705882352941	.00440393281442031954	3	68	43	9764
+putin	1384611618655506437	10.04526748971193415914	.25000000000000000000	.02488734125358459647	1	4	243	9764
+putin	1498007127763427328	10.04526748971193415914	.25000000000000000000	.02488734125358459647	1	4	243	9764
+putin	15022885	10.04526748971193415914	.25000000000000000000	.02488734125358459647	1	4	243	9764
+putin	22162815	10.04526748971193415914	.25000000000000000000	.02488734125358459647	1	4	243	9764
+]0;hannele@sjsu:/mnt/scratch/hannele/cs131/A5[hannele@sjsu A5]$ exit
+
+Script done on 2022-11-29 15:25:45-05:00
