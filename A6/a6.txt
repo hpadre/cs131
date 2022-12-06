@@ -25,7 +25,7 @@ Script started on 2022-11-29 16:45:40-05:00
 465 influential_user_id.txt
 
 #### Q2: How many users replied to them in total? ####
-## 338, work below
+## 2465, work below
 # Awk for Rows thati include influencers, then wc 
 # 2465
 ]0;hannele@sjsu:/mnt/scratch/hannele/cs131/A6[hannele@sjsu A6]$ awk -F '\t' 'NR==FNR{a[$0];next} $6 in a{print $0}' influentiaal_user_id.txt all_REPLIES.NOBOTS.tsv > influential_users_allRows.txt
@@ -33,6 +33,7 @@ Script started on 2022-11-29 16:45:40-05:00
 2465 influential_users_allRows.txt
 
 #### Q3: How many of the users who replied to them also got replied to themselves (at least once)? ####
+# 338, work below
 # Get users(col 2) that replied to influencers:
 ]0;hannele@sjsu:/mnt/scratch/hannele/cs131/A6[hannele@sjsu A6]$ awk -F '\t' '{print $2}' influential_users_allRows.txt | sort  | uniq > users_that_replied.txt
 
