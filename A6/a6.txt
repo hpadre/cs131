@@ -1,0 +1,80 @@
+ASSIGNMENT #6
+HANNELE PADRE
+
+Script started on 2022-11-29 16:45:40-05:00
+# Copy files over
+]0;hannele@sjsu:/mnt/scratch/hannele/cs131/A6[hannele@sjsu A6]$ cp /home/test/A1/downloaded_tweets_extend_original_nolf2.tsv ..
+]0;hannele@sjsu:/mnt/scratch/hannele/cs131/A6[hannele@sjsu A6]$ cp /home/test/A1/downloaded_tweets_extend_nolf2.tsv .
+
+# get the replies from both files (using grep replied_to) and remove the bots (using awk with $2 != $6), then save as files
+]0;hannele@sjsu:/mnt/scratch/hannele/cs131/A6[hannele@sjsu A6]$ grep replied_to downloaded_tweets_extend_original_nolf2.tsv |  awk -F '\t' '{if ($2!=$6){print $0}}' > downloaded_tweets_extend_original_nolf2__REPLIES.NOBOTS.tsv
+]0;hannele@sjsu:/mnt/scratch/hannele/cs131/A6[hannele@sjsu A6]$ grep replied_to downloaded_tweets_extend_nolf2.tsv | awk -F '\\t' '{if ($2!=$6){print $0}}' > downloaded_tweets_extend_nolf2_REPLIES.NOBOTS.tsvv
+
+# Combine text files into 1 file.
+]0;hannele@sjsu:/mnt/scratch/hannele/cs131/A6[hannele@sjsu A6]$ cat downloaded_tweets_extend_original_nolf2_REPLIES.NOBOTS.tsvv downloaded_tweets_extend_nolf2_REPLIES.NOBOTS.tsv > all_REPLIES.NOBOTS.tsv
+
+# Get col 6 (user ID's)
+]0;hannele@sjsu:/mnt/scratch/hannele/cs131/A6[hannele@sjsu A6]$ awk -F '\t' '{print $6}' all_REPLIES.NOBOTS.tsv > in_reply_to__user_id.txt
+
+# Get ID's that show up more than 3 times (influential ID's):
+]0;hannele@sjsu:/mnt/scratch/hannele/cs131/A6[hannele@sjsu A6]$ sort in_reply_to_user_id.txt | uniq -c | awk '{if ($1>2){printt $2}}' > influential_user_id.txt
+
+#### Q1: How many such influential users exist: ####
+## 465
+]0;hannele@sjsu:/mnt/scratch/hannele/cs131/A6[hannele@sjsu A6]$ wc -l influential_user_id.txt
+465 influential_user_id.txt
+
+#### Q2: How many users replied to them in total? ####
+## 338, work below
+# Awk for Rows thati include influencers, then wc 
+# 2465
+]0;hannele@sjsu:/mnt/scratch/hannele/cs131/A6[hannele@sjsu A6]$ awk -F '\t' 'NR==FNR{a[$0];next} $6 in a{print $0}' influentiaal_user_id.txt all_REPLIES.NOBOTS.tsv > influential_users_allRows.txt
+]0;hannele@sjsu:/mnt/scratch/hannele/cs131/A6[hannele@sjsu A6]$ wc -l influential_users_allRows.txt
+2465 influential_users_allRows.txt
+
+#### Q3: How many of the users who replied to them also got replied to themselves (at least once)? ####
+# Get users(col 2) that replied to influencers:
+]0;hannele@sjsu:/mnt/scratch/hannele/cs131/A6[hannele@sjsu A6]$ awk -F '\t' '{print $2}' influential_users_allRows.txt | sort  | uniq > users_that_replied.txt
+
+# Get users that replied to self
+]0;hannele@sjsu:/mnt/scratch/hannele/cs131/A6[hannele@sjsu A6]$ awk -F '\t' 'NR==FNR{a[$0];next} $6 in a{print $0}' users_thatt_replied.txt all_REPLIES.NOBOTS.tsv > replied_to_self.txt
+]0;hannele@sjsu:/mnt/scratch/hannele/cs131/A6[hannele@sjsu A6]$ wc -l replied_to_self.txt
+338 replied_to_self.txt
+
+#### Q4: 4- Extract the dates of the replies in format YY-MM-DD and find the top 10 dates on which the most replies happened.
+]0;hannele@sjsu:/mnt/scratch/hannele/cs131/A6[hannele@sjsu A6]$ awk '{print $3}' influential_users_allRows.txt | sort | uniq --c | sort -nr -k 1 | head
+     40 2022-02-17
+     38 2022-02-24
+     36 2022-02-26
+     36 2022-02-23
+     34 2022-02-12
+     33 2022-01-13
+     32 2022-02-16
+     30 2022-04-29
+     30 2022-03-25
+     30 2022-02-14
+
+#### Q5: 5- Repeat what you did in worksheets 7 and 8 to find the most frequent words (not considering stopwords) in the tweet text (last column) for those users. Which words are the most frequent in that tweet text? Are they what you expected based on the frequent hashtags from previous assignments?
+## Words that are most frequent are has, ford, putinhitler, need, covid19, doug, stanwithukraine.
+## Yes these are what I expected based on frequent hashtags from previous assignments becasue they talked a lot about covid or Russia or politial topics.
+]0;hannele@sjsu:/mnt/scratch/hannele/cs131/A6[hannele@sjsu A6]$ awk -F '\t' '{print $8}' influential_users_allRows.txt | tr -dd "<" | tr -d "." | tr -d "/"| tr -d ">"|tr -d "-"| tr -d ","| tr -d "\t"|tr [:sppace:] "\n"| tr "[:upper:]" "[:lower:]" | fgrep -v -w -f /usr/share/groff/currentt/eign | sort | uniq -c | sort -nr | head -n 20
+   2349 
+    449 &amp;
+    144 has
+    141 ford
+    102 #putinhitler
+    101 need
+     98 #covid19
+     93 doug
+     73 #standwithukraine
+     70 #bcpoli
+     67 covid
+     66 ontario
+     64 take
+     62 2
+     59 trump
+     58 support
+     58 conservative
+     58 canada
+     56 think
+     56 public
